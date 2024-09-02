@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2iwgtjje05p"]
+
+[ext_resource type="Script" path="res://amsynth.gd" id="1_8g6jc"]
+[ext_resource type="PackedScene" uid="uid://dmelih0loihel" path="res://knob.tscn" id="2_lvsxo"]
+
+[node name="amsynth" type="Node2D"]
+script = ExtResource("1_8g6jc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 105.0
+offset_top = 93.0
+offset_right = 145.0
+offset_bottom = 116.0
+text = "C4"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 151.0
+offset_top = 93.0
+offset_right = 195.0
+offset_bottom = 117.0
+
+[node name="MasterVolume" parent="." instance=ExtResource("2_lvsxo")]
+offset_left = 491.0
+offset_right = 491.0
+knob_name = "volume"
+
+[node name="Oscillator1Shape" parent="." instance=ExtResource("2_lvsxo")]
+offset_left = 64.0
+offset_right = 64.0
+knob_name = "shape"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="MasterVolume" to="." method="_on_knob_value_changed"]

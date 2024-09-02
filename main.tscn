@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqblgckoq2x14"]
+
+[ext_resource type="PackedScene" uid="uid://c2iwgtjje05p" path="res://amsynth.tscn" id="1_fmqxe"]
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_u385u"]
+csound_name = "amsynth"
+
+[node name="Main" type="Node2D"]
+
+[node name="CsoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_u385u")
+autoplay = true
+
+[node name="amsynth" parent="." instance=ExtResource("1_fmqxe")]
+instrument_name = "one"
