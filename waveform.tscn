@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ulf3fijrt5"]
+
+[ext_resource type="Script" path="res://waveform.gd" id="1_fian8"]
+[ext_resource type="Texture2D" uid="uid://bnbh1glww04m4" path="res://waves.png" id="1_s42qy"]
+
+[node name="waveform" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fian8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="waveform" type="Sprite2D" parent="Panel"]
+position = Vector2(32, 32)
+texture = ExtResource("1_s42qy")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

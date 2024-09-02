@@ -1,0 +1,724 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CARLA-PROJECT>
+<CARLA-PROJECT VERSION='2.2'>
+ <EngineSettings>
+  <ForceStereo>false</ForceStereo>
+  <PreferPluginBridges>false</PreferPluginBridges>
+  <PreferUiBridges>true</PreferUiBridges>
+  <UIsAlwaysOnTop>false</UIsAlwaysOnTop>
+  <MaxParameters>200</MaxParameters>
+  <UIBridgesTimeout>4000</UIBridgesTimeout>
+ </EngineSettings>
+
+ <Transport>
+  <BeatsPerMinute>120</BeatsPerMinute>
+ </Transport>
+
+ <!-- amsynth -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>amsynth</Name>
+   <URI>http://code.google.com/p/amsynth/amsynth</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x1e0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Amp Attack</Name>
+    <Symbol>amp_attack</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>13</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2.5</MappedMaximum>
+    <MidiCC>13</MidiCC>
+    <Value>0.0333329997956753</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Amp Decay</Name>
+    <Symbol>amp_decay</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>14</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2.5</MappedMaximum>
+    <MidiCC>14</MidiCC>
+    <Value>1.70000994205475</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Amp Sustain</Name>
+    <Symbol>amp_sustain</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>15</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>15</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>3</Index>
+    <Name>Amp Release</Name>
+    <Symbol>amp_release</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>16</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2.5</MappedMaximum>
+    <MidiCC>16</MidiCC>
+    <Value>0.648586988449097</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>4</Index>
+    <Name>Osc1 Waveform</Name>
+    <Symbol>osc1_waveform</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>17</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>4</MappedMaximum>
+    <MidiCC>17</MidiCC>
+    <Value>2</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>5</Index>
+    <Name>Filter Attack</Name>
+    <Symbol>filter_attack</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>29</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2.5</MappedMaximum>
+    <MidiCC>29</MidiCC>
+    <Value>0.0916669964790344</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>6</Index>
+    <Name>Filter Decay</Name>
+    <Symbol>filter_decay</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>30</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2.5</MappedMaximum>
+    <MidiCC>30</MidiCC>
+    <Value>0.649999976158142</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>7</Index>
+    <Name>Filter Sustain</Name>
+    <Symbol>filter_sustain</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>31</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>31</MidiCC>
+    <Value>0.786666989326477</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>8</Index>
+    <Name>Filter Release</Name>
+    <Symbol>filter_release</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>32</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2.5</MappedMaximum>
+    <MidiCC>32</MidiCC>
+    <Value>1.22500002384186</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>9</Index>
+    <Name>Filter Resonance</Name>
+    <Symbol>filter_resonance</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>33</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>0.970000028610229</MappedMaximum>
+    <MidiCC>33</MidiCC>
+    <Value>0.712141990661621</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>10</Index>
+    <Name>Filter Env Amount</Name>
+    <Symbol>filter_env_amount</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>36</MappedControlIndex>
+    <MappedMinimum>-16</MappedMinimum>
+    <MappedMaximum>16</MappedMaximum>
+    <MidiCC>36</MidiCC>
+    <Value>11.8400001525879</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>11</Index>
+    <Name>Filter Cutoff</Name>
+    <Symbol>filter_cutoff</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>34</MappedControlIndex>
+    <MappedMinimum>-0.5</MappedMinimum>
+    <MappedMaximum>1.5</MappedMaximum>
+    <MidiCC>34</MidiCC>
+    <Value>-0.279527992010117</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>12</Index>
+    <Name>Osc2 Detune</Name>
+    <Symbol>osc2_detune</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>53</MappedControlIndex>
+    <MappedMinimum>-1</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>53</MidiCC>
+    <Value>0.0333329997956753</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>13</Index>
+    <Name>Osc2 Waveform</Name>
+    <Symbol>osc2_waveform</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>49</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>4</MappedMaximum>
+    <MidiCC>49</MidiCC>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>14</Index>
+    <Name>Master Vol</Name>
+    <Symbol>master_vol</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>20</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>20</MidiCC>
+    <Value>0.72530198097229</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>15</Index>
+    <Name>LFO Freq</Name>
+    <Symbol>lfo_freq</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>79</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>7.5</MappedMaximum>
+    <MidiCC>79</MidiCC>
+    <Value>7.5</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>16</Index>
+    <Name>LFO Waveform</Name>
+    <Symbol>lfo_waveform</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>78</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>6</MappedMaximum>
+    <MidiCC>78</MidiCC>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>17</Index>
+    <Name>Osc2 Range</Name>
+    <Symbol>osc2_range</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>51</MappedControlIndex>
+    <MappedMinimum>-3</MappedMinimum>
+    <MappedMaximum>4</MappedMaximum>
+    <MidiCC>51</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>18</Index>
+    <Name>Osc Mix</Name>
+    <Symbol>osc_mix</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>55</MappedControlIndex>
+    <MappedMinimum>-1</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>55</MidiCC>
+    <Value>-0.098302997648716</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>19</Index>
+    <Name>Freq Mod Amount</Name>
+    <Symbol>freq_mod_amount</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>81</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1.25992095470428</MappedMaximum>
+    <MidiCC>81</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>20</Index>
+    <Name>Filter Mod Amount</Name>
+    <Symbol>filter_mod_amount</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>82</MappedControlIndex>
+    <MappedMinimum>-1</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>82</MidiCC>
+    <Value>-0.446666985750198</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>21</Index>
+    <Name>Amp Mod Amount</Name>
+    <Symbol>amp_mod_amount</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>83</MappedControlIndex>
+    <MappedMinimum>-1</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>83</MidiCC>
+    <Value>-1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>22</Index>
+    <Name>Ring Mod</Name>
+    <Symbol>osc_mix_mode</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>56</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>56</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>23</Index>
+    <Name>Osc1 Pulsewidth</Name>
+    <Symbol>osc1_pulsewidth</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>18</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>18</MidiCC>
+    <Value>0.983332991600037</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>24</Index>
+    <Name>Osc2 Pulsewidth</Name>
+    <Symbol>osc2_pulsewidth</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>50</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>50</MidiCC>
+    <Value>0.146667003631592</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>25</Index>
+    <Name>Reverb Roomsize</Name>
+    <Symbol>reverb_roomsize</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>78</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>78</MidiCC>
+    <Value>0.74666702747345</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>26</Index>
+    <Name>Reverb Damp</Name>
+    <Symbol>reverb_damp</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>80</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>80</MidiCC>
+    <Value>0.879999995231628</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>27</Index>
+    <Name>Reverb Wet</Name>
+    <Symbol>reverb_wet</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>77</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>77</MidiCC>
+    <Value>0.333332985639572</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>28</Index>
+    <Name>Reverb Width</Name>
+    <Symbol>reverb_width</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>79</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>79</MidiCC>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>29</Index>
+    <Name>Distortion Crunch</Name>
+    <Symbol>distortion_crunch</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>20</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>0.899999976158142</MappedMaximum>
+    <MidiCC>20</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>30</Index>
+    <Name>Osc2 Sync</Name>
+    <Symbol>osc2_sync</Symbol>
+    <MidiChannel>2</MidiChannel>
+    <MappedControlIndex>55</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>55</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>31</Index>
+    <Name>Portamento Time</Name>
+    <Symbol>portamento_time</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>54</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>54</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>32</Index>
+    <Name>Keyboard Mode</Name>
+    <Symbol>keyboard_mode</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>56</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2</MappedMaximum>
+    <MidiCC>56</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>33</Index>
+    <Name>Osc2 Pitch</Name>
+    <Symbol>osc2_pitch</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>52</MappedControlIndex>
+    <MappedMinimum>-12</MappedMinimum>
+    <MappedMaximum>12</MappedMaximum>
+    <MidiCC>52</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>34</Index>
+    <Name>Filter Type</Name>
+    <Symbol>filter_type</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>19</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2</MappedMaximum>
+    <MidiCC>19</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>35</Index>
+    <Name>Filter Slope</Name>
+    <Symbol>filter_slope</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>36</Index>
+    <Name>Freq Mod to Oscillator</Name>
+    <Symbol>freq_mod_osc</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>80</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>2</MappedMaximum>
+    <MidiCC>80</MidiCC>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>37</Index>
+    <Name>Filter Key Track</Name>
+    <Symbol>filter_kbd_track</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>35</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>35</MidiCC>
+    <Value>0.509999990463257</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>38</Index>
+    <Name>Filter Velocity Track</Name>
+    <Symbol>filter_vel_sens</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>39</Index>
+    <Name>Amp Velocity Amount</Name>
+    <Symbol>amp_vel_sens</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>40</Index>
+    <Name>Portamento Mode</Name>
+    <Symbol>portamento_mode</Symbol>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>77</MappedControlIndex>
+    <MappedMinimum>0</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>77</MidiCC>
+    <Value>1</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Crossfade -->
+ <Plugin>
+  <Info>
+   <Type>LADSPA</Type>
+   <Name>Crossfade</Name>
+   <Binary>/usr/lib/ladspa/xfade_1915.so</Binary>
+   <Label>xfade</Label>
+   <UniqueID>1915</UniqueID>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <Volume>0.6353816</Volume>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Crossfade</Name>
+    <MidiChannel>1</MidiChannel>
+    <MappedControlIndex>84</MappedControlIndex>
+    <MappedMinimum>-1</MappedMinimum>
+    <MappedMaximum>1</MappedMaximum>
+    <MidiCC>84</MidiCC>
+    <Value>-1</Value>
+   </Parameter>
+  </Data>
+ </Plugin>
+
+ <!-- Simple Scope (Stereo) -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>Simple Scope (Stereo)</Name>
+   <URI>http://gareus.org/oss/lv2/sisco#Stereo</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#Int</Type>
+    <Key>http://gareus.org/oss/lv2/sisco#ui_state_grid</Key>
+    <Value>CgAAAA==</Value>
+   </CustomData>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#Vector</Type>
+    <Key>http://gareus.org/oss/lv2/sisco#ui_state_curs</Key>
+    <Value>BAAAAAcAAACgAAAA4AEAAAEAAAABAAAA</Value>
+   </CustomData>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#Vector</Type>
+    <Key>http://gareus.org/oss/lv2/sisco#ui_state_trig</Key>
+    <Value>BAAAAAYAAAAAAAAAAAAAAAAASEIAAAA/AAAAAA==</Value>
+   </CustomData>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#Vector</Type>
+    <Key>http://gareus.org/oss/lv2/sisco#ui_state_chn</Key>
+    <Value>BAAAAAYAAAAAAIA/AAAAAAAAAAAAAIA/AACAPwAAAAAAAAAAAACAPw==</Value>
+   </CustomData>
+
+   <CustomData>
+    <Type>http://lv2plug.in/ns/ext/atom#Int</Type>
+    <Key>http://gareus.org/oss/lv2/sisco#ui_state_misc</Key>
+    <Value>AAAAAA==</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <!-- Wolf Spectrum -->
+ <Plugin>
+  <Info>
+   <Type>LV2</Type>
+   <Name>Wolf Spectrum</Name>
+   <URI>https://github.com/pdesaulniers/wolf-spectrum</URI>
+  </Info>
+
+  <Data>
+   <Active>Yes</Active>
+   <ControlChannel>1</ControlChannel>
+   <Options>0x0</Options>
+
+   <Parameter>
+    <Index>0</Index>
+    <Name>Frequency Scaling</Name>
+    <Symbol>frequencyscaling</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>1</Index>
+    <Name>Block Size</Name>
+    <Symbol>blocksize</Symbol>
+    <Value>6</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>2</Index>
+    <Name>Channel Mix</Name>
+    <Symbol>channelmix</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>3</Index>
+    <Name>Show Captions</Name>
+    <Symbol>showcaptions</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>4</Index>
+    <Name>Show UI Controls</Name>
+    <Symbol>showuicontrols</Symbol>
+    <Value>1</Value>
+   </Parameter>
+
+   <Parameter>
+    <Index>5</Index>
+    <Name>Gain</Name>
+    <Symbol>gain</Symbol>
+    <Value>0</Value>
+   </Parameter>
+
+   <CustomData>
+    <Type>http://kxstudio.sf.net/ns/carla/property</Type>
+    <Key>CarlaSkinIsCompacted</Key>
+    <Value>false</Value>
+   </CustomData>
+  </Data>
+ </Plugin>
+
+ <ExternalPatchbay>
+  <Connection>
+   <Source>system:capture_1</Source>
+   <Target>PulseAudio JACK Source:front-left</Target>
+  </Connection>
+  <Connection>
+   <Source>system:capture_2</Source>
+   <Target>PulseAudio JACK Source:front-right</Target>
+  </Connection>
+  <Connection>
+   <Source>a2j:Launchpad MK2 [40] (capture): Launchpad MK2 MIDI 1</Source>
+   <Target>amsynth:events-in</Target>
+  </Connection>
+  <Connection>
+   <Source>a2j:Keystation 88 [52] (capture): Keystation 88 MIDI 1</Source>
+   <Target>amsynth:events-in</Target>
+  </Connection>
+  <Connection>
+   <Source>a2j:Launch Control XL [56] (capture): Launch Control XL MIDI 1</Source>
+   <Target>amsynth:events-in</Target>
+  </Connection>
+  <Connection>
+   <Source>a2j:Launch Control XL [56] (capture): Launch Control XL MIDI 1</Source>
+   <Target>Crossfade:events-in</Target>
+  </Connection>
+  <Connection>
+   <Source>amsynth:Left</Source>
+   <Target>Crossfade:Input A left</Target>
+  </Connection>
+  <Connection>
+   <Source>PulseAudio JACK Sink:front-left</Source>
+   <Target>system:playback_1</Target>
+  </Connection>
+  <Connection>
+   <Source>PulseAudio JACK Sink:front-right</Source>
+   <Target>system:playback_2</Target>
+  </Connection>
+  <Connection>
+   <Source>amsynth:Right</Source>
+   <Target>Crossfade:Input A right</Target>
+  </Connection>
+  <Connection>
+   <Source>Crossfade:Output left</Source>
+   <Target>system:playback_1</Target>
+  </Connection>
+  <Connection>
+   <Source>Crossfade:Output left</Source>
+   <Target>Simple Scope (Stereo):InL</Target>
+  </Connection>
+  <Connection>
+   <Source>Crossfade:Output left</Source>
+   <Target>Wolf Spectrum:Audio Input 1</Target>
+  </Connection>
+  <Connection>
+   <Source>Crossfade:Output right</Source>
+   <Target>system:playback_2</Target>
+  </Connection>
+  <Connection>
+   <Source>Crossfade:Output right</Source>
+   <Target>Simple Scope (Stereo):InR</Target>
+  </Connection>
+  <Connection>
+   <Source>Crossfade:Output right</Source>
+   <Target>Wolf Spectrum:Audio Input 2</Target>
+  </Connection>
+ </ExternalPatchbay>
+</CARLA-PROJECT>

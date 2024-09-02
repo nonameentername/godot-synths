@@ -1,0 +1,14 @@
+[remap]
+
+importer="csound"
+type="CsoundFileReader"
+uid="uid://85cx6u1aphbj"
+path="res://.godot/imported/example.csd-cc429574c35a9079c6b7c7dc21a94c86.csoundstr"
+
+[deps]
+
+source_file="res://example.csd"
+dest_files=["res://.godot/imported/example.csd-cc429574c35a9079c6b7c7dc21a94c86.csoundstr"]
+
+[params]
+

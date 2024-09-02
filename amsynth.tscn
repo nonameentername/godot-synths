@@ -1,0 +1,442 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2iwgtjje05p"]
+
+[ext_resource type="Script" path="res://amsynth.gd" id="1_8g6jc"]
+[ext_resource type="PackedScene" uid="uid://dmelih0loihel" path="res://knob.tscn" id="2_lvsxo"]
+[ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://waveform.tscn" id="3_bfoec"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptmr5"]
+font_size = 10
+
+[node name="amsynth" type="Node2D"]
+script = ExtResource("1_8g6jc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 304.0
+offset_top = 472.0
+offset_right = 344.0
+offset_bottom = 495.0
+text = "C4"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 416.0
+offset_top = 456.0
+offset_right = 460.0
+offset_bottom = 480.0
+
+[node name="MasterVolume" parent="." instance=ExtResource("2_lvsxo")]
+offset_left = 584.0
+offset_top = 456.0
+offset_right = 584.0
+offset_bottom = 456.0
+knob_name = "volume"
+
+[node name="Oscillator1" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 448.0
+offset_bottom = 104.0
+
+[node name="Label" type="Label" parent="Oscillator1"]
+layout_mode = 0
+offset_right = 440.0
+offset_bottom = 16.0
+text = "oscillator 1"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Oscillator1Waveform" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+max_value = 4.0
+knob_name = "waveform"
+step = 1.0
+
+[node name="waveform" parent="Oscillator1" instance=ExtResource("3_bfoec")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+
+[node name="Oscillator1Shape" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+knob_name = "shape"
+
+[node name="Oscillator1Octave" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+offset_left = 224.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 24.0
+min_value = -3.0
+max_value = 4.0
+knob_name = "octave"
+step = 1.0
+
+[node name="Oscillator1Semitone" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+offset_left = 296.0
+offset_top = 24.0
+offset_right = 296.0
+offset_bottom = 24.0
+min_value = -12.0
+max_value = 12.0
+knob_name = "semitone"
+step = 1.0
+
+[node name="Oscillator1Detune" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+offset_left = 368.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 24.0
+min_value = -1.0
+knob_name = "detune"
+
+[node name="OscillatorMix" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 456.0
+offset_top = 8.0
+offset_right = 608.0
+offset_bottom = 104.0
+
+[node name="Label" type="Label" parent="OscillatorMix"]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 16.0
+text = "oscillator mix"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="OscillatorMix" parent="OscillatorMix" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+min_value = -1.0
+knob_name = "osc1 / osc2"
+current_value = 0.5
+
+[node name="OscillatorMixMode" parent="OscillatorMix" instance=ExtResource("2_lvsxo")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+knob_name = "ring mod"
+
+[node name="Oscillator2" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 616.0
+offset_top = 8.0
+offset_right = 1056.0
+offset_bottom = 104.0
+
+[node name="Label" type="Label" parent="Oscillator2"]
+layout_mode = 0
+offset_right = 440.0
+offset_bottom = 16.0
+text = "oscillator 2"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Oscillator2Waveform" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+max_value = 4.0
+knob_name = "waveform"
+step = 1.0
+
+[node name="waveform" parent="Oscillator2" instance=ExtResource("3_bfoec")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+
+[node name="Oscillator2Shape" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+knob_name = "shape"
+
+[node name="Oscillator2Octave" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+offset_left = 224.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 24.0
+min_value = -3.0
+max_value = 4.0
+knob_name = "octave"
+step = 1.0
+
+[node name="Oscillator2Semitone" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+offset_left = 296.0
+offset_top = 24.0
+offset_right = 296.0
+offset_bottom = 24.0
+min_value = -12.0
+max_value = 12.0
+knob_name = "semitone"
+step = 1.0
+
+[node name="Oscillator2Detune" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+offset_left = 368.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 24.0
+min_value = -1.0
+knob_name = "detune"
+
+[node name="AmpEnvelope" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 536.0
+offset_top = 120.0
+offset_right = 832.0
+offset_bottom = 216.0
+
+[node name="Label" type="Label" parent="AmpEnvelope"]
+layout_mode = 0
+offset_right = 296.0
+offset_bottom = 16.0
+text = "amp envelope"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AmpAttack" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+max_value = 2.5
+knob_name = "attack"
+
+[node name="AmpDecay" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+max_value = 2.5
+knob_name = "decay"
+
+[node name="AmpSustain" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+knob_name = "sustain"
+
+[node name="AmpRelease" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+offset_left = 224.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 24.0
+max_value = 2.5
+knob_name = "release"
+
+[node name="Lfo" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 520.0
+offset_bottom = 216.0
+
+[node name="Label" type="Label" parent="Lfo"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 16.0
+text = "lfo"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="LfoWaveform" parent="Lfo" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+max_value = 6.0
+knob_name = "waveform"
+step = 1.0
+
+[node name="waveform" parent="Lfo" instance=ExtResource("3_bfoec")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+
+[node name="LfoSpeed" parent="Lfo" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+max_value = 7.5
+knob_name = "speed"
+
+[node name="LfoOscillator1" parent="Lfo" instance=ExtResource("2_lvsxo")]
+offset_left = 224.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 24.0
+max_value = 1.25
+knob_name = "osc 1"
+
+[node name="LfoOscillator2" parent="Lfo" instance=ExtResource("2_lvsxo")]
+offset_left = 296.0
+offset_top = 24.0
+offset_right = 296.0
+offset_bottom = 24.0
+max_value = 1.25
+knob_name = "osc 2"
+
+[node name="LfoFilter" parent="Lfo" instance=ExtResource("2_lvsxo")]
+offset_left = 368.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 24.0
+min_value = -1.0
+knob_name = "filter"
+
+[node name="LfoAmp" parent="Lfo" instance=ExtResource("2_lvsxo")]
+offset_left = 440.0
+offset_top = 24.0
+offset_right = 440.0
+offset_bottom = 24.0
+min_value = -1.0
+knob_name = "amp"
+
+[node name="Filter" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 8.0
+offset_top = 232.0
+offset_right = 664.0
+offset_bottom = 328.0
+
+[node name="Label" type="Label" parent="Filter"]
+layout_mode = 0
+offset_right = 656.0
+offset_bottom = 16.0
+text = "filter"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Filter" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+max_value = 4.0
+knob_name = "filter"
+step = 1.0
+
+[node name="FilterResonance" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+max_value = 0.97
+knob_name = "reson"
+
+[node name="FilterCutoff" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+min_value = -5.0
+max_value = 1.5
+knob_name = "cutoff"
+
+[node name="FilterKeyTrack" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 224.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 24.0
+knob_name = "key track"
+
+[node name="FilterEnvelopeAmount" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 296.0
+offset_top = 24.0
+offset_right = 296.0
+offset_bottom = 24.0
+min_value = -16.0
+max_value = 16.0
+knob_name = "env amt"
+
+[node name="FilterAttack" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 368.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 24.0
+max_value = 2.5
+knob_name = "attack"
+
+[node name="FilterDecay" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 440.0
+offset_top = 24.0
+offset_right = 440.0
+offset_bottom = 24.0
+max_value = 2.5
+knob_name = "decay"
+
+[node name="FilterSustain" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 512.0
+offset_top = 24.0
+offset_right = 512.0
+offset_bottom = 24.0
+knob_name = "sustain"
+
+[node name="FilterRelease" parent="Filter" instance=ExtResource("2_lvsxo")]
+offset_left = 584.0
+offset_top = 24.0
+offset_right = 584.0
+offset_bottom = 24.0
+max_value = 2.5
+knob_name = "release"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="MasterVolume" to="." method="_on_knob_value_changed"]
+[connection signal="value_changed" from="Oscillator1/Oscillator1Waveform" to="." method="_on_oscillator_1_waveform_value_changed"]
+[connection signal="value_changed" from="Oscillator1/Oscillator1Shape" to="." method="_on_oscillator_1_shape_value_changed"]
+[connection signal="value_changed" from="Oscillator1/Oscillator1Octave" to="." method="_on_oscillator_1_octave_value_changed"]
+[connection signal="value_changed" from="Oscillator1/Oscillator1Semitone" to="." method="_on_oscillator_1_semitone_value_changed"]
+[connection signal="value_changed" from="Oscillator1/Oscillator1Detune" to="." method="_on_oscillator_1_detune_value_changed"]
+[connection signal="value_changed" from="OscillatorMix/OscillatorMix" to="." method="_on_oscillator_mix_value_changed"]
+[connection signal="value_changed" from="OscillatorMix/OscillatorMixMode" to="." method="_on_oscillator_mix_mode_value_changed"]
+[connection signal="value_changed" from="Oscillator2/Oscillator2Waveform" to="." method="_on_oscillator_2_waveform_value_changed"]
+[connection signal="value_changed" from="Oscillator2/Oscillator2Shape" to="." method="_on_oscillator_2_shape_value_changed"]
+[connection signal="value_changed" from="Oscillator2/Oscillator2Octave" to="." method="_on_oscillator_2_octave_value_changed"]
+[connection signal="value_changed" from="Oscillator2/Oscillator2Semitone" to="." method="_on_oscillator_2_semitone_value_changed"]
+[connection signal="value_changed" from="Oscillator2/Oscillator2Detune" to="." method="_on_oscillator_2_detune_value_changed"]
+[connection signal="value_changed" from="AmpEnvelope/AmpAttack" to="." method="_on_amp_attack_value_changed"]
+[connection signal="value_changed" from="AmpEnvelope/AmpDecay" to="." method="_on_amp_decay_value_changed"]
+[connection signal="value_changed" from="AmpEnvelope/AmpSustain" to="." method="_on_amp_sustain_value_changed"]
+[connection signal="value_changed" from="AmpEnvelope/AmpRelease" to="." method="_on_amp_release_value_changed"]
+[connection signal="value_changed" from="Lfo/LfoWaveform" to="." method="_on_lfo_waveform_value_changed"]
+[connection signal="value_changed" from="Lfo/LfoSpeed" to="." method="_on_lfo_speed_value_changed"]
+[connection signal="value_changed" from="Lfo/LfoOscillator1" to="." method="_on_lfo_oscillator_1_value_changed"]
+[connection signal="value_changed" from="Lfo/LfoOscillator2" to="." method="_on_lfo_oscillator_2_value_changed"]
+[connection signal="value_changed" from="Lfo/LfoFilter" to="." method="_on_lfo_filter_value_changed"]
+[connection signal="value_changed" from="Lfo/LfoAmp" to="." method="_on_lfo_amp_value_changed"]
+[connection signal="value_changed" from="Filter/Filter" to="." method="_on_filter_value_changed"]
+[connection signal="value_changed" from="Filter/FilterResonance" to="." method="_on_filter_resonance_value_changed"]
+[connection signal="value_changed" from="Filter/FilterCutoff" to="." method="_on_filter_cutoff_value_changed"]
+[connection signal="value_changed" from="Filter/FilterKeyTrack" to="." method="_on_filter_key_track_value_changed"]
+[connection signal="value_changed" from="Filter/FilterEnvelopeAmount" to="." method="_on_filter_envelope_amount_value_changed"]
+[connection signal="value_changed" from="Filter/FilterAttack" to="." method="_on_filter_attack_value_changed"]
+[connection signal="value_changed" from="Filter/FilterDecay" to="." method="_on_filter_decay_value_changed"]
+[connection signal="value_changed" from="Filter/FilterSustain" to="." method="_on_filter_sustain_value_changed"]
+[connection signal="value_changed" from="Filter/FilterRelease" to="." method="_on_filter_release_value_changed"]

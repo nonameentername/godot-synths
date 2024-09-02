@@ -1,0 +1,77 @@
+#!/usr/bin/env python
+
+import xml.etree.ElementTree as ElementTree
+import sys
+
+
+if len(sys.argv) < 3:
+    print ("Usage: {0} <filename> <instr_name>".format(sys.argv[0]))
+    exit(0)
+
+filename = sys.argv[1]
+instr_name = sys.argv[2]
+midi_instr_name = instr_name + "_midi"
+
+tree = ElementTree.parse(filename)
+root = tree.getroot()
+
+midi_values = []
+
+for parameter in root.findall("Plugin/Info[Name='amsynth']/../Data/Parameter"):
+    midi_value = {}
+    for attribute in parameter:
+        midi_value[attribute.tag.lower()] = attribute.text
+    midi_values.append(midi_value)
+
+values = {
+    "amp_attack": ["ASynthAmp", 1, "amp_attack", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
+    "amp_decay": ["ASynthAmp", 1, "amp_decay", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
+    "amp_sustain": ["ASynthAmp", 1, "amp_sustain", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1.0],
+    "amp_release": ["ASynthAmp", 1, "amp_release", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
+    "osc1_waveform": ["ASynthOsc", 1, "osc_waveform", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 4.0],
+    "filter_attack": ["ASynthFilter", 1, "filter_attack", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
+    "filter_decay": ["ASynthFilter", 1, "filter_decay", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
+    "filter_sustain": ["ASynthFilter", 1, "filter_sustain", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 1, 1.0],
+    "filter_release": ["ASynthFilter", 1, "filter_release", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
+    "filter_resonance": ["ASynthFilter", 1, "filter_resonance", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 0.97],
+    "filter_env_amount": ["ASynthFilter", 1, "filter_env_amount", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -16, 16],
+    "filter_cutoff": ["ASynthFilter", 1, "filter_cutoff", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -0.5, 1.5],
+    "osc2_detune": ["ASynthDetune", 2, "osc_detune", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -1, 1],
+    "osc2_waveform": ["ASynthOsc", 2, "osc_waveform", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 4.0],
+    "master_vol": ["ASynthRender", 1, "master_vol", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "lfo_freq": ["ASynthLfo", 1, "lfo_freq", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 7.5],
+    "lfo_waveform": ["ASynthLfo", 1, "lfo_waveform", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 6.0],
+    "osc2_range": ["ASynthDetune", 2, "osc_range", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", -3, 4],
+    "osc_mix": ["ASynthMix", 1, "osc_mix", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -1, 1],
+    "freq_mod_amount": ["ASynthLfoFreq", 1, "freq_mod_amount", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 1.25992105],
+    "freq_mod_amount": ["ASynthLfoFreq", 2, "freq_mod_amount", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 1.25992105],
+    "filter_mod_amount": ["ASynthFilter", 1, "filter_mod_amount", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -1, 1],
+    "amp_mod_amount": ["ASynthAmp", 1, "amp_mod_amount", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -1, 1],
+    "osc_mix_mode": ["ASynthMix", 1, "osc_mix_mode", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "osc1_pulsewidth": ["ASynthOsc", 1, "osc_pulsewidth", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1.0],
+    "osc2_pulsewidth": ["ASynthOsc", 2, "osc_pulsewidth", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1.0],
+    "reverb_roomsize": ["ASynthReverb", 1, "reverb_roomsize", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "reverb_damp": ["ASynthReverb", 1, "reverb_damp", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "reverb_wet": ["ASynthReverb", 1, "reverb_wet", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "reverb_width": ["ASynthReverb", 1, "reverb_width", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "distortion_crunch": ["ASynthOverDrive", 1, "distortion_crunch", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 0.9],
+    "osc2_sync": ["ASynthOsc", 2, "osc_sync", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 1],
+    "portamento_time": ["ASynthInput", 1, "portamento_time", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "keyboard_mode": ["ASynthInput", 1, "keyboard_mode", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 2],
+    "osc2_pitch": ["ASynthDetune", 2, "osc_pitch", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", -12, 12],
+    "filter_type": ["ASynthFilter", 1, "filter_type", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 4.0],
+    "freq_mod_osc": ["ASynthLfoFreq", 1, "freq_mod_osc", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 2.0],
+    "freq_mod_osc": ["ASynthLfoFreq", 2, "freq_mod_osc", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 2.0],
+    "filter_kbd_track": ["ASynthFilter", 1, "filter_kbd_track", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1],
+    "portamento_mode": ["ASynthInput", 1, "portamento_mode", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 1]
+}
+
+for midi_value in midi_values:
+    name = midi_value['symbol']
+    midi_channel = int(midi_value.get('midichannel', 0))
+    midi_cc = midi_value.get('midicc', 127)
+    value = midi_value['value']
+
+    if name in values:
+        component, number, component_name, channel_mode, channel_type, midi_min, midi_max = values[name]
+        print (f'DefineChannel "{instr_name}", "{component}", {number}, "{component_name}", {channel_mode}, {channel_type}, {value}, {midi_min}, {midi_max}')

@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmelih0loihel"]
+
+[ext_resource type="Script" path="res://knob.gd" id="1_0jom3"]
+[ext_resource type="Texture2D" uid="uid://bbyygglr1pfom" path="res://knob_background.png" id="1_4crcp"]
+[ext_resource type="Texture2D" uid="uid://ctdpmth0uhc1y" path="res://knob_front.png" id="2_q72pj"]
+[ext_resource type="Texture2D" uid="uid://bpp75pasfi6s" path="res://knob_progress.png" id="3_biyda"]
+[ext_resource type="Texture2D" uid="uid://gef7rf3yomtk" path="res://knob.png" id="4_mpbjw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_stxbo"]
+font_size = 8
+font_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u0ehd"]
+font_size = 8
+font_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b3iam"]
+font_size = 8
+font_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8v14e"]
+font_size = 8
+
+[node name="knob" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0jom3")
+step = 0.001
+
+[node name="progress" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+max_value = 1.0
+step = 0.001
+fill_mode = 4
+radial_initial_angle = 200.0
+radial_fill_degrees = 320.0
+texture_under = ExtResource("1_4crcp")
+texture_over = ExtResource("2_q72pj")
+texture_progress = ExtResource("3_biyda")
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="knob" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+rotation = 0.349066
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("4_mpbjw")
+
+[node name="LabelName" type="Label" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 23.0
+text = "label"
+label_settings = SubResource("LabelSettings_stxbo")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="LabelMin" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 56.0
+text = "0"
+label_settings = SubResource("LabelSettings_u0ehd")
+vertical_alignment = 2
+
+[node name="LabelMax" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 56.0
+offset_bottom = 56.0
+text = "1"
+label_settings = SubResource("LabelSettings_b3iam")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="LabelValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 64.0
+text = "0.00"
+label_settings = SubResource("LabelSettings_8v14e")
+horizontal_alignment = 1
+vertical_alignment = 2
