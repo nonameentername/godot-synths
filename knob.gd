@@ -28,6 +28,17 @@ var knob_name: String:
 			await ready
 		label_name.text = knob_name
 
+var use_int: bool
+
+@export
+var step: float = 0.001:
+	set(value):
+		step = value
+		use_int = step == floor(step)
+		if not is_node_ready():
+			await ready
+		update_knob()
+
 @export_range(0, 1)
 var current_value: float:
 	set(value):
@@ -39,7 +50,10 @@ var actual_value: float:
 		actual_value = value
 		if not is_node_ready():
 			await ready
-		label_value.text = "%.2f" % actual_value
+		if use_int:
+			label_value.text = "%d" % actual_value
+		else:
+			label_value.text = "%.2f" % actual_value
 
 var captured: bool = false
 var local_mouse_position: Vector2
@@ -87,14 +101,14 @@ func _gui_input(event: InputEvent) -> void:
 		var direction = local_mouse_position.angle_to(current_mouse_position) * -1
 
 		if direction > 0:
-			delta = clamp(distance, 0, 1)
+			delta = clamp(distance / 100, 0, 1)
 			current_value = clamp(saved_current_value + delta, 0, 1)
 		if direction < 0:
 			delta = -clamp(distance, 0, 1)
 			current_value = clamp(saved_current_value + delta, 0, 1)
 
 		update_knob()
-		value_changed.emit(snapped(actual_value, 0.001))
+		value_changed.emit(snapped(actual_value, step))
 
 
 func update_actual_value() -> void:

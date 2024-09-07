@@ -1,7 +1,7 @@
 <CoundSynthesizer>
 <CsOptions>
-;--midi-key=4 --midi-velocity=5 -n
--+rtmidi=NULL -M0 --midi-key-cps=4 --midi-velocity-amp=5 -n
+--midi-key=4 --midi-velocity=5 -n
+;-+rtmidi=NULL -M0 --midi-key=4 --midi-velocity=5 -n
 </CsOptions>
 <CsInstruments>
 
@@ -54,6 +54,9 @@ while iIndex <= 127 do
     giSquarePulse[iIndex] = iTableNumber
     iIndex = iIndex + 1
 od
+
+;SValue sprintf "table_%d.ftsave", iTableNumber
+;ftsave SValue, 1, iTableNumber
 
 iIndex = 0
 while iIndex <= 127 do
@@ -294,9 +297,9 @@ kInstrCount active iInstr, 0, 0
 
 kInstrnum = iInstr + iChannel / 100.0 + iMidiKey / 100000.0;
 
-printk 1, kInstrCount, 0, 1
-printk 1, $gkNumOfNotes, 0, 1
-printk 1, kInstrnum, 0, 1
+;printk 1, kInstrCount, 0, 1
+;printk 1, $gkNumOfNotes, 0, 1
+;printk 1, kInstrnum, 0, 1
 
 if kKeyboardMode == $KEY_MODE_POLY then
 
@@ -437,17 +440,24 @@ else
     aPhasor init 0
 endif
 
-kPhase = 0
+iPhase = 0
+
+;printk 1, kFreq, 0, 1
+;printk 1, iAmp, 0, 1
 
 if kType == 0 then
     ;sine wave
-    aOut oscilikts iAmp, kFreq, 1, aSync, kPhase
+    ;aOut oscilikts iAmp, kFreq, 1, aSync, iPhase
+    aOut oscilikt iAmp, kFreq, 1, iPhase
+    ;aOut oscils iAmp, kFreq, iPhase
 elseif kType == 1 then
     ;square / pulse
-    aOut oscilikts iAmp, kFreq, giSquarePulse[kShape], aSync, kPhase
+    ;aOut oscilikts iAmp, kFreq, giSquarePulse[kShape], aSync, iPhase
+    aOut oscilikt iAmp, kFreq, giSquarePulse[kShape], iPhase
 elseif kType == 2 then
     ;triangle / saw
-    aOut oscilikts iAmp, kFreq, giTriangleSaw[kShape], aSync, kPhase
+    ;aOut oscilikts iAmp, kFreq, giTriangleSaw[kShape], aSync, iPhase
+    aOut oscilikt iAmp, kFreq, giTriangleSaw[kShape], iPhase
 elseif kType == 3 then
     ;white noise
     aOut noise iAmp, 0.0
@@ -473,8 +483,17 @@ kSemitone semitone kSemitone
 
 kDetuneMidi chnget SInstrName, "ASynthDetune", iNum, "osc_detune"
 kDetune pow 1.25, kDetuneMidi
+kDetune = 1200 * log2(kDetune)
+kDetune2 cent kDetune
 
-kValue = kFreq * kOctave * kSemitone * kDetune
+kValue = kFreq * kOctave * kSemitone * kDetune2
+
+;printk 1, kFreq, 0, 1
+;printk 1, kOctave, 0, 1
+;printk 1, kSemitone, 0, 1
+printk 1, kDetune, 0, 1
+printk 1, kDetune2, 0, 1
+printk 1, kValue, 0, 1
 
 xout kValue
 endop
@@ -891,7 +910,10 @@ kFreq ASynthPortamento SInstrName, 1, iMidiKey, iPrevNote
 
 aLfoOsc ASynthLfo SInstrName, 1, kFreq
 
-kOsc1Freq ASynthLfoFreq SInstrName, 1, kFreq, aLfoOsc
+;extra does not exist in original amsynth
+kOsc1Freq ASynthDetune SInstrName, 1, kFreq
+
+kOsc1Freq ASynthLfoFreq SInstrName, 1, kOsc1Freq, aLfoOsc
 
 kOsc2Freq ASynthDetune SInstrName, 2, kFreq
 
@@ -899,9 +921,9 @@ kOsc2Freq ASynthLfoFreq SInstrName, 2, kOsc2Freq, aLfoOsc
 
 aNone init 0
 
-aOsc1, aOsc1Sync FSynthOsc SInstrName, 1, iAmp, kOsc1Freq, aNone
+aOsc1, aOsc1Sync ASynthOsc SInstrName, 1, iAmp, kOsc1Freq, aNone
 
-aOsc2, aOsc2Sync FSynthOsc SInstrName, 2, iAmp, kOsc2Freq, aOsc1Sync
+aOsc2, aOsc2Sync ASynthOsc SInstrName, 2, iAmp, kOsc2Freq, aOsc1Sync
 
 aVco ASynthMix SInstrName, 1, aOsc1, aOsc2
 
@@ -919,8 +941,8 @@ endop
 ;maxalloc "world", 16
 ;prealloc "world", 16
 
-massign 1, "forward"
-massign 10, "forward"
+massign 1, "sine"
+;massign 10, "forward"
 
 DefineChannel "hello", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5
 DefineChannel "hello", "ASynthAmp", 1, "amp_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 1.55833005905151, 0, 2.5
@@ -934,7 +956,7 @@ DefineChannel "hello", "ASynthFilter", 1, "filter_release", $CHANNEL_MODE_INPUT,
 DefineChannel "hello", "ASynthFilter", 1, "filter_resonance", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.036062997579575, 0, 0.97
 DefineChannel "hello", "ASynthFilter", 1, "filter_env_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 1.13385999202728, -16, 16
 DefineChannel "hello", "ASynthFilter", 1, "filter_cutoff", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, -0.106298997998238, -0.5, 1.5
-DefineChannel "hello", "ASynthDetune", 2, "osc_detune", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.22834600508213, -1, 1
+DefineChannel "hello", "ASynthDetune", 2, "osc_detune", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.22834600508213, -1, 1
 DefineChannel "hello", "ASynthOsc", 2, "osc_waveform", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 4.0
 DefineChannel "hello", "ASynthRender", 1, "master_vol", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.692900002002716, 0, 1
 DefineChannel "hello", "ASynthLfo", 1, "lfo_freq", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0, 0, 7.5
@@ -976,7 +998,7 @@ DefineChannel "world", "ASynthFilter", 1, "filter_release", $CHANNEL_MODE_INPUT,
 DefineChannel "world", "ASynthFilter", 1, "filter_resonance", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.194335973262787, 0, 0.97
 DefineChannel "world", "ASynthFilter", 1, "filter_env_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0, -16, 16
 DefineChannel "world", "ASynthFilter", 1, "filter_cutoff", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.851123988628387, -0.5, 1.5
-DefineChannel "world", "ASynthDetune", 2, "osc_detune", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.0118990000337362, -1, 1
+DefineChannel "world", "ASynthDetune", 2, "osc_detune", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0118990000337362, -1, 1
 DefineChannel "world", "ASynthOsc", 2, "osc_waveform", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 4.0
 DefineChannel "world", "ASynthRender", 1, "master_vol", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.955268025398254, 0, 1
 DefineChannel "world", "ASynthLfo", 1, "lfo_freq", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 2.38652992248535, 0, 7.5
@@ -1025,6 +1047,12 @@ instr sine
     iFreq mtof iMidiKey
     iAmp = iMidiVelocity / 127
 
+
+    print iAmp, iFreq
+
+    aSync init 0
+    iPhase = 0
+    asig oscilikts iAmp, iFreq, 1, aSync, iPhase
     asig oscils iAmp, iFreq, 0
 
     chnset 1, SInstrName, "ASynthRender", iNum, "master_vol"

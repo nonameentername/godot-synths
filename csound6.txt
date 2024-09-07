@@ -1,0 +1,194 @@
+UnifiedCSD:  example.csd
+rtaudio: JACK module enabled
+rtmidi: JACK module enabled
+sorting score ...
+	... done
+--Csound version 6.18 (double samples) 2024-04-07
+[commit: none]
+libsndfile-1.2.2
+graphics suppressed, ascii substituted
+sr = 48000.0, kr = 1500.000, ksmps = 32
+0dBFS level = 1.0, A4 tuning = 440.0
+orch now loaded
+audio buffered in 512 sample-frame blocks
+reading 2048-byte blks of shorts from adc (RAW)
+system sr: 48000.000000
+Jack input ports:
+ 0: adc0 (adc:USB Audio Headset Microphone:capture_FL)
+ 1: adc1 (adc:USB Audio Headset Microphone:capture_FR)
+ 2: adc2 (adc:Built-in Audio Analog Stereo:capture_FL)
+ 3: adc3 (adc:Built-in Audio Analog Stereo:capture_FR)
+ 4: adc4 (adc:csound6:output1)
+ 5: adc5 (adc:csound6:output2)
+ 6: adc6 (adc:speech-dispatcher-dummy:output_FL)
+ 7: adc7 (adc:speech-dispatcher-dummy:output_FR)
+ 8: adc8 (adc:Godot Engine Editor:output_FL)
+ 9: adc9 (adc:Godot Engine Editor:output_FR)
+ 10: adc10 (adc:USB Audio Line Out:monitor_FL)
+ 11: adc11 (adc:USB Audio Line Out:monitor_FR)
+ 12: adc12 (adc:Built-in Audio Analog Stereo:monitor_FL)
+ 13: adc13 (adc:Built-in Audio Analog Stereo:monitor_FR)
+ 14: adc14 (adc:USB Audio Headphones:monitor_FL)
+ 15: adc15 (adc:USB Audio Headphones:monitor_FR)
+ 16: adc16 (adc:Tunnel to tcp:192.168.1.215:4656:monitor_FL)
+ 17: adc17 (adc:Tunnel to tcp:192.168.1.215:4656:monitor_FR)
+connecting channel 0 to USB Audio Headset Microphone:capture_FL
+connecting channel 1 to USB Audio Headset Microphone:capture_FR
+Jack output ports:
+ 0: dac0 (dac:USB Audio Line Out:playback_FL)
+ 1: dac1 (dac:USB Audio Line Out:playback_FR)
+ 2: dac2 (dac:Built-in Audio Analog Stereo:playback_FL)
+ 3: dac3 (dac:Built-in Audio Analog Stereo:playback_FR)
+ 4: dac4 (dac:USB Audio Headphones:playback_FL)
+ 5: dac5 (dac:USB Audio Headphones:playback_FR)
+ 6: dac6 (dac:csound6:input1)
+ 7: dac7 (dac:csound6:input2)
+ 8: dac8 (dac:Tunnel to tcp:192.168.1.215:4656:send_FL)
+ 9: dac9 (dac:Tunnel to tcp:192.168.1.215:4656:send_FR)
+connecting channel 0 to USB Audio Line Out:playback_FL
+connecting channel 1 to USB Audio Line Out:playback_FR
+writing 1024 sample blks of 64-bit floats to dac
+SECTION 1:
+ftable 1:	16384 points, scalemax 1.000
+               _--'''''--_
+            _-'           '-_
+          _-                 -_
+         .                     .
+       _'                       '_
+      -                           -
+    _'                             '_
+   .                                 .
+  -                                   -
+_'_____________________________________'________________________________________
+                                        '_                                     .
+                                          .                                   .
+                                           -                                 -
+                                            '_                             _'
+                                              .                           -
+                                               -_                       _'
+                                                 .                     -
+                                                  '.                 .'
+                                                    '._           _-'
+                                                       -.._____.-'
+ i   1 time     0.00000:     0.00000
+ i   1 time     0.07067:    -0.20232
+ i   1 time     0.14067:    -0.23021
+ i   1 time     0.21067:     0.57480
+ i   1 time     0.28067:    -0.69985
+ i   1 time     0.35067:     0.55757
+ i   1 time     0.42067:    -0.20232
+ i   1 time     0.49067:    -0.23021
+ i   1 time     0.56067:     0.57480
+ i   1 time     0.63067:    -0.69985
+ i   1 time     0.70067:     0.55757
+ i   1 time     0.77067:    -0.20232
+ i   1 time     0.84067:    -0.23021
+ i   1 time     0.91067:     0.57480
+ i   1 time     0.98067:    -0.69985
+ i   1 time     1.05067:     0.55757
+ i   1 time     1.12067:    -0.20232
+ i   1 time     1.19067:    -0.23021
+ i   1 time     1.26067:     0.57480
+ i   1 time     1.33067:    -0.69985
+ i   1 time     1.40067:     0.55757
+ i   1 time     1.47067:    -0.20232
+ i   1 time     1.54067:    -0.23021
+ i   1 time     1.61067:     0.57480
+ i   1 time     1.68067:    -0.69985
+ i   1 time     1.75067:     0.55757
+ i   1 time     1.82067:    -0.20232
+ i   1 time     1.89067:    -0.23021
+ i   1 time     1.96067:     0.57480
+ i   1 time     3.00000:     0.00000
+ i   1 time     3.07000:     0.41145
+ i   1 time     3.14000:    -0.66574
+ i   1 time     3.21000:     0.66574
+ i   1 time     3.28000:    -0.41145
+ i   1 time     3.35000:     0.00000
+ i   1 time     3.42000:     0.41145
+ i   1 time     3.49000:    -0.66574
+ i   1 time     3.56000:     0.66574
+ i   1 time     3.63000:    -0.41145
+ i   1 time     3.70000:     0.00000
+ i   1 time     3.77000:     0.41145
+ i   1 time     3.84000:    -0.66574
+ i   1 time     3.91000:     0.66574
+ i   1 time     3.98000:    -0.41145
+ i   1 time     4.05000:     0.00000
+ i   1 time     4.12000:     0.41145
+ i   1 time     4.19000:    -0.66574
+ i   1 time     4.26000:     0.66574
+ i   1 time     4.33000:    -0.41145
+ i   1 time     4.40000:     0.00000
+ i   1 time     4.47000:     0.41145
+ i   1 time     4.54000:    -0.66574
+ i   1 time     4.61000:     0.66574
+ i   1 time     4.68000:    -0.41145
+ i   1 time     4.75000:     0.00000
+ i   1 time     4.82000:     0.41145
+ i   1 time     4.89000:    -0.66574
+ i   1 time     4.96000:     0.66574
+ i   2 time     6.00000:     0.00000
+ i   2 time     6.07000:     0.41145
+ i   2 time     6.14000:    -0.66574
+ i   2 time     6.21000:     0.66574
+ i   2 time     6.28000:    -0.41144
+ i   2 time     6.35000:    -0.00001
+ i   2 time     6.42000:     0.41146
+ i   2 time     6.49000:    -0.66575
+ i   2 time     6.56000:     0.66573
+ i   2 time     6.63000:    -0.41143
+ i   2 time     6.70000:    -0.00003
+ i   2 time     6.77000:     0.41147
+ i   2 time     6.84000:    -0.66575
+ i   2 time     6.91000:     0.66573
+ i   2 time     6.98000:    -0.41142
+ i   2 time     7.05000:    -0.00004
+ i   2 time     7.12000:     0.41148
+ i   2 time     7.19000:    -0.66575
+ i   2 time     7.26000:     0.66572
+ i   2 time     7.33000:    -0.41141
+ i   2 time     7.40000:    -0.00005
+ i   2 time     7.47000:     0.41149
+ i   2 time     7.54000:    -0.66576
+ i   2 time     7.61000:     0.66572
+ i   2 time     7.68000:    -0.41140
+ i   2 time     7.75000:    -0.00007
+ i   2 time     7.82000:     0.41151
+ i   2 time     7.89000:    -0.66576
+ i   2 time     7.96000:     0.66572
+ i   2 time     9.00000:     0.00000
+ i   2 time     9.07000:     0.41145
+ i   2 time     9.14000:    -0.66574
+ i   2 time     9.21000:     0.66574
+ i   2 time     9.28000:    -0.41144
+ i   2 time     9.35000:    -0.00001
+ i   2 time     9.42000:     0.41146
+ i   2 time     9.49000:    -0.66575
+ i   2 time     9.56000:     0.66573
+ i   2 time     9.63000:    -0.41143
+ i   2 time     9.70000:    -0.00003
+ i   2 time     9.77000:     0.41147
+ i   2 time     9.84000:    -0.66575
+ i   2 time     9.91000:     0.66573
+ i   2 time     9.98000:    -0.41142
+ i   2 time    10.05000:    -0.00004
+ i   2 time    10.12000:     0.41148
+ i   2 time    10.19000:    -0.66575
+ i   2 time    10.26000:     0.66572
+ i   2 time    10.33000:    -0.41141
+ i   2 time    10.40000:    -0.00005
+ i   2 time    10.47000:     0.41149
+ i   2 time    10.54000:    -0.66576
+ i   2 time    10.61000:     0.66572
+ i   2 time    10.68000:    -0.41140
+ i   2 time    10.75000:    -0.00007
+ i   2 time    10.82000:     0.41151
+ i   2 time    10.89000:    -0.66576
+ i   2 time    10.96000:     0.66572
+Score finished in csoundPerform().
+inactive allocs returned to freespace
+end of score.		   overall amps:    -3.10    -3.10
+	   overall samples out of range:        0        0
+0 errors in performance
+1032 1024 sample blks of 64-bit floats written to dac
