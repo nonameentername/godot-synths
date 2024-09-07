@@ -242,3 +242,56 @@ func _on_lfo_amp_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthAmp", 1, "amp_mod_amount"]
 	#print(control_name, value)
 	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_type"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_resonance_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_resonance"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_cutoff_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_cutoff"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_key_track_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_kbd_track"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_envelope_amount_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_env_amount"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_attack_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_attack"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_decay_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_decay"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_filter_sustain_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_sustain"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+func _on_filter_release_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_release"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)

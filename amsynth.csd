@@ -491,9 +491,9 @@ kValue = kFreq * kOctave * kSemitone * kDetune2
 ;printk 1, kFreq, 0, 1
 ;printk 1, kOctave, 0, 1
 ;printk 1, kSemitone, 0, 1
-printk 1, kDetune, 0, 1
-printk 1, kDetune2, 0, 1
-printk 1, kValue, 0, 1
+;printk 1, kDetune, 0, 1
+;printk 1, kDetune2, 0, 1
+;printk 1, kValue, 0, 1
 
 xout kValue
 endop
