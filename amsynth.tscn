@@ -325,6 +325,7 @@ offset_right = 664.0
 offset_bottom = 328.0
 
 [node name="Label" type="Label" parent="Filter"]
+layout_mode = 0
 offset_right = 656.0
 offset_bottom = 16.0
 text = "filter"
