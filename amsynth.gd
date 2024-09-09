@@ -29,7 +29,8 @@ func initialize() -> void:
 instr {name}
 	SInstrName = "{name}"
 	SInstrMixer = "{name}_mixer"
-	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
+	iChannel = 3
+	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6, iChannel
 	ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
 endin
 
@@ -84,8 +85,8 @@ DefineChannel "{name}", "ASynthInput", 1, "portamento_time", $CHANNEL_MODE_INPUT
 DefineChannel "{name}", "ASynthInput", 1, "keyboard_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2
 DefineChannel "{name}", "ASynthDetune", 2, "osc_pitch", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, -1, -12, 12
 DefineChannel "{name}", "ASynthFilter", 1, "filter_type", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 4.0
-DefineChannel "{name}", "ASynthLfoFreq", 1, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 2.0
-DefineChannel "{name}", "ASynthLfoFreq", 2, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 2.0
+DefineChannel "{name}", "ASynthLfoFreq", 1, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2.0
+DefineChannel "{name}", "ASynthLfoFreq", 2, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2.0
 DefineChannel "{name}", "ASynthFilter", 1, "filter_kbd_track", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.783333003520966, 0, 1
 DefineChannel "{name}", "ASynthInput", 1, "portamento_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
 
@@ -111,10 +112,6 @@ func _on_check_button_toggled(toggled_on:bool) -> void:
 		amsynth.instrument_note_off("{name}_midi".format({"name": instrument_name}), 1, 60)
 
 
-func _on_knob_value_changed(value:float) -> void:
-	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthRender", 1, "master_vol"]
-	#print(control_name, value)
-	amsynth.send_control_channel(control_name, value)
 
 
 func _on_oscillator_1_waveform_value_changed(value: float) -> void:
@@ -232,13 +229,13 @@ func _on_lfo_speed_value_changed(value:float) -> void:
 
 func _on_lfo_oscillator_1_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthLfoFreq", 1, "freq_mod_amount"]
-	#print(control_name, value)
+	print(control_name, value)
 	amsynth.send_control_channel(control_name, value)
 
 
 func _on_lfo_oscillator_2_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthLfoFreq", 2, "freq_mod_amount"]
-	#print(control_name, value)
+	print(control_name, value)
 	amsynth.send_control_channel(control_name, value)
 
 
@@ -303,5 +300,58 @@ func _on_filter_sustain_value_changed(value:float) -> void:
 
 func _on_filter_release_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthFilter", 1, "filter_release"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_amp_volume_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthRender", 1, "master_vol"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_amp_drive_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthOverDrive", 1, "distortion_crunch"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_reverb_amount_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthReverb", 1, "reverb_wet"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_reverb_size_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthReverb", 1, "reverb_roomsize"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_reverb_stereo_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthReverb", 1, "reverb_width"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_reverb_damping_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthReverb", 1, "reverb_damp"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_portamento_time_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthInput", 1, "portamento_time"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+
+func _on_portamento_mode_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthInput", 1, "portamento_mode"]
+	#print(control_name, value)
+	amsynth.send_control_channel(control_name, value)
+
+func _on_portamento_keyboard_mode_value_changed(value:float) -> void:
+	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthInput", 1, "keyboard_mode"]
 	#print(control_name, value)
 	amsynth.send_control_channel(control_name, value)

@@ -11,24 +11,17 @@ font_size = 10
 script = ExtResource("1_8g6jc")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 304.0
-offset_top = 472.0
-offset_right = 344.0
-offset_bottom = 495.0
+offset_left = 688.0
+offset_top = 272.0
+offset_right = 728.0
+offset_bottom = 295.0
 text = "C4"
 
 [node name="CheckButton" type="CheckButton" parent="."]
-offset_left = 416.0
-offset_top = 456.0
-offset_right = 460.0
-offset_bottom = 480.0
-
-[node name="MasterVolume" parent="." instance=ExtResource("2_lvsxo")]
-offset_left = 584.0
-offset_top = 456.0
-offset_right = 584.0
-offset_bottom = 456.0
-knob_name = "volume"
+offset_left = 720.0
+offset_top = 272.0
+offset_right = 764.0
+offset_bottom = 296.0
 
 [node name="Oscillator1" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -100,9 +93,9 @@ knob_name = "detune"
 [node name="OscillatorMix" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
 offset_left = 456.0
-offset_top = 8.0
+offset_top = 120.0
 offset_right = 608.0
-offset_bottom = 104.0
+offset_bottom = 216.0
 
 [node name="Label" type="Label" parent="OscillatorMix"]
 layout_mode = 0
@@ -132,10 +125,10 @@ knob_name = "ring mod"
 
 [node name="Oscillator2" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
-offset_left = 616.0
-offset_top = 8.0
-offset_right = 1056.0
-offset_bottom = 104.0
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 448.0
+offset_bottom = 216.0
 
 [node name="Label" type="Label" parent="Oscillator2"]
 layout_mode = 0
@@ -199,10 +192,10 @@ knob_name = "detune"
 
 [node name="AmpEnvelope" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
-offset_left = 536.0
-offset_top = 120.0
-offset_right = 832.0
-offset_bottom = 216.0
+offset_left = 456.0
+offset_top = 8.0
+offset_right = 752.0
+offset_bottom = 104.0
 
 [node name="Label" type="Label" parent="AmpEnvelope"]
 layout_mode = 0
@@ -248,9 +241,9 @@ knob_name = "release"
 [node name="Lfo" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
 offset_left = 8.0
-offset_top = 120.0
+offset_top = 344.0
 offset_right = 520.0
-offset_bottom = 216.0
+offset_bottom = 440.0
 
 [node name="Label" type="Label" parent="Lfo"]
 layout_mode = 0
@@ -407,8 +400,125 @@ offset_bottom = 24.0
 max_value = 2.5
 knob_name = "release"
 
+[node name="Amp" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 616.0
+offset_top = 120.0
+offset_right = 768.0
+offset_bottom = 216.0
+
+[node name="Label" type="Label" parent="Amp"]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 16.0
+text = "amp"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AmpVolume" parent="Amp" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+knob_name = "volume"
+
+[node name="AmpDrive" parent="Amp" instance=ExtResource("2_lvsxo")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+max_value = 0.9
+knob_name = "drive"
+
+[node name="Reverb" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 528.0
+offset_top = 344.0
+offset_right = 824.0
+offset_bottom = 440.0
+
+[node name="Label" type="Label" parent="Reverb"]
+layout_mode = 0
+offset_right = 296.0
+offset_bottom = 16.0
+text = "reverb"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ReverbAmount" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+knob_name = "amount"
+
+[node name="ReverbSize" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+knob_name = "size"
+
+[node name="ReverbStereo" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+knob_name = "stereo"
+
+[node name="ReverbDamping" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+offset_left = 224.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 24.0
+knob_name = "damping"
+
+[node name="Portamento" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 8.0
+offset_top = 456.0
+offset_right = 232.0
+offset_bottom = 552.0
+
+[node name="Label" type="Label" parent="Portamento"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 16.0
+text = "portamento"
+label_settings = SubResource("LabelSettings_ptmr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PortamentoTime" parent="Portamento" instance=ExtResource("2_lvsxo")]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 24.0
+knob_name = "time"
+
+[node name="PortamentoMode" parent="Portamento" instance=ExtResource("2_lvsxo")]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 24.0
+knob_name = "mode"
+step = 1.0
+
+[node name="PortamentoKeyboardMode" parent="Portamento" instance=ExtResource("2_lvsxo")]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 24.0
+max_value = 2.0
+knob_name = "keyboard"
+step = 1.0
+
 [connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
-[connection signal="value_changed" from="MasterVolume" to="." method="_on_knob_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Waveform" to="." method="_on_oscillator_1_waveform_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Shape" to="." method="_on_oscillator_1_shape_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Octave" to="." method="_on_oscillator_1_octave_value_changed"]
@@ -440,3 +550,12 @@ knob_name = "release"
 [connection signal="value_changed" from="Filter/FilterDecay" to="." method="_on_filter_decay_value_changed"]
 [connection signal="value_changed" from="Filter/FilterSustain" to="." method="_on_filter_sustain_value_changed"]
 [connection signal="value_changed" from="Filter/FilterRelease" to="." method="_on_filter_release_value_changed"]
+[connection signal="value_changed" from="Amp/AmpVolume" to="." method="_on_amp_volume_value_changed"]
+[connection signal="value_changed" from="Amp/AmpDrive" to="." method="_on_amp_drive_value_changed"]
+[connection signal="value_changed" from="Reverb/Label/ReverbAmount" to="." method="_on_reverb_amount_value_changed"]
+[connection signal="value_changed" from="Reverb/Label/ReverbSize" to="." method="_on_reverb_size_value_changed"]
+[connection signal="value_changed" from="Reverb/Label/ReverbStereo" to="." method="_on_reverb_stereo_value_changed"]
+[connection signal="value_changed" from="Reverb/Label/ReverbDamping" to="." method="_on_reverb_damping_value_changed"]
+[connection signal="value_changed" from="Portamento/PortamentoTime" to="." method="_on_portamento_time_value_changed"]
+[connection signal="value_changed" from="Portamento/PortamentoMode" to="." method="_on_portamento_mode_value_changed"]
+[connection signal="value_changed" from="Portamento/PortamentoKeyboardMode" to="." method="_on_portamento_keyboard_mode_value_changed"]
