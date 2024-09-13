@@ -260,6 +260,7 @@ gkPrevNote[] init $MAX_NUM_INSTRUMENTS
 gkLargestHeldKey[] init $MAX_NUM_INSTRUMENTS
 gkMidiVelocity[] init $MAX_NUM_INSTRUMENTS
 gkCurrentNote[] init $MAX_NUM_INSTRUMENTS
+gkUpdatePortamento[] init $MAX_NUM_INSTRUMENTS
 
 #define gkHeldKeys #gkHeldKeys[iChannel]#
 #define gkCounter #gkCounter[iChannel]#
@@ -268,6 +269,7 @@ gkCurrentNote[] init $MAX_NUM_INSTRUMENTS
 #define gkLargestHeldKey #gkLargestHeldKey[iChannel]#
 #define gkMidiVelocity #gkMidiVelocity[iChannel]#
 #define gkCurrentNote #gkCurrentNote[iChannel]#
+#define gkUpdatePortamento #gkUpdatePortamento[iChannel]#
 
 opcode ASynthInput, 0, Siiii
 SInstrName, iChannel, iMidiKey, iMidiVelocity, iStatus xin
@@ -305,6 +307,17 @@ prints "%s = %f\n", "iInstrnum = ", iInstrnum
 
 ;portamento is not working correctly in mono.  Should change when releasing notes
 
+;igoto setup
+
+;goto cont
+
+;setup:
+
+iVal = 0
+chnset iVal, SInstrName, "ASynthInput", iNum, "prev_note"
+
+;cont:
+
 if iKeyboardMode == $KEY_MODE_POLY then
     if iStatus == $MIDI_NOTE_ON then
         event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
@@ -317,11 +330,15 @@ else
         $gkMidiVelocity = iMidiVelocity
         kLargestHeldKey GetMax gkHeldKeys, iChannel, 0
         if $gkNumOfNotes == 0 then
+            chnset iVal, SInstrName, "ASynthInput", iNum, "prev_note"
+            $gkUpdatePortamento = iMidiKey
             event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
         else
-            $gkPrevNote = $gkLargestHeldKey
             if iKeyboardMode == $KEY_MODE_MONO then
-                event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
+                event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkLargestHeldKey
+            elseif iKeyboardMode == $KEY_MODE_LEGATO then
+                chnset iMidiKey, SInstrName, "ASynthInput", iNum, "prev_note"
+                $gkUpdatePortamento = iMidiKey
             endif
         endif
     elseif iStatus == $MIDI_NOTE_OFF then
@@ -330,10 +347,16 @@ else
         ;if $gkNumOfNotes == 1 then
         if kLargestHeldKey == 0 then
             event "i", -iInstrnum, 0, 0, iMidiKey, iMidiVelocity, $gkPrevNote
-        elseif iKeyboardMode == $KEY_MODE_MONO && iMidiKey > kLargestHeldKey && kLargestHeldKey != $gkCurrentNote then
-            $gkCurrentNote = kLargestHeldKey
-            $gkPrevNote = $gkLargestHeldKey
-            event "i", iInstrnum, 0, -1, kLargestHeldKey, $gkMidiVelocity, $gkPrevNote
+        elseif iKeyboardMode == $KEY_MODE_MONO then
+            if iMidiKey > kLargestHeldKey && kLargestHeldKey != $gkCurrentNote then
+                $gkCurrentNote = kLargestHeldKey
+                event "i", iInstrnum, 0, -1, kLargestHeldKey, $gkMidiVelocity, $gkLargestHeldKey
+            endif
+        elseif iKeyboardMode == $KEY_MODE_LEGATO then
+            if iMidiKey > kLargestHeldKey && kLargestHeldKey != $gkCurrentNote then
+                chnset kLargestHeldKey, SInstrName, "ASynthInput", iNum, "prev_note"
+                $gkUpdatePortamento = kLargestHeldKey
+            endif
         endif
     endif
 endif
@@ -762,13 +785,6 @@ opcode ASynthPortamento, k, Siiii
 SInstrName, iNum, iMidiKey, iPrevNote, iChannel xin
 
 iInstr nstrnum SInstrName
-kFreq mtof iMidiKey
-
-if iPrevNote == 0 then
-    iPrevNoteFreq = 0
-else
-    iPrevNoteFreq mtof iPrevNote
-endif
 
 kKeyboardModeMidi chnget SInstrName, "ASynthInput", iNum, "keyboard_mode"
 kKeyboardMode round kKeyboardModeMidi
@@ -779,6 +795,39 @@ kPortamentoTime = iPortamentoTimeMidi
 iPortamentoModeMidi chnget SInstrName, "ASynthInput", iNum, "portamento_mode"
 kPortamentoMode round iPortamentoModeMidi
 
+kPrevNoteChanged changed $gkUpdatePortamento
+
+igoto cont
+
+if kPrevNoteChanged == 1 && kKeyboardMode == $KEY_MODE_LEGATO then
+    reinit reset
+endif
+
+goto cont
+
+reset:
+
+SInternalName sprintf "%s.%s.%d.%s", SInstrName, "ASynthInput", iNum, "prev_note"
+iValue chnget SInternalName
+if iValue > 0 then
+    iPrevNote = iMidiKey
+    iMidiKey = iValue
+endif
+
+cont:
+
+kFreq mtof iMidiKey
+
+if iPrevNote == 0 then
+    iPrevNoteFreq = 0
+else
+    iPrevNoteFreq mtof iPrevNote
+endif
+
+print iMidiKey
+print iPrevNote
+print iPrevNoteFreq
+
 kInstrCount active iInstr, 0, 1
 
 if kKeyboardMode == $KEY_MODE_POLY then
@@ -788,17 +837,19 @@ if kKeyboardMode == $KEY_MODE_POLY then
     if kInstrCount <= 1 && kPortamentoMode == $PORTAMENTO_LEGATO then
         kPortamentoTime = 0
     endif
-
-    kFreq portk kFreq, 0.2 * kPortamentoTime, iPrevNoteFreq
 else
     if kPortamentoMode == $PORTAMENTO_LEGATO && iPrevNote == 0 then
         kPortamentoTime = 0
     endif
 
-    kFreq = cpsoct(octmidinn($gkLargestHeldKey))
-    kFreq portk kFreq, 0.2 * kPortamentoTime, iPrevNoteFreq
+    if kKeyboardMode == $KEY_MODE_MONO then
+        kFreq = cpsoct(octmidinn($gkLargestHeldKey))
+    endif
 endif
 
+kFreq portk kFreq, 0.2 * kPortamentoTime, iPrevNoteFreq
+
+rireturn
 
 xout kFreq
 endop
