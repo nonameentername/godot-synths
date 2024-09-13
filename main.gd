@@ -78,10 +78,10 @@ func _send_midi_info(midi_event):
 	#print("Controller value: ", midi_event.controller_value)
 
 	if midi_event.message == MIDI_MESSAGE_NOTE_ON:
-		amsynth.instrument_note_on("one_midi", 1, midi_event.pitch, midi_event.velocity)
+		amsynth.instrument_note_on("hello_midi", 1, midi_event.pitch, midi_event.velocity)
 
 	if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
-		amsynth.instrument_note_off("one_midi", 1, midi_event.pitch)
+		amsynth.instrument_note_off("hello_midi", 1, midi_event.pitch)
 
 
 func _process(_delta: float) -> void:
@@ -98,10 +98,10 @@ func _process(_delta: float) -> void:
 		var velocity = data[2]
 
 		if command == 0x90:
-			amsynth.instrument_note_on("one_midi", 1, pitch, velocity)
+			amsynth.instrument_note_on("hello_midi", 1, pitch, velocity)
 
 		if command == 0x80:
-			amsynth.instrument_note_off("one_midi", 1, pitch)
+			amsynth.instrument_note_off("hello_midi", 1, pitch)
 
 
 func _fetch_js_input():
