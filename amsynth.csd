@@ -1,7 +1,7 @@
 <CoundSynthesizer>
 <CsOptions>
---midi-key=4 --midi-velocity=5 -n
-;-+rtmidi=NULL -M0 --midi-key=4 --midi-velocity=5 -n
+--midi-key=5 --midi-velocity=6 -n
+;-+rtmidi=NULL -M0 --midi-key=5 --midi-velocity=6 -n
 </CsOptions>
 <CsInstruments>
 
@@ -30,7 +30,7 @@
 #define CHANNEL_TYPE_LINEAR #2#
 #define CHANNEL_TYPE_EXPONENTIAL #3#
 
-sr = 44100
+sr = 48000
 ksmps = 32
 nchnls = 2
 0dbfs = 1
@@ -136,7 +136,7 @@ SInternalName GetChannelName SInstrName, SComponent, iIndex, SName
 chnset iValue, SInternalName
 
 #ifdef DEBUG
-prints "%s = %f\n", SInternalName, iValue
+;prints "%s = %f\n", SInternalName, iValue
 #end
 
 endop
@@ -255,7 +255,6 @@ endop
 
 gkHeldKeys[][]  init $MAX_NUM_INSTRUMENTS, 128
 gkCounter[] init $MAX_NUM_INSTRUMENTS
-gkNumOfNotes[] init $MAX_NUM_INSTRUMENTS
 gkPrevNote[] init $MAX_NUM_INSTRUMENTS
 gkLargestHeldKey[] init $MAX_NUM_INSTRUMENTS
 gkMidiVelocity[] init $MAX_NUM_INSTRUMENTS
@@ -264,18 +263,23 @@ gkUpdatePortamento[] init $MAX_NUM_INSTRUMENTS
 
 #define gkHeldKeys #gkHeldKeys[iChannel]#
 #define gkCounter #gkCounter[iChannel]#
-#define gkNumOfNotes #gkNumOfNotes[iChannel]#
 #define gkPrevNote #gkPrevNote[iChannel]#
 #define gkLargestHeldKey #gkLargestHeldKey[iChannel]#
 #define gkMidiVelocity #gkMidiVelocity[iChannel]#
 #define gkCurrentNote #gkCurrentNote[iChannel]#
 #define gkUpdatePortamento #gkUpdatePortamento[iChannel]#
 
-opcode ASynthInput, 0, Siiii
-SInstrName, iChannel, iMidiKey, iMidiVelocity, iStatus xin
+opcode ASynthInput, 0, Siii
+SInstrName, iChannel, iMidiKey, iMidiVelocity xin
 
 iInstr nstrnum SInstrName
 iNum = 1
+
+if iMidiVelocity > 0 then
+    iStatus = $MIDI_NOTE_ON
+else
+    iStatus = $MIDI_NOTE_OFF
+endif
 
 iKeyboardModeMidi chnget SInstrName, "ASynthInput", iNum, "keyboard_mode"
 iKeyboardMode round iKeyboardModeMidi
@@ -290,7 +294,10 @@ kPortamentoMode round iPortamentoModeMidi
 ;    turnoff2 iInstr, 0, 0
 ;endif
 
-kInstrCount active iInstr, 0, 0
+iAllInstrCount active iInstr, 0, 0
+iActiveInstrCount active iInstr, 0, 1
+
+;print iAllInstrCount, iActiveInstrCount
 
 if iKeyboardMode == $KEY_MODE_POLY then
     iInstrnum = iInstr + iChannel / 100.0 + iMidiKey / 100000.0;
@@ -299,43 +306,31 @@ else
     ;iInstrnum = iInstr + iChannel / 100.0 + iMidiKey / 100000.0;
 endif
 
-prints "%s = %f\n", "iInstrnum = ", iInstrnum
+;prints "%s = %f\n", "iInstrnum = ", iInstrnum
 
 ;printk 1, kInstrCount, 0, 1
-;printk 1, $gkNumOfNotes, 0, 1
 ;printk 1, kInstrnum, 0, 1
-
-;portamento is not working correctly in mono.  Should change when releasing notes
-
-;igoto setup
-
-;goto cont
-
-;setup:
-
-iVal = 0
-chnset iVal, SInstrName, "ASynthInput", iNum, "prev_note"
-
-;cont:
 
 if iKeyboardMode == $KEY_MODE_POLY then
     if iStatus == $MIDI_NOTE_ON then
-        event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
+        chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
+        event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
     elseif iStatus == $MIDI_NOTE_OFF then
-        event "i", -iInstrnum, 0, 0, iMidiKey, iMidiVelocity, $gkPrevNote
+        chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
+        event "i", -iInstrnum, 0, 0, iChannel, iMidiKey, iMidiVelocity
     endif
 else
     if iStatus == $MIDI_NOTE_ON then
         $gkCurrentNote = iMidiKey
         $gkMidiVelocity = iMidiVelocity
-        kLargestHeldKey GetMax gkHeldKeys, iChannel, 0
-        if $gkNumOfNotes == 0 then
-            chnset iVal, SInstrName, "ASynthInput", iNum, "prev_note"
+        if iActiveInstrCount == 0 then
             $gkUpdatePortamento = iMidiKey
-            event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
+            chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
+            event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
         else
             if iKeyboardMode == $KEY_MODE_MONO then
-                event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkLargestHeldKey
+                chnset $gkLargestHeldKey, SInstrName, "ASynthInput", iNum, "prev_note"
+                event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
             elseif iKeyboardMode == $KEY_MODE_LEGATO then
                 chnset iMidiKey, SInstrName, "ASynthInput", iNum, "prev_note"
                 $gkUpdatePortamento = iMidiKey
@@ -344,13 +339,14 @@ else
     elseif iStatus == $MIDI_NOTE_OFF then
         $gkHeldKeys[iMidiKey] = 0
         kLargestHeldKey GetMax gkHeldKeys, iChannel, 0
-        ;if $gkNumOfNotes == 1 then
         if kLargestHeldKey == 0 then
-            event "i", -iInstrnum, 0, 0, iMidiKey, iMidiVelocity, $gkPrevNote
+            chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
+            event "i", -iInstrnum, 0, 0, iChannel, iMidiKey, iMidiVelocity
         elseif iKeyboardMode == $KEY_MODE_MONO then
             if iMidiKey > kLargestHeldKey && kLargestHeldKey != $gkCurrentNote then
                 $gkCurrentNote = kLargestHeldKey
-                event "i", iInstrnum, 0, -1, kLargestHeldKey, $gkMidiVelocity, $gkLargestHeldKey
+                chnset $gkLargestHeldKey, SInstrName, "ASynthInput", iNum, "prev_note"
+                event "i", iInstrnum, 0, -1, iChannel, kLargestHeldKey, $gkMidiVelocity
             endif
         elseif iKeyboardMode == $KEY_MODE_LEGATO then
             if iMidiKey > kLargestHeldKey && kLargestHeldKey != $gkCurrentNote then
@@ -368,25 +364,21 @@ if iStatus == $MIDI_NOTE_ON then
     $gkLargestHeldKey = iMidiKey
     $gkHeldKeys[$gkLargestHeldKey] = $gkCounter
 
-    $gkNumOfNotes = $gkNumOfNotes + 1
 elseif iStatus == $MIDI_NOTE_OFF then
     $gkHeldKeys[iMidiKey] = 0
     kLargestHeldKey GetMax gkHeldKeys, iChannel, 0
-    ;if $gkNumOfNotes == 1 then
     if kLargestHeldKey == 1 then
         $gkCounter = 0
     else
         $gkLargestHeldKey GetMax gkHeldKeys, iChannel, $gkLargestHeldKey
     endif
 
-    if $gkNumOfNotes > 0 then
-        $gkNumOfNotes = $gkNumOfNotes - 1
-    endif
-
-    if kPortamentoMode == $PORTAMENTO_LEGATO && $gkNumOfNotes == 0 then
+    if kPortamentoMode == $PORTAMENTO_LEGATO && iActiveInstrCount == 0 then
         $gkPrevNote = 0
     else
-        $gkPrevNote = $gkLargestHeldKey
+		if iKeyboardMode != $KEY_MODE_POLY then
+			$gkPrevNote = $gkLargestHeldKey
+		endif
     endif
 endif
 
@@ -413,7 +405,7 @@ endif
 
 iNote = 69+12*log2(iFreq/440)
 
-print iNote, iFreq
+;print iNote, iFreq
 
 kAmp = 1/15000 * 10
 aOut sfplaym 64, 64, kAmp*iAmp, iFreq, 0, 1
@@ -781,10 +773,13 @@ ASynthOut SInstrName, iNum, aClipL, aClipR
 endop
 
 
-opcode ASynthPortamento, k, Siiii
-SInstrName, iNum, iMidiKey, iPrevNote, iChannel xin
+opcode ASynthPortamento, k, Siii
+SInstrName, iNum, iMidiKey, iChannel xin
 
 iInstr nstrnum SInstrName
+
+iKeyboardModeMidi chnget SInstrName, "ASynthInput", iNum, "keyboard_mode"
+iKeyboardMode round iKeyboardModeMidi
 
 kKeyboardModeMidi chnget SInstrName, "ASynthInput", iNum, "keyboard_mode"
 kKeyboardMode round kKeyboardModeMidi
@@ -797,36 +792,38 @@ kPortamentoMode round iPortamentoModeMidi
 
 kPrevNoteChanged changed $gkUpdatePortamento
 
-igoto cont
+iPrevNote chnget SInstrName, "ASynthInput", iNum, "prev_note"
 
 if kPrevNoteChanged == 1 && kKeyboardMode == $KEY_MODE_LEGATO then
     reinit reset
 endif
 
-goto cont
-
 reset:
 
 SInternalName sprintf "%s.%s.%d.%s", SInstrName, "ASynthInput", iNum, "prev_note"
 iValue chnget SInternalName
-if iValue > 0 then
-    iPrevNote = iMidiKey
-    iMidiKey = iValue
+if iKeyboardMode == $KEY_MODE_LEGATO then
+	if iValue > 0 then
+		iPrevNote = iMidiKey
+		iMidiKey = iValue
+	endif
+else
+	iPrevNote = iValue
 endif
 
-cont:
+;print iPrevNote
 
 kFreq mtof iMidiKey
 
-if iPrevNote == 0 then
-    iPrevNoteFreq = 0
-else
+;if iPrevNote == 0 then
+;    iPrevNoteFreq = 0
+;else
     iPrevNoteFreq mtof iPrevNote
-endif
+;endif
 
-print iMidiKey
-print iPrevNote
-print iPrevNoteFreq
+;print iMidiKey
+;print iPrevNote
+;print iPrevNoteFreq
 
 kInstrCount active iInstr, 0, 1
 
@@ -924,15 +921,14 @@ MixerSend aRight, iInstr, iInstrMixer, 1
 endop
 
 
-opcode ASynth, aa, Siiiioi
-SInstrName, p2, p3, p4, p5, p6, p7 xin
+opcode ASynth, aa, Siiiio
+SInstrName, p2, p3, p4, p5, p6 xin
 
 iDelay = p2
 iDuration = p3
-iMidiKey = p4
-iMidiVelocity = p5
-iPrevNote = p6
-iChannel = p7
+iChannel = p4
+iMidiKey = p5
+iMidiVelocity = p6
 
 iNum = 1
 kFreq mtof iMidiKey
@@ -948,7 +944,7 @@ if kPhasor == 0 then
 endif
 ;printk 1, kLargestHeldKey, 0, 1
 
-kFreq ASynthPortamento SInstrName, 1, iMidiKey, iPrevNote, iChannel
+kFreq ASynthPortamento SInstrName, 1, iMidiKey, iChannel
 
 aLfoOsc ASynthLfo SInstrName, 1, kFreq
 
@@ -983,7 +979,7 @@ prealloc "hello", 10
 ;maxalloc "world", 16
 ;prealloc "world", 16
 
-massign 1, "sine"
+massign 1, "hello_midi"
 ;massign 10, "forward"
 
 DefineChannel "hello", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5
@@ -1090,7 +1086,7 @@ instr sine
     iAmp = iMidiVelocity / 127
 
 
-    print iAmp, iFreq
+    ;print iAmp, iFreq
 
     aSync init 0
     iPhase = 0
@@ -1118,78 +1114,44 @@ instr forward
     iInstrnum2 = iInstr2 + iChannel / 100.0 + iMidiKey / 100000.0;
 
     if kStatus == $MIDI_NOTE_ON then
-        event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity
-        event "i", iInstrnum2, 0, -1, iMidiKey, iMidiVelocity
+        event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
+        event "i", iInstrnum2, 0, -1, iChannel, iMidiKey, iMidiVelocity
     elseif kStatus == $MIDI_NOTE_OFF then
-        event "i", -iInstrnum, 0, 0, iMidiKey, iMidiVelocity
-        event "i", -iInstrnum2, 0, 0, iMidiKey, iMidiVelocity
+        event "i", -iInstrnum, 0, 0, iChannel, iMidiKey, iMidiVelocity
+        event "i", -iInstrnum2, 0, 0, iChannel, iMidiKey, iMidiVelocity
     endif
 endin
 
 instr hello
     SInstrName = "hello"
     SInstrMixer = "hello_mixer"
-    prints "%s = %f\n", "p1 =", p1
-    prints "%s = %f\n", "p6 =", p6
-    iChannel = 1
-    aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6, iChannel
+    ;prints "%s = %f\n", "p1 =", p1
+    ;prints "%s = %f\n", "p6 =", p6
+    ;print p1, p2, p3, p4, p5, p6
+    aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
     ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
 endin
 
 instr hello_midi
     iHelloMidi = p1
     SInstrName = "hello"
-    iChannel = 1
-    iMidiKey = p4
-    iMidiVelocity = p5
-    iNum = 1
+    iChannel = p4
+    iMidiKey = p5
+    iMidiVelocity = p6
 
-    ;kStatus GetMidiStatus
-    if iMidiVelocity > 0 then
-        iStatus = $MIDI_NOTE_ON
-    else
-        iStatus = $MIDI_NOTE_OFF
-    endif
+	kskip init 0
+	if kskip == 0 then
+    	;print p1, p2, p3, p4, p5, p6
+    	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
+		kskip = 1
+	endif
 
-    iInstr nstrnum SInstrName
-
-    iKeyboardModeMidi chnget SInstrName, "ASynthInput", iNum, "keyboard_mode"
-    iKeyboardMode round iKeyboardModeMidi
-
-    if iKeyboardMode == $KEY_MODE_POLY then
-        iInstrnum = iInstr + iChannel / 100.0 + iMidiKey / 100000.0;
-    else
-        iInstrnum = iInstr + iChannel / 100.0
-    endif
-
-	;if iKeyboardMode == $KEY_MODE_POLY then
-	;	if iStatus == $MIDI_NOTE_ON then
-	;		event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
-	;	elseif iStatus == $MIDI_NOTE_OFF then
-	;		event "i", -iInstrnum, 0, 0, iMidiKey, iMidiVelocity, $gkPrevNote
-	;	endif
-	;else
-	;	if iStatus == $MIDI_NOTE_ON then
-	;		if $gkNumOfNotes == 0 then
-	;			event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
-	;		else
-	;			$gkPrevNote = $gkLargestHeldKey
-	;			if iKeyboardMode == $KEY_MODE_MONO then
-	;				event "i", iInstrnum, 0, -1, iMidiKey, iMidiVelocity, $gkPrevNote
-	;			endif
-	;		endif
-	;	elseif iStatus == $MIDI_NOTE_OFF then
-	;		$gkHeldKeys[iMidiKey] = 0
-	;		kLargestHeldKey GetMax gkHeldKeys, iChannel, 0
-	;		;if $gkNumOfNotes == 1 then
-	;		if kLargestHeldKey == 0 then
-	;			event "i", -iInstr, 0, 0, iMidiKey, iMidiVelocity, $gkPrevNote
-	;		endif
-	;	endif
-	;endif
-
-    ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity, iStatus
-    turnoff
+	krelease release
+	if krelease=1 then
+    	;print p1, p2, p3, p4, p5, p6
+    	ASynthInput SInstrName, iChannel, iMidiKey, 0
+	endif
+    ;turnoff
 endin
 
 instr hello_mixer
@@ -1201,24 +1163,33 @@ endin
 instr world
     SInstrName = "world"
     SInstrMixer = "world_mixer"
-    iChannel = 2
-    aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6, iChannel
+    aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
     ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
 endin
 
 instr world_midi
     SInstrName = "world"
-    iChannel = 2
-    iMidiKey = p4
-    iMidiVelocity = p5
-    iStatus = 1
-    ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity, iStatus
+    iChannel = p4
+    iMidiKey = p5
+    iMidiVelocity = p6
+
+    ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
 endin
 
 instr world_mixer
     SInstrName = "world"
     SInstrMixer = "world_mixer"
     ASynthEffects SInstrName, SInstrMixer
+endin
+
+instr write_to_file
+    SString = "Hello there, my name is Werner"
+    iRes strToFile SString, "string.txt", 1
+    if iRes == 1 then
+        prints "Success, file was written"
+    else
+        prints "Failed to write file"
+    endif
 endin
 
 instr 10000
@@ -1232,6 +1203,8 @@ f 0 3600
 i "hello_mixer" 0 -1
 i "world_mixer" 0 -1
 i 10000 0 -1
+
+i "write_to_file" 0, 1
 
 i 2 0 1 20 20
 i 2 + 3 3 3

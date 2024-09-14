@@ -39,8 +39,7 @@ instr {name}_midi
 	iChannel = 1
 	iMidiKey = p4
 	iMidiVelocity = p5
-	iStatus = 1
-	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity;, iStatus
+	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
 endin
 
 instr {name}_mixer
