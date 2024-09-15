@@ -375,6 +375,7 @@ else
                 SString2 = "note_on 2\n"
                 kRes strToFile SString2, "debug.txt", 1
                 chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
+                chnset iMidiKey, SInstrName, "ASynthInput", iNum, "current_note"
                 event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
             elseif iKeyboardMode == $KEY_MODE_LEGATO then
                 SString3 = "note_on 3\n"
@@ -421,6 +422,8 @@ endif
 if iStatus == $MIDI_NOTE_ON then
     $gkCounter = $gkCounter + 1
     $gkPrevNote = iMidiKey
+    SString11 sprintfk "note_on: %s gkPrevNote = %d\n", SInstrName, $gkPrevNote
+    kRes strToFile SString11, "debug.txt", 1
 
     $gkLargestHeldKey = iMidiKey
     $gkHeldKeys[$gkLargestHeldKey] = $gkCounter
@@ -874,7 +877,7 @@ endif
 SPrevNote sprintf "%s.%s.%d.%s", SInstrName, "ASynthInput", iNum, "prev_note"
 iMaybePrevNote chnget SPrevNote
 
-if iMaybePrevNote != iCurrentNote then
+if kKeyboardMode == $KEY_MODE_LEGATO && iMaybePrevNote != iCurrentNote then
     iPrevNote = iMaybePrevNote
 endif
 
