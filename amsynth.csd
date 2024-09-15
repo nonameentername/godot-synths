@@ -142,6 +142,22 @@ chnset iValue, SInternalName
 endop
 
 
+opcode GetNumHeld, k, k[][]i
+kKeys[][], iChannel xin
+
+kCount = 0
+kIndex = 0
+while kIndex <= 127 do
+    if kKeys[iChannel][kIndex] > 0 then
+        kCount = kCount + 1
+    endif
+    kIndex = kIndex + 1
+od
+
+xout kCount
+endop
+
+
 opcode GetMax1, k, k[]k
 kKeys[], kValue xin
 
@@ -310,10 +326,10 @@ kPortamentoMode round iPortamentoModeMidi
 ;    turnoff2 iInstr, 0, 0
 ;endif
 
-iAllInstrCount active iInstr, 0, 0
-iActiveInstrCount active iInstr, 0, 1
+kAllInstrCount active iInstr, 0, 0
+kActiveInstrCount active iInstr, 0, 1
 
-;print iAllInstrCount, iActiveInstrCount
+;print kAllInstrCount, kActiveInstrCount
 
 if iKeyboardMode == $KEY_MODE_POLY then
     iInstrnum = iInstr + iChannel / 100.0 + iMidiKey / 100000.0;
@@ -337,25 +353,32 @@ if iKeyboardMode == $KEY_MODE_POLY then
     endif
 else
     if iStatus == $MIDI_NOTE_ON then
-        SString = "note_on\n"
-        kRes strToFile SString, "debug.txt", 1
+        SString0 = "note_on\n"
+        kRes strToFile SString0, "debug.txt", 1
 
         $gkCurrentNote = iMidiKey
         $gkMidiVelocity = iMidiVelocity
-        if iActiveInstrCount == 0 then
-            ;TODO: can I remove this line?
-            ;$gkUpdatePortamento = iMidiKey
+
+        kNumHeldKeys GetNumHeld gkHeldKeys, iChannel
+
+        SString01 sprintfk "werner: %s kNumHeldKeys = %d\n", SInstrName, kNumHeldKeys
+        kRes strToFile SString01, "debug.txt", 1
+
+        if kNumHeldKeys == 0 then
+            SString1 = "note_on 1\n"
+            kRes strToFile SString1, "debug.txt", 1
             chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
+            chnset iMidiKey, SInstrName, "ASynthInput", iNum, "current_note"
             event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
         else
             if iKeyboardMode == $KEY_MODE_MONO then
-                SString = "note_on 1\n"
-                kRes strToFile SString, "debug.txt", 1
+                SString2 = "note_on 2\n"
+                kRes strToFile SString2, "debug.txt", 1
                 chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
                 event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
             elseif iKeyboardMode == $KEY_MODE_LEGATO then
-                SString = "note_on 1\n"
-                kRes strToFile SString, "debug.txt", 1
+                SString3 = "note_on 3\n"
+                kRes strToFile SString3, "debug.txt", 1
                 chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
                 chnset iMidiKey, SInstrName, "ASynthInput", iNum, "current_note"
                 $gkUpdatePortamento Toggle $gkUpdatePortamento
@@ -395,8 +418,6 @@ endif
 
 ;printk 1, kLargestHeldKey, 0, 1
 
-kActiveInstrCount active iInstr, 0, 1
-
 if iStatus == $MIDI_NOTE_ON then
     $gkCounter = $gkCounter + 1
     $gkPrevNote = iMidiKey
@@ -413,13 +434,14 @@ elseif iStatus == $MIDI_NOTE_OFF then
 
     $gkLargestHeldKey GetMax gkHeldKeys, iChannel, $gkLargestHeldKey
 
-    ;if kPortamentoMode == $PORTAMENTO_LEGATO && kActiveInstrCount == 0 then
-    ;    $gkPrevNote = 0
-    ;else
+    kNumHeldKeys GetNumHeld gkHeldKeys, iChannel
+    if kPortamentoMode == $PORTAMENTO_LEGATO && kNumHeldKeys == 0 then
+        $gkPrevNote = 0
+    else
 		if iKeyboardMode != $KEY_MODE_POLY then
 			$gkPrevNote = $gkLargestHeldKey
 		endif
-    ;endif
+    endif
 endif
 
 endop
