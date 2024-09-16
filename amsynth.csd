@@ -72,6 +72,26 @@ while iIndex <= 127 do
 od
 
 
+gkHeldKeys[][]  init $MAX_NUM_INSTRUMENTS, 128
+gkCounter[] init $MAX_NUM_INSTRUMENTS
+gkPrevNote[] init $MAX_NUM_INSTRUMENTS
+gkLargestHeldKey[] init $MAX_NUM_INSTRUMENTS
+gkMidiVelocity[] init $MAX_NUM_INSTRUMENTS
+gkCurrentNote[] init $MAX_NUM_INSTRUMENTS
+gkUpdatePortamento[] init $MAX_NUM_INSTRUMENTS
+gkUpdateLineSegr[] init $MAX_NUM_INSTRUMENTS
+
+
+#define gkHeldKeys #gkHeldKeys[iChannel]#
+#define gkCounter #gkCounter[iChannel]#
+#define gkPrevNote #gkPrevNote[iChannel]#
+#define gkLargestHeldKey #gkLargestHeldKey[iChannel]#
+#define gkMidiVelocity #gkMidiVelocity[iChannel]#
+#define gkCurrentNote #gkCurrentNote[iChannel]#
+#define gkUpdatePortamento #gkUpdatePortamento[iChannel]#
+#define gkUpdateLineSegr #gkUpdateLineSegr[iChannel]#
+
+
 opcode GetChannelName, S, SSiS
 SInstrName, SComponent, iIndex, SName xin
 
@@ -249,8 +269,16 @@ xout kStatus
 endop
 
 
-opcode GetLineSegr, k, iiii
-iAttack, iDecay, iSustain, iRelease xin
+opcode GetLineSegr, k, iiiii
+iAttack, iDecay, iSustain, iRelease, iChannel xin
+
+kUpdateLineSegr changed $gkUpdateLineSegr
+
+if kUpdateLineSegr == 1 then
+    reinit reset
+endif
+
+reset:
 
 iTie tival
 
@@ -280,23 +308,6 @@ chn_k SInternalName, iMode, iType, iDefault, iMin, iMax, iX, iY, iWidth, iHeight
 
 chnseti(iDefault, SInstrName, SComponent, iNum, SName)
 endop
-
-
-gkHeldKeys[][]  init $MAX_NUM_INSTRUMENTS, 128
-gkCounter[] init $MAX_NUM_INSTRUMENTS
-gkPrevNote[] init $MAX_NUM_INSTRUMENTS
-gkLargestHeldKey[] init $MAX_NUM_INSTRUMENTS
-gkMidiVelocity[] init $MAX_NUM_INSTRUMENTS
-gkCurrentNote[] init $MAX_NUM_INSTRUMENTS
-gkUpdatePortamento[] init $MAX_NUM_INSTRUMENTS
-
-#define gkHeldKeys #gkHeldKeys[iChannel]#
-#define gkCounter #gkCounter[iChannel]#
-#define gkPrevNote #gkPrevNote[iChannel]#
-#define gkLargestHeldKey #gkLargestHeldKey[iChannel]#
-#define gkMidiVelocity #gkMidiVelocity[iChannel]#
-#define gkCurrentNote #gkCurrentNote[iChannel]#
-#define gkUpdatePortamento #gkUpdatePortamento[iChannel]#
 
 opcode ASynthInput, 0, Siii
 SInstrName, iChannel, iMidiKey, iMidiVelocity xin
@@ -376,7 +387,8 @@ else
                 kRes strToFile SString2, "debug.txt", 1
                 chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
                 chnset iMidiKey, SInstrName, "ASynthInput", iNum, "current_note"
-                event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
+                $gkUpdatePortamento Toggle $gkUpdatePortamento
+                $gkUpdateLineSegr Toggle $gkUpdateLineSegr
             elseif iKeyboardMode == $KEY_MODE_LEGATO then
                 SString3 = "note_on 3\n"
                 kRes strToFile SString3, "debug.txt", 1
@@ -403,7 +415,9 @@ else
                 kRes strToFile SString, "debug.txt", 1
                 $gkCurrentNote = kLargestHeldKey
                 chnset $gkPrevNote, SInstrName, "ASynthInput", iNum, "prev_note"
-                event "i", iInstrnum, 0, -1, iChannel, kLargestHeldKey, $gkMidiVelocity
+                chnset kLargestHeldKey, SInstrName, "ASynthInput", iNum, "current_note"
+                $gkUpdatePortamento Toggle $gkUpdatePortamento
+                $gkUpdateLineSegr Toggle $gkUpdateLineSegr
             endif
         elseif iKeyboardMode == $KEY_MODE_LEGATO then
             if iMidiKey > kLargestHeldKey && kLargestHeldKey != $gkCurrentNote then
@@ -598,8 +612,8 @@ xout aOut
 endop
 
 
-opcode ASynthFilter, a, Siaakk
-SInstrName, iNum, aIn, aLfo, kFreq, kVelocity xin
+opcode ASynthFilter, a, Siaakki
+SInstrName, iNum, aIn, aLfo, kFreq, kVelocity, iChannel xin
 
 iTrackBaseFreq = 261.626
 iMiddle = sr / 2 * 0.99
@@ -645,7 +659,7 @@ kCutoffBase = iTrackBaseFreq * (1 - kKeyTrack) + kFreq * kKeyTrack
 
 kCutoff = kCutoff * kCutoffBase * kVelocity * kCutoffLfo
 
-kFilterEnv GetLineSegr iAttack, iDecay, iSustain, iRelease
+kFilterEnv GetLineSegr iAttack, iDecay, iSustain, iRelease, iChannel
 
 if kEnvAmount > 0 then
     kCutoff = kCutoff + kFreq * kFilterEnv * kEnvAmount
@@ -699,8 +713,8 @@ xout aOut
 endop
 
 
-opcode ASynthAmp, a, Siaa
-SInstrName, iNum, aIn, aLfo xin
+opcode ASynthAmp, a, Siaai
+SInstrName, iNum, aIn, aLfo, iChannel xin
 
 iAttackMidi chnget SInstrName, "ASynthAmp", iNum, "amp_attack"
 iAttack pow iAttackMidi, 3
@@ -733,7 +747,7 @@ kLfoAmp = ( kLfoAmp + 1 ) / 2
 
 kEnvLfo = ( ( aLfo * 0.5 + 0.5 ) * kLfoAmp + 1 - kLfoAmp )
 
-kEnv GetLineSegr iAttack, iDecay, iSustain, iRelease
+kEnv GetLineSegr iAttack, iDecay, iSustain, iRelease, iChannel
 kEnv = kEnv * kEnvLfo
 aOut = aIn * kEnv
 
@@ -855,11 +869,11 @@ kPortamentoTime = iPortamentoTimeMidi
 iPortamentoModeMidi chnget SInstrName, "ASynthInput", iNum, "portamento_mode"
 kPortamentoMode round iPortamentoModeMidi
 
-kPrevNoteChanged changed $gkUpdatePortamento
+kUpdatePortamento changed $gkUpdatePortamento
 
 ;iPrevNote chnget SInstrName, "ASynthInput", iNum, "prev_note"
 
-if kPrevNoteChanged == 1 && kKeyboardMode == $KEY_MODE_LEGATO then
+if kUpdatePortamento == 1 then
     reinit reset
 endif
 
@@ -870,14 +884,14 @@ reset:
 SCurrentNote sprintf "%s.%s.%d.%s", SInstrName, "ASynthInput", iNum, "current_note"
 iCurrentNote chnget SCurrentNote
 
-if iCurrentNote > 0 && iKeyboardMode == $KEY_MODE_LEGATO then
+if iCurrentNote > 0 && iKeyboardMode != $KEY_MODE_POLY then
     iMidiKey = iCurrentNote
 endif
 
 SPrevNote sprintf "%s.%s.%d.%s", SInstrName, "ASynthInput", iNum, "prev_note"
 iMaybePrevNote chnget SPrevNote
 
-if kKeyboardMode == $KEY_MODE_LEGATO && iMaybePrevNote != iCurrentNote then
+if kKeyboardMode != $KEY_MODE_POLY && iMaybePrevNote != iCurrentNote then
     iPrevNote = iMaybePrevNote
 endif
 
@@ -917,9 +931,9 @@ else
         kPortamentoTime = 0
     endif
 
-    if kKeyboardMode == $KEY_MODE_MONO then
-        kFreq = cpsoct(octmidinn($gkLargestHeldKey))
-    endif
+    ;if kKeyboardMode == $KEY_MODE_MONO then
+    ;    kFreq = cpsoct(octmidinn($gkLargestHeldKey))
+    ;endif
 endif
 
 rireturn
@@ -1043,9 +1057,9 @@ aOsc2, aOsc2Sync ASynthOsc SInstrName, 2, iAmp, kOsc2Freq, aOsc1Sync
 
 aVco ASynthMix SInstrName, 1, aOsc1, aOsc2
 
-aVco ASynthAmp SInstrName, 1, aVco, aLfoOsc
+aVco ASynthAmp SInstrName, 1, aVco, aLfoOsc, iChannel
 
-aVco ASynthFilter SInstrName, 1, aVco, aLfoOsc, kFreq, iAmp
+aVco ASynthFilter SInstrName, 1, aVco, aLfoOsc, kFreq, iAmp, iChannel
 
 aSendL, aSendR ASynthRender SInstrName, 1, aVco, aVco
 
@@ -1060,9 +1074,9 @@ prealloc "hello", 10
 massign 1, "hello_midi"
 ;massign 10, "forward"
 
-DefineChannel "hello", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5
-DefineChannel "hello", "ASynthAmp", 1, "amp_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 1.55833005905151, 0, 2.5
-DefineChannel "hello", "ASynthAmp", 1, "amp_sustain", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 1, 0, 1.0
+DefineChannel "hello", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.1050000029802322, 0, 2.5
+DefineChannel "hello", "ASynthAmp", 1, "amp_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 1.05833005905151, 0, 2.5
+DefineChannel "hello", "ASynthAmp", 1, "amp_sustain", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.01, 0, 1.0
 DefineChannel "hello", "ASynthAmp", 1, "amp_release", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.706920027732849, 0, 2.5
 DefineChannel "hello", "ASynthOsc", 1, "osc_waveform", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 4.0
 DefineChannel "hello", "ASynthFilter", 1, "filter_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.133332997560501, 0, 2.5
@@ -1094,13 +1108,13 @@ DefineChannel "hello", "ASynthOverDrive", 1, "distortion_crunch", $CHANNEL_MODE_
 DefineChannel "hello", "ASynthOsc", 1, "osc_sync", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
 DefineChannel "hello", "ASynthOsc", 2, "osc_sync", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
 DefineChannel "hello", "ASynthInput", 1, "portamento_time", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.5, 0, 1
-DefineChannel "hello", "ASynthInput", 1, "keyboard_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 2
+DefineChannel "hello", "ASynthInput", 1, "keyboard_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2
 DefineChannel "hello", "ASynthDetune", 2, "osc_pitch", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, -1, -12, 12
 DefineChannel "hello", "ASynthFilter", 1, "filter_type", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 4.0
 DefineChannel "hello", "ASynthLfoFreq", 1, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 2.0
 DefineChannel "hello", "ASynthLfoFreq", 2, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 2.0
 DefineChannel "hello", "ASynthFilter", 1, "filter_kbd_track", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.783333003520966, 0, 1
-DefineChannel "hello", "ASynthInput", 1, "portamento_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 1
+DefineChannel "hello", "ASynthInput", 1, "portamento_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
 
 DefineChannel "world", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.960411012172699, 0, 2.5
 DefineChannel "world", "ASynthAmp", 1, "amp_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0199999995529652, 0, 2.5
