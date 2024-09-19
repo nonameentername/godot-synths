@@ -29,16 +29,15 @@ func initialize() -> void:
 instr {name}
 	SInstrName = "{name}"
 	SInstrMixer = "{name}_mixer"
-	iChannel = 3
-	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6, iChannel
+	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
 	ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
 endin
 
 instr {name}_midi
 	SInstrName = "{name}"
-	iChannel = 1
-	iMidiKey = p4
-	iMidiVelocity = p5
+	iChannel = p4
+	iMidiKey = p5
+	iMidiVelocity = p6
 	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
 endin
 
