@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqblgckoq2x14"]
+[gd_scene load_steps=6 format=3 uid="uid://cqblgckoq2x14"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_canjd"]
 [ext_resource type="PackedScene" uid="uid://c2iwgtjje05p" path="res://amsynth.tscn" id="1_fmqxe"]
 [ext_resource type="PackedScene" uid="uid://dctcehelc4sv0" path="res://piano.tscn" id="3_a07jl"]
+[ext_resource type="PackedScene" uid="uid://e7gcl6x4gp6r" path="res://show_spectrum.tscn" id="4_lftd6"]
 
 [sub_resource type="AudioStreamCsound" id="AudioStreamCsound_u385u"]
 csound_name = "amsynth"
@@ -20,15 +21,18 @@ instrument_name = "one"
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
 offset_left = 8.0
-offset_top = 464.0
+offset_top = 456.0
 offset_right = 1144.0
 offset_bottom = 640.0
 
 [node name="Piano" parent="Panel" instance=ExtResource("3_a07jl")]
 layout_mode = 1
 offset_left = 8.0
-offset_top = 24.0
+offset_top = 56.0
 offset_right = -8.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ShowSpectrum" parent="." instance=ExtResource("4_lftd6")]
+position = Vector2(16, 432)
