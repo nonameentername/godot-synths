@@ -27,3 +27,4 @@ addons/csound/bin/android-x86
 build
 build-log.txt
 compile_commands.json
+presets

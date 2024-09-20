@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2iwgtjje05p"]
 
 [ext_resource type="Script" path="res://amsynth.gd" id="1_8g6jc"]
-[ext_resource type="PackedScene" uid="uid://dmelih0loihel" path="res://knob.tscn" id="2_lvsxo"]
 [ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://waveform.tscn" id="3_bfoec"]
+[ext_resource type="PackedScene" uid="uid://cvdq6s44t8p0y" path="res://asynth_knob.tscn" id="4_e5kgd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ptmr5"]
 font_size = 10
@@ -27,11 +27,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Oscillator1Waveform" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator1Waveform" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_waveform"
+component_num = 1
+component_channel = ""
 max_value = 4.0
 knob_name = "waveform"
 step = 1.0
@@ -42,38 +46,54 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="Oscillator1Shape" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator1Shape" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_pulsewidth"
+component_num = 1
+component_channel = ""
 knob_name = "shape"
 
-[node name="Oscillator1Octave" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator1Octave" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_range"
+component_num = 1
+component_channel = ""
 min_value = -3.0
 max_value = 4.0
 knob_name = "octave"
 step = 1.0
 
-[node name="Oscillator1Semitone" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator1Semitone" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_pitch"
+component_num = 1
+component_channel = ""
 min_value = -12.0
 max_value = 12.0
 knob_name = "semitone"
 step = 1.0
 
-[node name="Oscillator1Detune" parent="Oscillator1" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator1Detune" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_detune"
+component_num = 1
+component_channel = ""
 min_value = -1.0
 knob_name = "detune"
 
@@ -94,20 +114,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="OscillatorMix" parent="OscillatorMix" instance=ExtResource("2_lvsxo")]
+[node name="OscillatorMix" parent="OscillatorMix" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_channel = ""
 min_value = -1.0
 knob_name = "osc1 / osc2"
 current_value = 0.5
 
-[node name="OscillatorMixMode" parent="OscillatorMix" instance=ExtResource("2_lvsxo")]
+[node name="OscillatorMixMode" parent="OscillatorMix" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
+instrument_name = ""
+component_channel = ""
 knob_name = "ring mod"
 
 [node name="Oscillator2" type="Panel" parent="."]
@@ -127,11 +151,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Oscillator2Waveform" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator2Waveform" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_waveform"
+component_num = 2
+component_channel = ""
 max_value = 4.0
 knob_name = "waveform"
 step = 1.0
@@ -142,38 +170,54 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="Oscillator2Shape" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator2Shape" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_pulsewidth"
+component_num = 2
+component_channel = ""
 knob_name = "shape"
 
-[node name="Oscillator2Octave" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator2Octave" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_range"
+component_num = 2
+component_channel = ""
 min_value = -3.0
 max_value = 4.0
 knob_name = "octave"
 step = 1.0
 
-[node name="Oscillator2Semitone" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator2Semitone" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_pitch"
+component_num = 2
+component_channel = ""
 min_value = -12.0
 max_value = 12.0
 knob_name = "semitone"
 step = 1.0
 
-[node name="Oscillator2Detune" parent="Oscillator2" instance=ExtResource("2_lvsxo")]
+[node name="Oscillator2Detune" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "osc_detune"
+component_num = 2
+component_channel = ""
 min_value = -1.0
 knob_name = "detune"
 
@@ -194,34 +238,46 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AmpAttack" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+[node name="AmpAttack" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_num = 1
+component_channel = ""
 max_value = 2.5
 knob_name = "attack"
 
-[node name="AmpDecay" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+[node name="AmpDecay" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
+instrument_name = ""
+component_num = 1
+component_channel = ""
 max_value = 2.5
 knob_name = "decay"
 
-[node name="AmpSustain" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+[node name="AmpSustain" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_num = 1
+component_channel = ""
 knob_name = "sustain"
 
-[node name="AmpRelease" parent="AmpEnvelope" instance=ExtResource("2_lvsxo")]
+[node name="AmpRelease" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
+instrument_name = ""
+component_num = 1
+component_channel = ""
 max_value = 2.5
 knob_name = "release"
 
@@ -242,11 +298,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="LfoWaveform" parent="Lfo" instance=ExtResource("2_lvsxo")]
+[node name="LfoWaveform" parent="Lfo" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "lfo_waveform"
+component_num = 1
+component_channel = ""
 max_value = 6.0
 knob_name = "waveform"
 step = 1.0
@@ -257,43 +317,63 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="LfoSpeed" parent="Lfo" instance=ExtResource("2_lvsxo")]
+[node name="LfoSpeed" parent="Lfo" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "lfo_freq"
+component_num = 1
+component_channel = ""
 max_value = 7.5
 knob_name = "speed"
 
-[node name="LfoOscillator1" parent="Lfo" instance=ExtResource("2_lvsxo")]
+[node name="LfoOscillator1" parent="Lfo" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "freq_mod_amount"
+component_num = 1
+component_channel = ""
 max_value = 1.25
 knob_name = "osc 1"
 
-[node name="LfoOscillator2" parent="Lfo" instance=ExtResource("2_lvsxo")]
+[node name="LfoOscillator2" parent="Lfo" instance=ExtResource("4_e5kgd")]
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "freq_mod_amount"
+component_num = 2
+component_channel = ""
 max_value = 1.25
 knob_name = "osc 2"
 
-[node name="LfoFilter" parent="Lfo" instance=ExtResource("2_lvsxo")]
+[node name="LfoFilter" parent="Lfo" instance=ExtResource("4_e5kgd")]
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_mod_amount"
+component_num = 1
+component_channel = ""
 min_value = -1.0
 knob_name = "filter"
 
-[node name="LfoAmp" parent="Lfo" instance=ExtResource("2_lvsxo")]
+[node name="LfoAmp" parent="Lfo" instance=ExtResource("4_e5kgd")]
 offset_left = 440.0
 offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "amp_mod_amount"
+component_num = 1
+component_channel = ""
 min_value = -1.0
 knob_name = "amp"
 
@@ -314,76 +394,112 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Filter" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="Filter" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_type"
+component_num = 1
+component_channel = ""
 max_value = 4.0
 knob_name = "filter"
 step = 1.0
 
-[node name="FilterResonance" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterResonance" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_resonance"
+component_num = 1
+component_channel = ""
 max_value = 0.97
 knob_name = "reson"
 
-[node name="FilterCutoff" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterCutoff" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_cutoff"
+component_num = 1
+component_channel = ""
 min_value = -5.0
 max_value = 1.5
 knob_name = "cutoff"
 
-[node name="FilterKeyTrack" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterKeyTrack" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_kbd_track"
+component_num = 1
+component_channel = ""
 knob_name = "key track"
 
-[node name="FilterEnvelopeAmount" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterEnvelopeAmount" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_env_amount"
+component_num = 1
+component_channel = ""
 min_value = -16.0
 max_value = 16.0
 knob_name = "env amt"
 
-[node name="FilterAttack" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterAttack" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_attack"
+component_num = 1
+component_channel = ""
 max_value = 2.5
 knob_name = "attack"
 
-[node name="FilterDecay" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterDecay" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 440.0
 offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_decay"
+component_num = 1
+component_channel = ""
 max_value = 2.5
 knob_name = "decay"
 
-[node name="FilterSustain" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterSustain" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 512.0
 offset_top = 24.0
 offset_right = 512.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_sustain"
+component_num = 1
+component_channel = ""
 knob_name = "sustain"
 
-[node name="FilterRelease" parent="Filter" instance=ExtResource("2_lvsxo")]
+[node name="FilterRelease" parent="Filter" instance=ExtResource("4_e5kgd")]
 offset_left = 584.0
 offset_top = 24.0
 offset_right = 584.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "filter_release"
+component_num = 1
+component_channel = ""
 max_value = 2.5
 knob_name = "release"
 
@@ -404,18 +520,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AmpVolume" parent="Amp" instance=ExtResource("2_lvsxo")]
+[node name="AmpVolume" parent="Amp" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "master_vol"
+component_num = 1
+component_channel = ""
 knob_name = "volume"
 
-[node name="AmpDrive" parent="Amp" instance=ExtResource("2_lvsxo")]
+[node name="AmpDrive" parent="Amp" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "distortion_crunch"
+component_num = 1
+component_channel = ""
 max_value = 0.9
 knob_name = "drive"
 
@@ -436,32 +560,48 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ReverbAmount" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+[node name="ReverbAmount" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "reverb_wet"
+component_num = 1
+component_channel = ""
 knob_name = "amount"
 
-[node name="ReverbSize" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+[node name="ReverbSize" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "reverb_roomsize"
+component_num = 1
+component_channel = ""
 knob_name = "size"
 
-[node name="ReverbStereo" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+[node name="ReverbStereo" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "reverb_width"
+component_num = 1
+component_channel = ""
 knob_name = "stereo"
 
-[node name="ReverbDamping" parent="Reverb/Label" instance=ExtResource("2_lvsxo")]
+[node name="ReverbDamping" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "reverb_damp"
+component_num = 1
+component_channel = ""
 knob_name = "damping"
 
 [node name="Portamento" type="Panel" parent="."]
@@ -481,26 +621,38 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="PortamentoTime" parent="Portamento" instance=ExtResource("2_lvsxo")]
+[node name="PortamentoTime" parent="Portamento" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "portamento_time"
+component_num = 1
+component_channel = ""
 knob_name = "time"
 
-[node name="PortamentoMode" parent="Portamento" instance=ExtResource("2_lvsxo")]
+[node name="PortamentoMode" parent="Portamento" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "keyboard_mode"
+component_num = 1
+component_channel = ""
 knob_name = "mode"
 step = 1.0
 
-[node name="PortamentoKeyboardMode" parent="Portamento" instance=ExtResource("2_lvsxo")]
+[node name="PortamentoKeyboardMode" parent="Portamento" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
+instrument_name = ""
+component_name = "keyboard_mode"
+component_num = 1
+component_channel = ""
 max_value = 2.0
 knob_name = "keyboard"
 step = 1.0
