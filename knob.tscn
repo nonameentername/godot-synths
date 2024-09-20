@@ -38,7 +38,7 @@ radial_fill_degrees = 320.0
 texture_under = ExtResource("1_4crcp")
 texture_over = ExtResource("2_q72pj")
 texture_progress = ExtResource("3_biyda")
-tint_progress = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 1, 0.643137)
 
 [node name="knob" type="TextureRect" parent="."]
 layout_mode = 0

@@ -14,6 +14,7 @@ offset_right = 64.0
 offset_bottom = 64.0
 
 [node name="waveform" type="Sprite2D" parent="Panel"]
+modulate = Color(0, 1, 1, 1)
 position = Vector2(32, 32)
 texture = ExtResource("1_s42qy")
 region_enabled = true
