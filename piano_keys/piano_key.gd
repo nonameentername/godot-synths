@@ -13,7 +13,7 @@ func setup(_pitch_index: int) -> void:
 
 
 func activate() -> void:
-	key.color = (Color.YELLOW + start_color) / 2
+	key.color = (Color.CYAN + start_color) / 2
 	#color_timer.start()
 
 
