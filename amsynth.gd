@@ -104,15 +104,6 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_check_button_toggled(toggled_on:bool) -> void:
-	if toggled_on:
-		amsynth.instrument_note_on("{name}_midi".format({"name": instrument_name}), 1, 60, 90)
-	else:
-		amsynth.instrument_note_off("{name}_midi".format({"name": instrument_name}), 1, 60)
-
-
-
-
 func _on_oscillator_1_waveform_value_changed(value: float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthOsc", 1, "osc_waveform"]
 	#print(control_name, value)

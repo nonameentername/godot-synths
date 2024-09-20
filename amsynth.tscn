@@ -10,19 +10,6 @@ font_size = 10
 [node name="amsynth" type="Node2D"]
 script = ExtResource("1_8g6jc")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 688.0
-offset_top = 272.0
-offset_right = 728.0
-offset_bottom = 295.0
-text = "C4"
-
-[node name="CheckButton" type="CheckButton" parent="."]
-offset_left = 720.0
-offset_top = 272.0
-offset_right = 764.0
-offset_bottom = 296.0
-
 [node name="Oscillator1" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
 offset_left = 8.0
@@ -479,10 +466,10 @@ knob_name = "damping"
 
 [node name="Portamento" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
-offset_left = 8.0
-offset_top = 456.0
-offset_right = 232.0
-offset_bottom = 552.0
+offset_left = 672.0
+offset_top = 232.0
+offset_right = 896.0
+offset_bottom = 328.0
 
 [node name="Label" type="Label" parent="Portamento"]
 layout_mode = 0
@@ -518,7 +505,20 @@ max_value = 2.0
 knob_name = "keyboard"
 step = 1.0
 
-[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 832.0
+offset_top = 344.0
+offset_right = 896.0
+offset_bottom = 440.0
+
+[node name="Panel2" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+offset_left = 776.0
+offset_top = 8.0
+offset_right = 896.0
+offset_bottom = 216.0
+
 [connection signal="value_changed" from="Oscillator1/Oscillator1Waveform" to="." method="_on_oscillator_1_waveform_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Shape" to="." method="_on_oscillator_1_shape_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Octave" to="." method="_on_oscillator_1_octave_value_changed"]
