@@ -1,5 +1,8 @@
 extends Node2D
 
+@export
+var use_jack: bool = false
+
 var amsynth: CsoundGodot
 var initialized: bool = false
 
@@ -10,9 +13,14 @@ var tab_container: TabContainer = $"TabContainer"
 
 
 func _ready() -> void:
-	OS.open_midi_inputs()
-	print(OS.get_connected_midi_inputs())
-	CsoundServer.open_web_midi_inputs()
+	if OS.has_feature("web"):
+		CsoundServer.open_web_midi_inputs()
+	elif "JackServer" in Engine.get_singleton_list() and use_jack:
+		Engine.get_singleton("JackServer").open_midi_inputs("godot-synths", 1, 0)
+	else:
+		OS.open_midi_inputs()
+		print(OS.get_connected_midi_inputs())
+
 	CsoundServer.csound_layout_changed.connect(csound_layout_changed)
 
 	for index in range(1, 16):
