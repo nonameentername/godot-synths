@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2iwgtjje05p"]
+[gd_scene load_steps=6 format=3 uid="uid://c2iwgtjje05p"]
 
 [ext_resource type="Script" path="res://amsynth.gd" id="1_8g6jc"]
 [ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://waveform.tscn" id="3_bfoec"]
 [ext_resource type="PackedScene" uid="uid://cvdq6s44t8p0y" path="res://asynth_knob.tscn" id="4_e5kgd"]
+[ext_resource type="PackedScene" uid="uid://bhl1yxv8sn0gi" path="res://presets.tscn" id="4_ty56r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ptmr5"]
 font_size = 10
@@ -33,9 +34,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_waveform"
+component_name = "ASynthOsc"
 component_num = 1
-component_channel = ""
+component_channel = "osc_waveform"
 max_value = 4.0
 knob_name = "waveform"
 step = 1.0
@@ -52,9 +53,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_pulsewidth"
+component_name = "ASynthOsc"
 component_num = 1
-component_channel = ""
+component_channel = "osc_pulsewidth"
 knob_name = "shape"
 
 [node name="Oscillator1Octave" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
@@ -63,9 +64,9 @@ offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_range"
+component_name = "ASynthDetune"
 component_num = 1
-component_channel = ""
+component_channel = "osc_range"
 min_value = -3.0
 max_value = 4.0
 knob_name = "octave"
@@ -77,9 +78,9 @@ offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_pitch"
+component_name = "ASynthDetune"
 component_num = 1
-component_channel = ""
+component_channel = "osc_pitch"
 min_value = -12.0
 max_value = 12.0
 knob_name = "semitone"
@@ -91,9 +92,9 @@ offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_detune"
+component_name = "ASynthDetune"
 component_num = 1
-component_channel = ""
+component_channel = "osc_detune"
 min_value = -1.0
 knob_name = "detune"
 
@@ -120,7 +121,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_channel = ""
+component_name = "ASynthMix"
+component_num = 1
+component_channel = "osc_mix"
 min_value = -1.0
 knob_name = "osc1 / osc2"
 current_value = 0.5
@@ -131,7 +134,9 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 instrument_name = ""
-component_channel = ""
+component_name = "ASynthMix"
+component_num = 1
+component_channel = "osc_mix_mode"
 knob_name = "ring mod"
 
 [node name="Oscillator2" type="Panel" parent="."]
@@ -157,9 +162,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_waveform"
+component_name = "ASynthOsc"
 component_num = 2
-component_channel = ""
+component_channel = "osc_waveform"
 max_value = 4.0
 knob_name = "waveform"
 step = 1.0
@@ -176,9 +181,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_pulsewidth"
+component_name = "ASynthOsc"
 component_num = 2
-component_channel = ""
+component_channel = "osc_pulsewidth"
 knob_name = "shape"
 
 [node name="Oscillator2Octave" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
@@ -187,9 +192,9 @@ offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_range"
+component_name = "ASynthDetune"
 component_num = 2
-component_channel = ""
+component_channel = "osc_range"
 min_value = -3.0
 max_value = 4.0
 knob_name = "octave"
@@ -201,9 +206,9 @@ offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_pitch"
+component_name = "ASynthDetune"
 component_num = 2
-component_channel = ""
+component_channel = "osc_pitch"
 min_value = -12.0
 max_value = 12.0
 knob_name = "semitone"
@@ -215,9 +220,9 @@ offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "osc_detune"
+component_name = "ASynthDetune"
 component_num = 2
-component_channel = ""
+component_channel = "osc_detune"
 min_value = -1.0
 knob_name = "detune"
 
@@ -244,8 +249,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
+component_name = "ASynthAmp"
 component_num = 1
-component_channel = ""
+component_channel = "amp_attack"
 max_value = 2.5
 knob_name = "attack"
 
@@ -255,8 +261,9 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 instrument_name = ""
+component_name = "ASynthAmp"
 component_num = 1
-component_channel = ""
+component_channel = "amp_decay"
 max_value = 2.5
 knob_name = "decay"
 
@@ -266,8 +273,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
+component_name = "ASynthAmp"
 component_num = 1
-component_channel = ""
+component_channel = "amp_sustain"
 knob_name = "sustain"
 
 [node name="AmpRelease" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
@@ -276,8 +284,9 @@ offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
 instrument_name = ""
+component_name = "ASynthAmp"
 component_num = 1
-component_channel = ""
+component_channel = "amp_release"
 max_value = 2.5
 knob_name = "release"
 
@@ -304,9 +313,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "lfo_waveform"
+component_name = "ASynthLfo"
 component_num = 1
-component_channel = ""
+component_channel = "lfo_waveform"
 max_value = 6.0
 knob_name = "waveform"
 step = 1.0
@@ -323,9 +332,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "lfo_freq"
+component_name = "ASynthLfo"
 component_num = 1
-component_channel = ""
+component_channel = "lfo_freq"
 max_value = 7.5
 knob_name = "speed"
 
@@ -335,9 +344,9 @@ offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "freq_mod_amount"
+component_name = "ASynthLfoFreq"
 component_num = 1
-component_channel = ""
+component_channel = "freq_mod_amount"
 max_value = 1.25
 knob_name = "osc 1"
 
@@ -347,9 +356,9 @@ offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "freq_mod_amount"
+component_name = "ASynthLfoFreq"
 component_num = 2
-component_channel = ""
+component_channel = "freq_mod_amount"
 max_value = 1.25
 knob_name = "osc 2"
 
@@ -359,9 +368,9 @@ offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_mod_amount"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_mod_amount"
 min_value = -1.0
 knob_name = "filter"
 
@@ -371,9 +380,9 @@ offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "amp_mod_amount"
+component_name = "ASynthAmp"
 component_num = 1
-component_channel = ""
+component_channel = "amp_mod_amount"
 min_value = -1.0
 knob_name = "amp"
 
@@ -400,9 +409,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_type"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_type"
 max_value = 4.0
 knob_name = "filter"
 step = 1.0
@@ -413,9 +422,9 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_resonance"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_resonance"
 max_value = 0.97
 knob_name = "reson"
 
@@ -425,9 +434,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_cutoff"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_cutoff"
 min_value = -5.0
 max_value = 1.5
 knob_name = "cutoff"
@@ -438,9 +447,9 @@ offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_kbd_track"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_kbd_track"
 knob_name = "key track"
 
 [node name="FilterEnvelopeAmount" parent="Filter" instance=ExtResource("4_e5kgd")]
@@ -449,9 +458,9 @@ offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_env_amount"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_env_amount"
 min_value = -16.0
 max_value = 16.0
 knob_name = "env amt"
@@ -462,9 +471,9 @@ offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_attack"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_attack"
 max_value = 2.5
 knob_name = "attack"
 
@@ -474,9 +483,9 @@ offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_decay"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_decay"
 max_value = 2.5
 knob_name = "decay"
 
@@ -486,9 +495,9 @@ offset_top = 24.0
 offset_right = 512.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "filter_sustain"
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_sustain"
 knob_name = "sustain"
 
 [node name="FilterRelease" parent="Filter" instance=ExtResource("4_e5kgd")]
@@ -496,7 +505,7 @@ offset_left = 584.0
 offset_top = 24.0
 offset_right = 584.0
 offset_bottom = 24.0
-instrument_name = ""
+instrument_name = "ASynthFilter"
 component_name = "filter_release"
 component_num = 1
 component_channel = ""
@@ -526,9 +535,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "master_vol"
+component_name = "ASynthRender"
 component_num = 1
-component_channel = ""
+component_channel = "master_vol"
 knob_name = "volume"
 
 [node name="AmpDrive" parent="Amp" instance=ExtResource("4_e5kgd")]
@@ -537,9 +546,9 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "distortion_crunch"
+component_name = "ASynthOverDrive"
 component_num = 1
-component_channel = ""
+component_channel = "distortion_crunch"
 max_value = 0.9
 knob_name = "drive"
 
@@ -566,9 +575,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "reverb_wet"
+component_name = "ASynthReverb"
 component_num = 1
-component_channel = ""
+component_channel = "reverb_wet"
 knob_name = "amount"
 
 [node name="ReverbSize" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
@@ -577,9 +586,9 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "reverb_roomsize"
+component_name = "ASynthReverb"
 component_num = 1
-component_channel = ""
+component_channel = "reverb_roomsize"
 knob_name = "size"
 
 [node name="ReverbStereo" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
@@ -588,9 +597,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "reverb_width"
+component_name = "ASynthReverb"
 component_num = 1
-component_channel = ""
+component_channel = "reverb_width"
 knob_name = "stereo"
 
 [node name="ReverbDamping" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
@@ -599,9 +608,9 @@ offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "reverb_damp"
+component_name = "ASynthReverb"
 component_num = 1
-component_channel = ""
+component_channel = "reverb_damp"
 knob_name = "damping"
 
 [node name="Portamento" type="Panel" parent="."]
@@ -627,9 +636,9 @@ offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "portamento_time"
+component_name = "ASynthInput"
 component_num = 1
-component_channel = ""
+component_channel = "portamento_time"
 knob_name = "time"
 
 [node name="PortamentoMode" parent="Portamento" instance=ExtResource("4_e5kgd")]
@@ -638,9 +647,9 @@ offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "keyboard_mode"
+component_name = "ASynthInput"
 component_num = 1
-component_channel = ""
+component_channel = "keyboard_mode"
 knob_name = "mode"
 step = 1.0
 
@@ -650,9 +659,9 @@ offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
 instrument_name = ""
-component_name = "keyboard_mode"
+component_name = "ASynthInput"
 component_num = 1
-component_channel = ""
+component_channel = "keyboard_mode"
 max_value = 2.0
 knob_name = "keyboard"
 step = 1.0
@@ -670,6 +679,12 @@ offset_left = 776.0
 offset_top = 8.0
 offset_right = 896.0
 offset_bottom = 216.0
+
+[node name="Presets" parent="." instance=ExtResource("4_ty56r")]
+offset_left = 904.0
+offset_top = 8.0
+offset_right = 904.0
+offset_bottom = 8.0
 
 [connection signal="value_changed" from="Oscillator1/Oscillator1Waveform" to="." method="_on_oscillator_1_waveform_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Shape" to="." method="_on_oscillator_1_shape_value_changed"]
@@ -711,3 +726,4 @@ offset_bottom = 216.0
 [connection signal="value_changed" from="Portamento/PortamentoTime" to="." method="_on_portamento_time_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoMode" to="." method="_on_portamento_mode_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoKeyboardMode" to="." method="_on_portamento_keyboard_mode_value_changed"]
+[connection signal="load_preset" from="Presets" to="." method="_on_presets_load_preset"]

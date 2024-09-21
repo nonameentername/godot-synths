@@ -12,7 +12,7 @@ values = {
     "osc1_waveform": ["ASynthOsc", 1, "osc_waveform", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_INTEGER", 0, 4.0],
     "filter_attack": ["ASynthFilter", 1, "filter_attack", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
     "filter_decay": ["ASynthFilter", 1, "filter_decay", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
-    "filter_sustain": ["ASynthFilter", 1, "filter_sustain", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 1, 1.0],
+    "filter_sustain": ["ASynthFilter", 1, "filter_sustain", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 1.0],
     "filter_release": ["ASynthFilter", 1, "filter_release", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_EXPONENTIAL", 0, 2.5],
     "filter_resonance": ["ASynthFilter", 1, "filter_resonance", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", 0, 0.97],
     "filter_env_amount": ["ASynthFilter", 1, "filter_env_amount", "$CHANNEL_MODE_INPUT", "$CHANNEL_TYPE_LINEAR", -16, 16],
@@ -97,7 +97,7 @@ for filename in os.listdir(base_dir):
 if not os.path.isdir('presets'):
     os.mkdir('presets')
 
-instr_name = "{name}"
+instr_name = "$INSTRUMENT_NAME"
 
 for preset_name, midi_values in midi_presets.items():
     with open(os.path.join('presets', preset_name + '.inc'), 'w') as f:
