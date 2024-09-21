@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhl1yxv8sn0gi"]
+
+[ext_resource type="Script" path="res://presets.gd" id="1_2gynq"]
+
+[node name="Presets" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gynq")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 392.0
+
+[node name="LineEdit" type="LineEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 40.0
+placeholder_text = "search"
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 232.0
+offset_bottom = 384.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 400.0
+offset_right = 240.0
+offset_bottom = 432.0
+text = "load"
+
+[connection signal="text_changed" from="Panel/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

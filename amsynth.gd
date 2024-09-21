@@ -6,12 +6,20 @@ var instrument_name: String
 
 var amsynth: CsoundGodot
 
+var oscillator_1: ASynthKnob
+var oscillator_2: ASynthKnob
+var lfo_1: ASynthKnob
 var oscillator_1_waveform: Waveform
 var oscillator_2_waveform: Waveform
 var lfo_1_waveform: Waveform
 
 func _ready():
 	CsoundServer.csound_layout_changed.connect(csound_layout_changed)
+
+	oscillator_1 = $Oscillator1/Oscillator1Waveform
+	oscillator_2 = $Oscillator2/Oscillator2Waveform
+	lfo_1 = $Lfo/LfoWaveform
+
 	oscillator_1_waveform = $Oscillator1/waveform
 	oscillator_2_waveform = $Oscillator2/waveform
 	lfo_1_waveform = $Lfo/waveform
@@ -107,6 +115,11 @@ i "{name}_mixer" 0 -1
 """.format({"name": instrument_name})
 	amsynth.compile_orchestra(instrument)
 
+	update_knobs()
+	update_waveforms()
+
+
+func update_knobs():
 	for child_panel in get_children():
 		for node in child_panel.get_children():
 			if node is ASynthKnob:
@@ -319,3 +332,29 @@ func _on_portamento_mode_value_changed(value:float) -> void:
 func _on_portamento_keyboard_mode_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthInput", 1, "keyboard_mode"]
 	amsynth.send_control_channel(control_name, value)
+
+
+func _on_presets_load_preset(preset:String) -> void:
+	var load_preset = """
+<CsoundSynthesizer>
+<CsInstruments>
+
+#define INSTRUMENT_NAME #{name}#
+#include "{preset}"
+
+</CsInstruments>
+<CsScore>
+</CsScore>
+</CsoundSynthesizer>
+
+""".format({"name": instrument_name, "preset": preset})
+	amsynth.compile_orchestra(load_preset)
+
+	update_knobs()
+	update_waveforms()
+
+
+func update_waveforms():
+	oscillator_1_waveform.waveform = int(oscillator_1.actual_value)
+	oscillator_2_waveform.waveform = int(oscillator_2.actual_value)
+	lfo_1_waveform.waveform = int(lfo_1.actual_value)
