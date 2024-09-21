@@ -36,7 +36,7 @@ func _input(input_event: InputEvent) -> void:
 		# The given pitch isn't on the on-screen keyboard, so return.
 		return
 
-	_print_midi_info(midi_event)
+	#_print_midi_info(midi_event)
 	var key: PianoKey = piano_key_dict[midi_event.pitch]
 	if midi_event.message == MIDI_MESSAGE_NOTE_ON and midi_event.velocity > 0:
 		key.activate()

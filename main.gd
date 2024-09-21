@@ -3,12 +3,20 @@ extends Node2D
 var amsynth: CsoundGodot
 var initialized: bool = false
 
+var forward_midi: Dictionary =  {}
+
+@onready
+var tab_container: TabContainer = $"TabContainer"
+
 
 func _ready() -> void:
 	OS.open_midi_inputs()
 	print(OS.get_connected_midi_inputs())
 	CsoundServer.open_web_midi_inputs()
 	CsoundServer.csound_layout_changed.connect(csound_layout_changed)
+
+	for index in range(1, 16):
+		forward_midi[index] = false
 
 
 func csound_layout_changed():
@@ -36,8 +44,119 @@ func _send_midi_info(midi_event):
 	#print("Controller number: ", midi_event.controller_number)
 	#print("Controller value: ", midi_event.controller_value)
 
-	if midi_event.message == MIDI_MESSAGE_NOTE_ON:
-		amsynth.instrument_note_on("one_midi", 1, midi_event.pitch, midi_event.velocity)
+	var should_forward_midi: bool = false
+	for channel in forward_midi:
+		should_forward_midi = should_forward_midi or forward_midi[channel]
 
-	if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
-		amsynth.instrument_note_off("one_midi", 1, midi_event.pitch)
+	if should_forward_midi:
+		for channel in forward_midi:
+			if forward_midi[channel]:
+				var instrument = get_node("TabContainer/" + str(channel)).instrument_name + "_midi"
+				if midi_event.message == MIDI_MESSAGE_NOTE_ON:
+					amsynth.instrument_note_on(instrument, channel, midi_event.pitch, midi_event.velocity)
+
+				if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
+					amsynth.instrument_note_off(instrument, channel, midi_event.pitch)
+	else:
+		var instrument = get_node("TabContainer/" + str(midi_event.channel + 1)).instrument_name + "_midi"
+		if midi_event.message == MIDI_MESSAGE_NOTE_ON:
+			amsynth.instrument_note_on(instrument, midi_event.channel, midi_event.pitch, midi_event.velocity)
+
+		if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
+			amsynth.instrument_note_off(instrument, midi_event.channel, midi_event.pitch)
+
+
+func _on_check_box_1_toggled(toggled_on:bool) -> void:
+	forward_midi[1] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 0
+
+
+func _on_check_box_2_toggled(toggled_on:bool) -> void:
+	forward_midi[2] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 1
+
+
+func _on_check_box_3_toggled(toggled_on:bool) -> void:
+	forward_midi[3] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 2
+
+
+func _on_check_box_4_toggled(toggled_on:bool) -> void:
+	forward_midi[4] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 3
+
+
+func _on_check_box_5_toggled(toggled_on:bool) -> void:
+	forward_midi[5] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 4
+
+
+func _on_check_box_6_toggled(toggled_on:bool) -> void:
+	forward_midi[6] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 5
+
+
+func _on_check_box_7_toggled(toggled_on:bool) -> void:
+	forward_midi[7] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 6
+
+
+func _on_check_box_8_toggled(toggled_on:bool) -> void:
+	forward_midi[8] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 7
+
+
+func _on_check_box_9_toggled(toggled_on:bool) -> void:
+	forward_midi[9] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 8
+
+
+func _on_check_box_10_toggled(toggled_on:bool) -> void:
+	forward_midi[10] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 9
+
+
+func _on_check_box_11_toggled(toggled_on:bool) -> void:
+	forward_midi[11] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 10
+
+
+func _on_check_box_12_toggled(toggled_on:bool) -> void:
+	forward_midi[12] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 11
+
+
+func _on_check_box_13_toggled(toggled_on:bool) -> void:
+	forward_midi[13] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 12
+
+
+func _on_check_box_14_toggled(toggled_on:bool) -> void:
+	forward_midi[14] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 13
+
+
+func _on_check_box_15_toggled(toggled_on:bool) -> void:
+	forward_midi[15] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 14
+
+
+func _on_check_box_16_toggled(toggled_on:bool) -> void:
+	forward_midi[16] = toggled_on
+	if toggled_on:
+		tab_container.current_tab = 15

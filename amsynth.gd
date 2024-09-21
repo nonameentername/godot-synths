@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name ASynth
 
 @export
@@ -62,6 +62,7 @@ instr {name}_mixer
 	ASynthEffects SInstrName, SInstrMixer
 endin
 
+maxalloc "{name}", 4
 
 
 DefineChannel "{name}", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5

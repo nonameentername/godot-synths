@@ -15,24 +15,273 @@ script = ExtResource("1_canjd")
 stream = SubResource("AudioStreamCsound_u385u")
 autoplay = true
 
-[node name="amsynth" parent="." instance=ExtResource("1_fmqxe")]
-instrument_name = "one"
-
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
 offset_left = 8.0
-offset_top = 456.0
+offset_top = 480.0
 offset_right = 1144.0
-offset_bottom = 640.0
+offset_bottom = 672.0
 
 [node name="Piano" parent="Panel" instance=ExtResource("3_a07jl")]
 layout_mode = 1
 offset_left = 8.0
 offset_top = 56.0
 offset_right = -8.0
-offset_bottom = -24.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ShowSpectrum" parent="." instance=ExtResource("4_lftd6")]
-position = Vector2(16, 432)
+position = Vector2(16, 464)
+
+[node name="TabContainer" type="TabContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 472.0
+current_tab = 0
+
+[node name="1" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+layout_mode = 2
+instrument_name = "one"
+metadata/_tab_index = 0
+
+[node name="2" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "two"
+metadata/_tab_index = 1
+
+[node name="3" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "three"
+metadata/_tab_index = 2
+
+[node name="4" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "four"
+metadata/_tab_index = 3
+
+[node name="5" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "five"
+metadata/_tab_index = 4
+
+[node name="6" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "six"
+metadata/_tab_index = 5
+
+[node name="7" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "seven"
+metadata/_tab_index = 6
+
+[node name="8" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "eight"
+metadata/_tab_index = 7
+
+[node name="9" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "nine"
+metadata/_tab_index = 8
+
+[node name="10" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "ten"
+metadata/_tab_index = 9
+
+[node name="11" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "eleven"
+metadata/_tab_index = 10
+
+[node name="12" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "twelve"
+metadata/_tab_index = 11
+
+[node name="13" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "thirteen"
+metadata/_tab_index = 12
+
+[node name="14" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "fourteen"
+metadata/_tab_index = 13
+
+[node name="15" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "fifteen"
+metadata/_tab_index = 14
+
+[node name="16" parent="TabContainer" instance=ExtResource("1_fmqxe")]
+visible = false
+layout_mode = 2
+instrument_name = "sixteen"
+metadata/_tab_index = 15
+
+[node name="CheckBox1" type="CheckBox" parent="."]
+offset_left = 344.0
+offset_top = 640.0
+offset_right = 382.0
+offset_bottom = 671.0
+text = "1"
+
+[node name="CheckBox2" type="CheckBox" parent="."]
+offset_left = 392.0
+offset_top = 640.0
+offset_right = 430.0
+offset_bottom = 671.0
+text = "2"
+
+[node name="CheckBox3" type="CheckBox" parent="."]
+offset_left = 440.0
+offset_top = 640.0
+offset_right = 478.0
+offset_bottom = 671.0
+text = "3
+"
+
+[node name="CheckBox4" type="CheckBox" parent="."]
+offset_left = 488.0
+offset_top = 640.0
+offset_right = 526.0
+offset_bottom = 671.0
+text = "4
+"
+
+[node name="CheckBox5" type="CheckBox" parent="."]
+offset_left = 528.0
+offset_top = 640.0
+offset_right = 566.0
+offset_bottom = 671.0
+text = "5
+"
+
+[node name="CheckBox6" type="CheckBox" parent="."]
+offset_left = 576.0
+offset_top = 640.0
+offset_right = 614.0
+offset_bottom = 671.0
+text = "6
+"
+
+[node name="CheckBox7" type="CheckBox" parent="."]
+offset_left = 624.0
+offset_top = 640.0
+offset_right = 662.0
+offset_bottom = 671.0
+text = "7
+"
+
+[node name="CheckBox8" type="CheckBox" parent="."]
+offset_left = 672.0
+offset_top = 640.0
+offset_right = 710.0
+offset_bottom = 671.0
+text = "8
+"
+
+[node name="CheckBox9" type="CheckBox" parent="."]
+offset_left = 720.0
+offset_top = 640.0
+offset_right = 758.0
+offset_bottom = 671.0
+text = "9
+"
+
+[node name="CheckBox10" type="CheckBox" parent="."]
+offset_left = 768.0
+offset_top = 640.0
+offset_right = 815.0
+offset_bottom = 671.0
+text = "10
+"
+
+[node name="CheckBox11" type="CheckBox" parent="."]
+offset_left = 816.0
+offset_top = 640.0
+offset_right = 863.0
+offset_bottom = 671.0
+text = "11
+"
+
+[node name="CheckBox12" type="CheckBox" parent="."]
+offset_left = 864.0
+offset_top = 640.0
+offset_right = 911.0
+offset_bottom = 671.0
+text = "12
+"
+
+[node name="CheckBox13" type="CheckBox" parent="."]
+offset_left = 912.0
+offset_top = 640.0
+offset_right = 959.0
+offset_bottom = 671.0
+text = "13
+"
+
+[node name="CheckBox14" type="CheckBox" parent="."]
+offset_left = 968.0
+offset_top = 640.0
+offset_right = 1015.0
+offset_bottom = 671.0
+text = "14
+"
+
+[node name="CheckBox15" type="CheckBox" parent="."]
+offset_left = 1032.0
+offset_top = 640.0
+offset_right = 1079.0
+offset_bottom = 671.0
+text = "15
+"
+
+[node name="CheckBox16" type="CheckBox" parent="."]
+offset_left = 1088.0
+offset_top = 640.0
+offset_right = 1135.0
+offset_bottom = 671.0
+text = "16
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 288.0
+offset_top = 644.0
+offset_right = 328.0
+offset_bottom = 667.0
+text = "midi"
+uppercase = true
+
+[connection signal="toggled" from="CheckBox1" to="." method="_on_check_box_1_toggled"]
+[connection signal="toggled" from="CheckBox2" to="." method="_on_check_box_2_toggled"]
+[connection signal="toggled" from="CheckBox3" to="." method="_on_check_box_3_toggled"]
+[connection signal="toggled" from="CheckBox4" to="." method="_on_check_box_4_toggled"]
+[connection signal="toggled" from="CheckBox5" to="." method="_on_check_box_5_toggled"]
+[connection signal="toggled" from="CheckBox6" to="." method="_on_check_box_6_toggled"]
+[connection signal="toggled" from="CheckBox7" to="." method="_on_check_box_7_toggled"]
+[connection signal="toggled" from="CheckBox8" to="." method="_on_check_box_8_toggled"]
+[connection signal="toggled" from="CheckBox9" to="." method="_on_check_box_9_toggled"]
+[connection signal="toggled" from="CheckBox10" to="." method="_on_check_box_10_toggled"]
+[connection signal="toggled" from="CheckBox11" to="." method="_on_check_box_11_toggled"]
+[connection signal="toggled" from="CheckBox12" to="." method="_on_check_box_12_toggled"]
+[connection signal="toggled" from="CheckBox13" to="." method="_on_check_box_13_toggled"]
+[connection signal="toggled" from="CheckBox14" to="." method="_on_check_box_14_toggled"]
+[connection signal="toggled" from="CheckBox15" to="." method="_on_check_box_15_toggled"]
+[connection signal="toggled" from="CheckBox16" to="." method="_on_check_box_16_toggled"]
