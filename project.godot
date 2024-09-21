@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Spotify="*res://spotify.gd"
 
+[display]
+
+window/size/viewport_height=680
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/csound/plugin.cfg")

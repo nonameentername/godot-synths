@@ -8,11 +8,14 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ptmr5"]
 font_size = 10
 
-[node name="amsynth" type="Node2D"]
+[node name="amsynth" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_8g6jc")
 
 [node name="Oscillator1" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 448.0
@@ -100,6 +103,7 @@ knob_name = "detune"
 
 [node name="OscillatorMix" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 456.0
 offset_top = 120.0
 offset_right = 608.0
@@ -141,6 +145,7 @@ knob_name = "ring mod"
 
 [node name="Oscillator2" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 8.0
 offset_top = 120.0
 offset_right = 448.0
@@ -228,6 +233,7 @@ knob_name = "detune"
 
 [node name="AmpEnvelope" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 456.0
 offset_top = 8.0
 offset_right = 752.0
@@ -292,6 +298,7 @@ knob_name = "release"
 
 [node name="Lfo" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 8.0
 offset_top = 344.0
 offset_right = 520.0
@@ -388,6 +395,7 @@ knob_name = "amp"
 
 [node name="Filter" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 8.0
 offset_top = 232.0
 offset_right = 664.0
@@ -514,6 +522,7 @@ knob_name = "release"
 
 [node name="Amp" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 616.0
 offset_top = 120.0
 offset_right = 768.0
@@ -554,6 +563,7 @@ knob_name = "drive"
 
 [node name="Reverb" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 528.0
 offset_top = 344.0
 offset_right = 824.0
@@ -615,6 +625,7 @@ knob_name = "damping"
 
 [node name="Portamento" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 672.0
 offset_top = 232.0
 offset_right = 896.0
@@ -668,6 +679,7 @@ step = 1.0
 
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 832.0
 offset_top = 344.0
 offset_right = 896.0
@@ -675,12 +687,14 @@ offset_bottom = 440.0
 
 [node name="Panel2" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 776.0
 offset_top = 8.0
 offset_right = 896.0
 offset_bottom = 216.0
 
 [node name="Presets" parent="." instance=ExtResource("4_ty56r")]
+layout_mode = 1
 offset_left = 904.0
 offset_top = 8.0
 offset_right = 904.0
