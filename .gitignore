@@ -22,6 +22,7 @@ addons/csound/bin/android-arm
 addons/csound/bin/android-arm64
 addons/csound/bin/android-x64
 addons/csound/bin/android-x86
+addons/csound
 addons/jack
 /android
 
