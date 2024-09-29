@@ -59,19 +59,15 @@ func _send_midi_info(midi_event):
 	if should_forward_midi:
 		for channel in forward_midi:
 			if forward_midi[channel]:
-				var instrument = get_node("TabContainer/" + str(channel)).instrument_name + "_midi"
 				if midi_event.message == MIDI_MESSAGE_NOTE_ON:
-					amsynth.instrument_note_on(instrument, channel, midi_event.pitch, midi_event.velocity)
-
+					amsynth.note_on(channel, midi_event.pitch, midi_event.velocity)
 				if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
-					amsynth.instrument_note_off(instrument, channel, midi_event.pitch)
+					amsynth.note_off(channel, midi_event.pitch)
 	else:
-		var instrument = get_node("TabContainer/" + str(midi_event.channel + 1)).instrument_name + "_midi"
 		if midi_event.message == MIDI_MESSAGE_NOTE_ON:
-			amsynth.instrument_note_on(instrument, midi_event.channel, midi_event.pitch, midi_event.velocity)
-
+			amsynth.note_on(midi_event.channel, midi_event.pitch, midi_event.velocity)
 		if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
-			amsynth.instrument_note_off(instrument, midi_event.channel, midi_event.pitch)
+			amsynth.note_off(midi_event.channel, midi_event.pitch)
 
 
 func _on_check_box_1_toggled(toggled_on:bool) -> void:

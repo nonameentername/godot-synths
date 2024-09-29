@@ -4,6 +4,9 @@ class_name ASynth
 @export
 var instrument_name: String
 
+@export
+var instrument_channel: int
+
 var amsynth: CsoundGodot
 
 var oscillator_1: ASynthKnob
@@ -107,13 +110,15 @@ DefineChannel "{name}", "ASynthLfoFreq", 2, "freq_mod_osc", $CHANNEL_MODE_INPUT,
 DefineChannel "{name}", "ASynthFilter", 1, "filter_kbd_track", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.783333003520966, 0, 1
 DefineChannel "{name}", "ASynthInput", 1, "portamento_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
 
+massign {channel}, "{name}"
+
 </CsInstruments>
 <CsScore>
 i "{name}_mixer" 0 -1
 </CsScore>
 </CsoundSynthesizer>
 
-""".format({"name": instrument_name})
+""".format({"name": instrument_name, "channel": instrument_channel})
 	amsynth.compile_orchestra(instrument)
 
 	update_knobs()

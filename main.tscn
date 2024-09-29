@@ -43,96 +43,112 @@ current_tab = 0
 [node name="1" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 layout_mode = 2
 instrument_name = "one"
+instrument_channel = 1
 metadata/_tab_index = 0
 
 [node name="2" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "two"
+instrument_channel = 2
 metadata/_tab_index = 1
 
 [node name="3" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "three"
+instrument_channel = 3
 metadata/_tab_index = 2
 
 [node name="4" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "four"
+instrument_channel = 4
 metadata/_tab_index = 3
 
 [node name="5" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "five"
+instrument_channel = 5
 metadata/_tab_index = 4
 
 [node name="6" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "six"
+instrument_channel = 6
 metadata/_tab_index = 5
 
 [node name="7" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "seven"
+instrument_channel = 7
 metadata/_tab_index = 6
 
 [node name="8" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "eight"
+instrument_channel = 8
 metadata/_tab_index = 7
 
 [node name="9" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "nine"
+instrument_channel = 9
 metadata/_tab_index = 8
 
 [node name="10" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "ten"
+instrument_channel = 10
 metadata/_tab_index = 9
 
 [node name="11" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "eleven"
+instrument_channel = 11
 metadata/_tab_index = 10
 
 [node name="12" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "twelve"
+instrument_channel = 12
 metadata/_tab_index = 11
 
 [node name="13" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "thirteen"
+instrument_channel = 13
 metadata/_tab_index = 12
 
 [node name="14" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "fourteen"
+instrument_channel = 14
 metadata/_tab_index = 13
 
 [node name="15" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "fifteen"
+instrument_channel = 15
 metadata/_tab_index = 14
 
 [node name="16" parent="TabContainer" instance=ExtResource("1_fmqxe")]
 visible = false
 layout_mode = 2
 instrument_name = "sixteen"
+instrument_channel = 16
 metadata/_tab_index = 15
 
 [node name="CheckBox1" type="CheckBox" parent="."]

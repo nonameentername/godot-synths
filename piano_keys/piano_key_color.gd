@@ -36,7 +36,7 @@ func _midi_note_on() -> void:
 		_is_playing = true
 		var input_event_midi: InputEventMIDI = InputEventMIDI.new()
 		input_event_midi.device = 0
-		input_event_midi.channel = 1
+		input_event_midi.channel = 0
 		input_event_midi.message = MIDI_MESSAGE_NOTE_ON
 		input_event_midi.pitch = parent.pitch_index
 		input_event_midi.velocity = 64
@@ -50,7 +50,7 @@ func _midi_note_off() -> void:
 		_is_playing = false
 		var input_event_midi: InputEventMIDI = InputEventMIDI.new()
 		input_event_midi.device = 0
-		input_event_midi.channel = 1
+		input_event_midi.channel = 0
 		input_event_midi.message = MIDI_MESSAGE_NOTE_OFF
 		input_event_midi.pitch = parent.pitch_index
 		input_event_midi.velocity = 0

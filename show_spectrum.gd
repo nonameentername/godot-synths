@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 const VU_COUNT = 16

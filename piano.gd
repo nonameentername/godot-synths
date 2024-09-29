@@ -1,3 +1,4 @@
+#@tool
 extends Control
 
 # A standard piano with 88 keys has keys from 21 to 108.
