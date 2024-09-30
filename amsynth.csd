@@ -1120,7 +1120,8 @@ endin
 
 instr hello_midi
 	SInstrName = "hello"
-	iChannel = p4
+	;iChannel = p4
+    iChannel midichn
 	iMidiKey = p5
 	iMidiVelocity = p6
     print p1, p2, p3, p4, p5, p6
@@ -1132,8 +1133,8 @@ instr 10000
     ;MixerClear
 endin
 
-maxalloc "hello", 16
-massign 1, "hello_midi"
+;maxalloc "hello", 16
+;massign 1, "hello_midi"
 
 DefineChannel "hello", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5
 DefineChannel "hello", "ASynthAmp", 1, "amp_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 1.55833005905151, 0, 2.5
@@ -1183,9 +1184,9 @@ f 1 0 16384 10 1 ;sine
 f 0 3600
 i 10000 0 -1
 
-i 2 0 1 20 20
+;i 2 0 1 20 20
 
-i "hello_mixer" 0 -1
+;i "hello_mixer" 0 -1
 
 ;i 2 + 3 3 3
 ;i 2 + 3 10 1

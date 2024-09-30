@@ -1,5 +1,8 @@
+@tool
 extends Control
 class_name ASynth
+
+var csound_name: String
 
 @export
 var instrument_name: String
@@ -16,6 +19,28 @@ var oscillator_1_waveform: Waveform
 var oscillator_2_waveform: Waveform
 var lfo_1_waveform: Waveform
 
+func _get_property_list():
+	var properties = []
+
+	properties.append({
+		"name": "csound_name",
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": CsoundServer.get_csound_name_options(),
+	})
+
+	return properties
+
+func _get(property):
+	if property == "csound_name":
+		return csound_name
+
+func _set(property, value):
+	if property == "csound_name":
+		csound_name = value
+		return true
+	return false
+
 func _ready():
 	CsoundServer.csound_layout_changed.connect(csound_layout_changed)
 
@@ -29,7 +54,7 @@ func _ready():
 
 
 func csound_layout_changed():
-	amsynth = CsoundServer.get_csound("amsynth")
+	amsynth = CsoundServer.get_csound(csound_name)
 	amsynth.csound_ready.connect(initialize)
 
 	for child_panel in get_children():
@@ -48,14 +73,17 @@ instr {name}
 	SInstrName = "{name}"
 	SInstrMixer = "{name}_mixer"
 	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
+    print p1, p2, p3, p4, p5, p6
 	ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
 endin
 
 instr {name}_midi
 	SInstrName = "{name}"
-	iChannel = p4
+	;iChannel = p4
+    iChannel midichn
 	iMidiKey = p5
 	iMidiVelocity = p6
+    print p1, p2, p3, p4, p5, p6
 	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
 endin
 
@@ -65,7 +93,7 @@ instr {name}_mixer
 	ASynthEffects SInstrName, SInstrMixer
 endin
 
-maxalloc "{name}", 4
+maxalloc "{name}", 16
 
 
 DefineChannel "{name}", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5
@@ -110,7 +138,7 @@ DefineChannel "{name}", "ASynthLfoFreq", 2, "freq_mod_osc", $CHANNEL_MODE_INPUT,
 DefineChannel "{name}", "ASynthFilter", 1, "filter_kbd_track", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.783333003520966, 0, 1
 DefineChannel "{name}", "ASynthInput", 1, "portamento_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
 
-massign {channel}, "{name}"
+massign {channel}, "{name}_midi"
 
 </CsInstruments>
 <CsScore>

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqblgckoq2x14"]
+[gd_scene load_steps=13 format=3 uid="uid://cqblgckoq2x14"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_canjd"]
 [ext_resource type="PackedScene" uid="uid://c2iwgtjje05p" path="res://amsynth.tscn" id="1_fmqxe"]
@@ -6,13 +6,62 @@
 [ext_resource type="PackedScene" uid="uid://e7gcl6x4gp6r" path="res://show_spectrum.tscn" id="4_lftd6"]
 
 [sub_resource type="AudioStreamCsound" id="AudioStreamCsound_u385u"]
-csound_name = "amsynth"
+csound_name = "amsynth1"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_rh733"]
+csound_name = "amsynth2"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_jd0f5"]
+csound_name = "amsynth3"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_56n3v"]
+csound_name = "amsynth4"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_s2jsl"]
+csound_name = "amsynth5"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_4jium"]
+csound_name = "amsynth6"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_38g4a"]
+csound_name = "amsynth7"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_sp33i"]
+csound_name = "amsynth8"
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_canjd")
 
-[node name="CsoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="CsoundPlayer1" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamCsound_u385u")
+autoplay = true
+
+[node name="CsoundPlayer2" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_rh733")
+autoplay = true
+
+[node name="CsoundPlayer3" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_jd0f5")
+autoplay = true
+
+[node name="CsoundPlayer4" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_56n3v")
+autoplay = true
+
+[node name="CsoundPlayer5" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_s2jsl")
+autoplay = true
+
+[node name="CsoundPlayer6" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_4jium")
+autoplay = true
+
+[node name="CsoundPlayer7" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_38g4a")
+autoplay = true
+
+[node name="CsoundPlayer8" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_sp33i")
 autoplay = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -44,6 +93,7 @@ current_tab = 0
 layout_mode = 2
 instrument_name = "one"
 instrument_channel = 1
+csound_name = "amsynth1"
 metadata/_tab_index = 0
 
 [node name="2" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -51,6 +101,7 @@ visible = false
 layout_mode = 2
 instrument_name = "two"
 instrument_channel = 2
+csound_name = "amsynth1"
 metadata/_tab_index = 1
 
 [node name="3" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -58,6 +109,7 @@ visible = false
 layout_mode = 2
 instrument_name = "three"
 instrument_channel = 3
+csound_name = "amsynth2"
 metadata/_tab_index = 2
 
 [node name="4" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -65,6 +117,7 @@ visible = false
 layout_mode = 2
 instrument_name = "four"
 instrument_channel = 4
+csound_name = "amsynth2"
 metadata/_tab_index = 3
 
 [node name="5" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -72,6 +125,7 @@ visible = false
 layout_mode = 2
 instrument_name = "five"
 instrument_channel = 5
+csound_name = "amsynth3"
 metadata/_tab_index = 4
 
 [node name="6" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -79,6 +133,7 @@ visible = false
 layout_mode = 2
 instrument_name = "six"
 instrument_channel = 6
+csound_name = "amsynth3"
 metadata/_tab_index = 5
 
 [node name="7" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -86,6 +141,7 @@ visible = false
 layout_mode = 2
 instrument_name = "seven"
 instrument_channel = 7
+csound_name = "amsynth4"
 metadata/_tab_index = 6
 
 [node name="8" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -93,6 +149,7 @@ visible = false
 layout_mode = 2
 instrument_name = "eight"
 instrument_channel = 8
+csound_name = "amsynth4"
 metadata/_tab_index = 7
 
 [node name="9" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -100,6 +157,7 @@ visible = false
 layout_mode = 2
 instrument_name = "nine"
 instrument_channel = 9
+csound_name = "amsynth5"
 metadata/_tab_index = 8
 
 [node name="10" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -107,6 +165,7 @@ visible = false
 layout_mode = 2
 instrument_name = "ten"
 instrument_channel = 10
+csound_name = "amsynth5"
 metadata/_tab_index = 9
 
 [node name="11" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -114,6 +173,7 @@ visible = false
 layout_mode = 2
 instrument_name = "eleven"
 instrument_channel = 11
+csound_name = "amsynth6"
 metadata/_tab_index = 10
 
 [node name="12" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -121,6 +181,7 @@ visible = false
 layout_mode = 2
 instrument_name = "twelve"
 instrument_channel = 12
+csound_name = "amsynth6"
 metadata/_tab_index = 11
 
 [node name="13" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -128,6 +189,7 @@ visible = false
 layout_mode = 2
 instrument_name = "thirteen"
 instrument_channel = 13
+csound_name = "amsynth7"
 metadata/_tab_index = 12
 
 [node name="14" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -135,6 +197,7 @@ visible = false
 layout_mode = 2
 instrument_name = "fourteen"
 instrument_channel = 14
+csound_name = "amsynth7"
 metadata/_tab_index = 13
 
 [node name="15" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -142,6 +205,7 @@ visible = false
 layout_mode = 2
 instrument_name = "fifteen"
 instrument_channel = 15
+csound_name = "amsynth8"
 metadata/_tab_index = 14
 
 [node name="16" parent="TabContainer" instance=ExtResource("1_fmqxe")]
@@ -149,6 +213,7 @@ visible = false
 layout_mode = 2
 instrument_name = "sixteen"
 instrument_channel = 16
+csound_name = "amsynth8"
 metadata/_tab_index = 15
 
 [node name="CheckBox1" type="CheckBox" parent="."]
