@@ -18,8 +18,7 @@
 #define PORTAMENTO_ALWAYS #0#
 #define PORTAMENTO_LEGATO #1#
 
-#define MAX_NUM_VOICES #16#
-#define MAX_NUM_INSTRUMENTS #1024#
+#define MAX_NUM_CHANNELS #64#
 
 #define CHANNEL_MODE_INPUT #1#
 #define CHANNEL_MODE_OUTPUT #2#
@@ -70,14 +69,14 @@ while iIndex <= 127 do
 od
 
 
-gkHeldKeys[][]  init $MAX_NUM_INSTRUMENTS, 128
-gkCounter[] init $MAX_NUM_INSTRUMENTS
-gkPrevNote[] init $MAX_NUM_INSTRUMENTS
-gkLargestHeldKey[] init $MAX_NUM_INSTRUMENTS
-gkMidiVelocity[] init $MAX_NUM_INSTRUMENTS
-gkCurrentNote[] init $MAX_NUM_INSTRUMENTS
-gkUpdatePortamento[] init $MAX_NUM_INSTRUMENTS
-gkUpdateLineSegr[] init $MAX_NUM_INSTRUMENTS
+gkHeldKeys[][]  init $MAX_NUM_CHANNELS, 128
+gkCounter[] init $MAX_NUM_CHANNELS
+gkPrevNote[] init $MAX_NUM_CHANNELS
+gkLargestHeldKey[] init $MAX_NUM_CHANNELS
+gkMidiVelocity[] init $MAX_NUM_CHANNELS
+gkCurrentNote[] init $MAX_NUM_CHANNELS
+gkUpdatePortamento[] init $MAX_NUM_CHANNELS
+gkUpdateLineSegr[] init $MAX_NUM_CHANNELS
 
 
 #define gkHeldKeys #gkHeldKeys[iChannel]#
