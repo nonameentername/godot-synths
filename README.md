@@ -12,6 +12,6 @@ GodotSyth running in the browser [godot-synths](https://nonameentername.github.i
 Build
 -----
 
-This project requires csound-godot and optionally csound-jack.
+This project requires godot-csound and optionally godot-jack.
 
 Build both projects and place the corresponding build artifacts in the addons folder.
