@@ -1127,11 +1127,6 @@ instr hello_midi
 	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
 endin
 
-
-instr 10000
-    ;MixerClear
-endin
-
 ;maxalloc "hello", 16
 ;massign 1, "hello_midi"
 

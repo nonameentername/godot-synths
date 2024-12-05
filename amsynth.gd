@@ -147,7 +147,7 @@ i "{name}_mixer" 0 -1
 </CsoundSynthesizer>
 
 """.format({"name": instrument_name, "channel": instrument_channel})
-	amsynth.compile_orchestra(instrument)
+	amsynth.compile_csd(instrument)
 
 	update_knobs()
 	update_waveforms()
@@ -382,7 +382,7 @@ func _on_presets_load_preset(preset:String) -> void:
 </CsoundSynthesizer>
 
 """.format({"name": instrument_name, "preset": preset})
-	amsynth.compile_orchestra(load_preset)
+	amsynth.compile_csd(load_preset)
 
 	update_knobs()
 	update_waveforms()

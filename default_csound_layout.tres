@@ -3,6 +3,7 @@
 [ext_resource type="CsoundFileReader" uid="uid://d4ilk623jy1v0" path="res://amsynth.csd" id="1_sacqj"]
 
 [resource]
+csound/0/script = ExtResource("1_sacqj")
 csound/1/name = "amsynth1"
 csound/1/solo = false
 csound/1/mute = false
