@@ -31,6 +31,9 @@ func _ready() -> void:
 		var amsynth: ASynth = child
 		amsynth_mapping[amsynth.instrument_channel - 1] = amsynth.csound_name
 
+	if DisplayServer.screen_get_dpi(0) > 120:
+		get_tree().root.content_scale_factor = 2
+
 
 func csound_layout_changed():
 	for key in amsynth_mapping:
