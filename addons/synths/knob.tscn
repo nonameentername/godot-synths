@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmelih0loihel"]
 
-[ext_resource type="Script" path="res://knob.gd" id="1_0jom3"]
-[ext_resource type="Texture2D" uid="uid://bbyygglr1pfom" path="res://knob_background.png" id="1_4crcp"]
-[ext_resource type="Texture2D" uid="uid://ctdpmth0uhc1y" path="res://knob_front.png" id="2_q72pj"]
-[ext_resource type="Texture2D" uid="uid://bpp75pasfi6s" path="res://knob_progress.png" id="3_biyda"]
-[ext_resource type="Texture2D" uid="uid://gef7rf3yomtk" path="res://knob.png" id="4_mpbjw"]
+[ext_resource type="Script" path="res://addons/synths/base_knob.gd" id="1_0jom3"]
+[ext_resource type="Texture2D" uid="uid://bbyygglr1pfom" path="res://addons/synths/knob_background.png" id="1_4crcp"]
+[ext_resource type="Texture2D" uid="uid://ctdpmth0uhc1y" path="res://addons/synths/knob_front.png" id="2_q72pj"]
+[ext_resource type="Texture2D" uid="uid://bpp75pasfi6s" path="res://addons/synths/knob_progress.png" id="3_biyda"]
+[ext_resource type="Texture2D" uid="uid://gef7rf3yomtk" path="res://addons/synths/knob.png" id="4_mpbjw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_stxbo"]
 font_size = 8

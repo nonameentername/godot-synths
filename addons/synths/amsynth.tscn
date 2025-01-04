@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2iwgtjje05p"]
 
-[ext_resource type="Script" path="res://amsynth.gd" id="1_8g6jc"]
-[ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://waveform.tscn" id="3_bfoec"]
-[ext_resource type="PackedScene" uid="uid://cvdq6s44t8p0y" path="res://asynth_knob.tscn" id="4_e5kgd"]
-[ext_resource type="PackedScene" uid="uid://bhl1yxv8sn0gi" path="res://presets.tscn" id="4_ty56r"]
+[ext_resource type="Script" path="res://addons/synths/amsynth.gd" id="1_8g6jc"]
+[ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://addons/synths/waveform.tscn" id="3_bfoec"]
+[ext_resource type="PackedScene" uid="uid://cvdq6s44t8p0y" path="res://addons/synths/asynth_knob.tscn" id="4_e5kgd"]
+[ext_resource type="PackedScene" uid="uid://bhl1yxv8sn0gi" path="res://addons/synths/presets.tscn" id="4_ty56r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ptmr5"]
 font_size = 10
@@ -12,6 +12,7 @@ font_size = 10
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_8g6jc")
+csound_name = ""
 
 [node name="Oscillator1" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.666667)

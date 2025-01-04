@@ -1,5 +1,5 @@
 @tool
-extends Knob
+extends BaseKnob
 class_name ASynthKnob
 
 var amsynth: CsoundGodot

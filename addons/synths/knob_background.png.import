@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbyygglr1pfom"
-path="res://.godot/imported/knob_background.png-12fe40f5ace073b9a4833b50acd932a9.ctex"
+path="res://.godot/imported/knob_background.png-fb27c3e6d1ee53055ba843cf9a6c8e53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://knob_background.png"
-dest_files=["res://.godot/imported/knob_background.png-12fe40f5ace073b9a4833b50acd932a9.ctex"]
+source_file="res://addons/synths/knob_background.png"
+dest_files=["res://.godot/imported/knob_background.png-fb27c3e6d1ee53055ba843cf9a6c8e53.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dceftev1sjae3"
-path="res://.godot/imported/white_noise.png-203b55514f7c04619360772741b5f485.ctex"
+uid="uid://ctcb3ixfy5l01"
+path="res://.godot/imported/saw_down.png-15055224dcd0934dd03210d3b5ad0c81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://white_noise.png"
-dest_files=["res://.godot/imported/white_noise.png-203b55514f7c04619360772741b5f485.ctex"]
+source_file="res://addons/synths/saw_down.png"
+dest_files=["res://.godot/imported/saw_down.png-15055224dcd0934dd03210d3b5ad0c81.ctex"]
 
 [params]
 

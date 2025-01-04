@@ -1,6 +1,6 @@
 @tool
 extends Control
-class_name Knob
+class_name BaseKnob
 
 @export
 var min_value: float = 0:

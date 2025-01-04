@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwr6s2yy0c7e4"
-path="res://.godot/imported/saw_up.png-6ff8c60022ec54bd9ada527b2061750a.ctex"
+uid="uid://dsgrjfk63d52e"
+path="res://.godot/imported/saw_wave.png-74e3ece6665c93d5ff29186789df6cb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://saw_up.png"
-dest_files=["res://.godot/imported/saw_up.png-6ff8c60022ec54bd9ada527b2061750a.ctex"]
+source_file="res://addons/synths/saw_wave.png"
+dest_files=["res://.godot/imported/saw_wave.png-74e3ece6665c93d5ff29186789df6cb1.ctex"]
 
 [params]
 

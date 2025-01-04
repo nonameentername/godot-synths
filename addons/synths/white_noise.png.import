@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpp75pasfi6s"
-path="res://.godot/imported/knob_progress.png-3bc6c947b96a5a0ffd52d49c0f5cd1c0.ctex"
+uid="uid://dceftev1sjae3"
+path="res://.godot/imported/white_noise.png-eb8a5c5ec08e138127b24e74d5a68f40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://knob_progress.png"
-dest_files=["res://.godot/imported/knob_progress.png-3bc6c947b96a5a0ffd52d49c0f5cd1c0.ctex"]
+source_file="res://addons/synths/white_noise.png"
+dest_files=["res://.godot/imported/white_noise.png-eb8a5c5ec08e138127b24e74d5a68f40.ctex"]
 
 [params]
 

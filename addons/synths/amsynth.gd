@@ -73,17 +73,17 @@ instr {name}
 	SInstrName = "{name}"
 	SInstrMixer = "{name}_mixer"
 	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
-    print p1, p2, p3, p4, p5, p6
+	print p1, p2, p3, p4, p5, p6
 	ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
 endin
 
 instr {name}_midi
 	SInstrName = "{name}"
 	;iChannel = p4
-    iChannel midichn
+	iChannel midichn
 	iMidiKey = p5
 	iMidiVelocity = p6
-    print p1, p2, p3, p4, p5, p6
+	print p1, p2, p3, p4, p5, p6
 	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
 endin
 
@@ -93,7 +93,7 @@ instr {name}_mixer
 	ASynthEffects SInstrName, SInstrMixer
 endin
 
-maxalloc "{name}", 8
+maxalloc "{name}", 8, 1
 
 
 DefineChannel "{name}", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5

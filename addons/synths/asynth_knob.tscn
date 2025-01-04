@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvdq6s44t8p0y"]
 
-[ext_resource type="Script" path="res://asynth_knob.gd" id="1_tjdyd"]
-[ext_resource type="PackedScene" uid="uid://dmelih0loihel" path="res://knob.tscn" id="2_vu2c7"]
+[ext_resource type="Script" path="res://addons/synths/asynth_knob.gd" id="1_tjdyd"]
+[ext_resource type="PackedScene" uid="uid://dmelih0loihel" path="res://addons/synths/knob.tscn" id="2_vu2c7"]
 
 [node name="knob" instance=ExtResource("2_vu2c7")]
 script = ExtResource("1_tjdyd")

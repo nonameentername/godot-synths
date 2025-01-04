@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3ulf3fijrt5"]
 
-[ext_resource type="Script" path="res://waveform.gd" id="1_fian8"]
-[ext_resource type="Texture2D" uid="uid://bnbh1glww04m4" path="res://waves.png" id="1_s42qy"]
+[ext_resource type="Script" path="res://addons/synths/waveform.gd" id="1_fian8"]
+[ext_resource type="Texture2D" uid="uid://bnbh1glww04m4" path="res://addons/synths/waves.png" id="1_s42qy"]
 
 [node name="waveform" type="Control"]
 layout_mode = 3

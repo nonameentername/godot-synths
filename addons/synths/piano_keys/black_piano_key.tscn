@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bytbps11hdkx6"]
 
-[ext_resource type="Script" path="res://piano_keys/piano_key.gd" id="1"]
-[ext_resource type="Script" path="res://piano_keys/piano_key_color.gd" id="2"]
+[ext_resource type="Script" path="res://addons/synths/piano_keys/piano_key.gd" id="1"]
+[ext_resource type="Script" path="res://addons/synths/piano_keys/piano_key_color.gd" id="2"]
 
 [node name="PianoKey" type="Control"]
 layout_mode = 3

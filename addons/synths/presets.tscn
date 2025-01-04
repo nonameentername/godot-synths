@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhl1yxv8sn0gi"]
 
-[ext_resource type="Script" path="res://presets.gd" id="1_2gynq"]
+[ext_resource type="Script" path="res://addons/synths/presets.gd" id="1_2gynq"]
 
 [node name="Presets" type="Control"]
 layout_mode = 3

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjqt5lhkyhakj"
-path="res://.godot/imported/noise.png-a5cb495e1c9f6281c22a3b0a0f68704b.ctex"
+uid="uid://dewa0q4viqvei"
+path="res://.godot/imported/sine_wave.png-2db9e4c395494380b45a6c843206ad37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://noise.png"
-dest_files=["res://.godot/imported/noise.png-a5cb495e1c9f6281c22a3b0a0f68704b.ctex"]
+source_file="res://addons/synths/sine_wave.png"
+dest_files=["res://.godot/imported/sine_wave.png-2db9e4c395494380b45a6c843206ad37.ctex"]
 
 [params]
 

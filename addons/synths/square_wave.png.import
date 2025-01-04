@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gef7rf3yomtk"
-path="res://.godot/imported/knob.png-122aea6643f083647c9ed1285ec0bc44.ctex"
+uid="uid://db4wft7yyafv3"
+path="res://.godot/imported/square_wave.png-aa2abaf39ad987521d7c5a240808131c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://knob.png"
-dest_files=["res://.godot/imported/knob.png-122aea6643f083647c9ed1285ec0bc44.ctex"]
+source_file="res://addons/synths/square_wave.png"
+dest_files=["res://.godot/imported/square_wave.png-aa2abaf39ad987521d7c5a240808131c.ctex"]
 
 [params]
 

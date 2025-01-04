@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dewa0q4viqvei"
-path="res://.godot/imported/sine_wave.png-5cb21b6f9fea3b87c5b08eb30c6a0204.ctex"
+uid="uid://gef7rf3yomtk"
+path="res://.godot/imported/knob.png-648bf4afa44135d524904adbcbc0ab69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sine_wave.png"
-dest_files=["res://.godot/imported/sine_wave.png-5cb21b6f9fea3b87c5b08eb30c6a0204.ctex"]
+source_file="res://addons/synths/knob.png"
+dest_files=["res://.godot/imported/knob.png-648bf4afa44135d524904adbcbc0ab69.ctex"]
 
 [params]
 

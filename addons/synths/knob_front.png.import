@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsgrjfk63d52e"
-path="res://.godot/imported/saw_wave.png-0a0cc66734bc4d5f7fe4292a4559e6a4.ctex"
+uid="uid://ctdpmth0uhc1y"
+path="res://.godot/imported/knob_front.png-ed221ca418f2b0d09f5a6554295dd125.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://saw_wave.png"
-dest_files=["res://.godot/imported/saw_wave.png-0a0cc66734bc4d5f7fe4292a4559e6a4.ctex"]
+source_file="res://addons/synths/knob_front.png"
+dest_files=["res://.godot/imported/knob_front.png-ed221ca418f2b0d09f5a6554295dd125.ctex"]
 
 [params]
 

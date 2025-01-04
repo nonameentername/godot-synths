@@ -10,8 +10,8 @@ extends Control
 const START_KEY = 21
 const END_KEY = 108
 
-const WhiteKeyScene := preload("res://piano_keys/white_piano_key.tscn")
-const BlackKeyScene := preload("res://piano_keys/black_piano_key.tscn")
+const WhiteKeyScene := preload("res://addons/synths/piano_keys/white_piano_key.tscn")
+const BlackKeyScene := preload("res://addons/synths/piano_keys/black_piano_key.tscn")
 
 var piano_key_dict := Dictionary()
 
