@@ -23,6 +23,7 @@ csound/hide_csound_logs=true
 [display]
 
 window/size/viewport_height=680
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
