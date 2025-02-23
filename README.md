@@ -14,4 +14,13 @@ Build
 
 This project requires godot-csound and optionally godot-jack.
 
-Build both projects and place the corresponding build artifacts in the addons folder.
+1. Download depedencies
+```
+godot --headless -s package.gd install
+```
+
+2. Import godot resources
+```
+godot --headless --import
+godot --headless --import
+```
