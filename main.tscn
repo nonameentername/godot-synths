@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cqblgckoq2x14"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_canjd"]
+[ext_resource type="Script" uid="uid://oj57pcg60ssg" path="res://main.gd" id="1_canjd"]
 [ext_resource type="PackedScene" uid="uid://c2iwgtjje05p" path="res://addons/synths/amsynth.tscn" id="1_fmqxe"]
 [ext_resource type="PackedScene" uid="uid://dctcehelc4sv0" path="res://addons/synths/piano.tscn" id="3_a07jl"]
 [ext_resource type="PackedScene" uid="uid://e7gcl6x4gp6r" path="res://addons/synths/show_spectrum.tscn" id="4_lftd6"]
