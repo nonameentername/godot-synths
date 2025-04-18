@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2iwgtjje05p"]
 
-[ext_resource type="Script" path="res://addons/synths/amsynth.gd" id="1_8g6jc"]
+[ext_resource type="Script" uid="uid://cveq0llg5hkk4" path="res://addons/synths/amsynth.gd" id="1_8g6jc"]
 [ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://addons/synths/waveform.tscn" id="3_bfoec"]
 [ext_resource type="PackedScene" uid="uid://cvdq6s44t8p0y" path="res://addons/synths/asynth_knob.tscn" id="4_e5kgd"]
 [ext_resource type="PackedScene" uid="uid://bhl1yxv8sn0gi" path="res://addons/synths/presets.tscn" id="4_ty56r"]
@@ -514,10 +514,10 @@ offset_left = 584.0
 offset_top = 24.0
 offset_right = 584.0
 offset_bottom = 24.0
-instrument_name = "ASynthFilter"
-component_name = "filter_release"
+instrument_name = ""
+component_name = "ASynthFilter"
 component_num = 1
-component_channel = ""
+component_channel = "filter_release"
 max_value = 2.5
 knob_name = "release"
 
@@ -580,7 +580,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ReverbAmount" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
+[node name="ReverbAmount" parent="Reverb" instance=ExtResource("4_e5kgd")]
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -591,7 +591,7 @@ component_num = 1
 component_channel = "reverb_wet"
 knob_name = "amount"
 
-[node name="ReverbSize" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
+[node name="ReverbSize" parent="Reverb" instance=ExtResource("4_e5kgd")]
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -602,7 +602,7 @@ component_num = 1
 component_channel = "reverb_roomsize"
 knob_name = "size"
 
-[node name="ReverbStereo" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
+[node name="ReverbStereo" parent="Reverb" instance=ExtResource("4_e5kgd")]
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -613,7 +613,7 @@ component_num = 1
 component_channel = "reverb_width"
 knob_name = "stereo"
 
-[node name="ReverbDamping" parent="Reverb/Label" instance=ExtResource("4_e5kgd")]
+[node name="ReverbDamping" parent="Reverb" instance=ExtResource("4_e5kgd")]
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -734,10 +734,10 @@ offset_bottom = 8.0
 [connection signal="value_changed" from="Filter/FilterRelease" to="." method="_on_filter_release_value_changed"]
 [connection signal="value_changed" from="Amp/AmpVolume" to="." method="_on_amp_volume_value_changed"]
 [connection signal="value_changed" from="Amp/AmpDrive" to="." method="_on_amp_drive_value_changed"]
-[connection signal="value_changed" from="Reverb/Label/ReverbAmount" to="." method="_on_reverb_amount_value_changed"]
-[connection signal="value_changed" from="Reverb/Label/ReverbSize" to="." method="_on_reverb_size_value_changed"]
-[connection signal="value_changed" from="Reverb/Label/ReverbStereo" to="." method="_on_reverb_stereo_value_changed"]
-[connection signal="value_changed" from="Reverb/Label/ReverbDamping" to="." method="_on_reverb_damping_value_changed"]
+[connection signal="value_changed" from="Reverb/ReverbAmount" to="." method="_on_reverb_amount_value_changed"]
+[connection signal="value_changed" from="Reverb/ReverbSize" to="." method="_on_reverb_size_value_changed"]
+[connection signal="value_changed" from="Reverb/ReverbStereo" to="." method="_on_reverb_stereo_value_changed"]
+[connection signal="value_changed" from="Reverb/ReverbDamping" to="." method="_on_reverb_damping_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoTime" to="." method="_on_portamento_time_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoMode" to="." method="_on_portamento_mode_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoKeyboardMode" to="." method="_on_portamento_keyboard_mode_value_changed"]
