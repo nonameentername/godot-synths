@@ -52,6 +52,20 @@ body {
 	margin: auto;
 }
 
+#status-splash.show-image--false {
+	display: none;
+}
+
+#status-splash.fullsize--true {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+#status-splash.use-filter--false {
+	image-rendering: pixelated;
+}
+
 #status-progress, #status-notice {
 	display: none;
 }
@@ -91,14 +105,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" src="godot-synths.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="godot-synths.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
 		<script src="godot-synths.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"godot-synths","experimentalVK":false,"fileSizes":{"godot-synths.pck":63418784,"godot-synths.wasm":1642043},"focusCanvas":true,"gdextensionLibs":["libcsoundgodot.web.template_debug.dev.wasm32.wasm"]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"godot-synths","experimentalVK":false,"fileSizes":{"godot-synths.pck":13085536,"godot-synths.wasm":1648449},"focusCanvas":true,"gdextensionLibs":["libcsoundgodot.web.template_debug.dev.wasm32.wasm"]};
 const GODOT_THREADS_ENABLED = true;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -143,7 +157,7 @@ const engine = new Engine(GODOT_CONFIG);
 		} else if (typeof err === 'string') {
 			setStatusNotice(err);
 		} else {
-			setStatusNotice('An unknown error occured');
+			setStatusNotice('An unknown error occurred.');
 		}
 		setStatusMode('notice');
 		initializing = false;
@@ -155,9 +169,15 @@ const engine = new Engine(GODOT_CONFIG);
 
 	if (missing.length !== 0) {
 		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+			let serviceWorkerRegistrationPromise;
+			try {
+				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
+			} catch (err) {
+				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
+			}
 			// There's a chance that installing the service worker would fix the issue
 			Promise.race([
-				navigator.serviceWorker.getRegistration().then((registration) => {
+				serviceWorkerRegistrationPromise.then((registration) => {
 					if (registration != null) {
 						return Promise.reject(new Error('Service worker already exists.'));
 					}
@@ -167,10 +187,11 @@ const engine = new Engine(GODOT_CONFIG);
 				new Promise((resolve) => {
 					setTimeout(() => resolve(), 2000);
 				}),
-			]).catch((err) => {
-				console.error('Error while registering service worker:', err);
-			}).then(() => {
+			]).then(() => {
+				// Reload if there was no error.
 				window.location.reload();
+			}).catch((err) => {
+				console.error('Error while registering service worker:', err);
 			});
 		} else {
 			// Display the message as usual
