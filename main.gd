@@ -39,7 +39,7 @@ func csound_layout_changed():
 	#amsynth.csound_ready.connect(initialize)
 
 
-func initialize(csound_name: String) -> void:
+func initialize(_csound_name: String) -> void:
 	initialized = true
 
 

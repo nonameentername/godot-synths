@@ -19,6 +19,12 @@ var oscillator_1_waveform: Waveform
 var oscillator_2_waveform: Waveform
 var lfo_1_waveform: Waveform
 
+var saved_preset_name: LineEdit
+var saved_preset_item_list: ItemList
+var save_button: Button
+
+var presets: Array[String] = []
+
 func _get_property_list():
 	var properties = []
 
@@ -41,6 +47,7 @@ func _set(property, value):
 		return true
 	return false
 
+
 func _ready():
 	CsoundServer.csound_layout_changed.connect(csound_layout_changed)
 
@@ -51,6 +58,13 @@ func _ready():
 	oscillator_1_waveform = $Oscillator1/waveform
 	oscillator_2_waveform = $Oscillator2/waveform
 	lfo_1_waveform = $Lfo/waveform
+
+	saved_preset_name = $TabContainer/SavedPresets/LineEdit
+	saved_preset_item_list = $TabContainer/SavedPresets/ItemList
+	save_button = $TabContainer/SavedPresets/ButtonSave
+
+	load_saved_presets()
+	update_saved_presets("")
 
 
 func csound_layout_changed():
@@ -259,13 +273,11 @@ func _on_lfo_speed_value_changed(value:float) -> void:
 
 func _on_lfo_oscillator_1_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthLfoFreq", 1, "freq_mod_amount"]
-	print(control_name, value)
 	amsynth.send_control_channel(control_name, value)
 
 
 func _on_lfo_oscillator_2_value_changed(value:float) -> void:
 	var control_name = "%s.%s.%d.%s" % [instrument_name, "ASynthLfoFreq", 2, "freq_mod_amount"]
-	print(control_name, value)
 	amsynth.send_control_channel(control_name, value)
 
 
@@ -392,3 +404,78 @@ func update_waveforms():
 	oscillator_1_waveform.waveform = int(oscillator_1.actual_value)
 	oscillator_2_waveform.waveform = int(oscillator_2.actual_value)
 	lfo_1_waveform.waveform = int(lfo_1.actual_value)
+
+
+func save_knobs_values():
+	for child_panel in get_children():
+		for node in child_panel.get_children():
+			if node is ASynthKnob:
+				node.update_channel()
+
+
+func load_saved_presets():
+	presets.clear()
+
+	if not DirAccess.dir_exists_absolute("user://presets"):
+		DirAccess.make_dir_absolute("user://presets")
+	for file_name in DirAccess.get_files_at("user://presets"):
+		presets.append(file_name)
+
+
+func update_saved_presets(text: String):
+	saved_preset_item_list.clear()
+
+	for preset in presets:
+		if preset.to_lower().contains(text.to_lower()) or len(text) == 0:
+			var index = saved_preset_item_list.add_item(preset)
+			saved_preset_item_list.set_item_text(index, preset)
+
+
+func _on_button_load_pressed() -> void:
+	if len(saved_preset_item_list.get_selected_items()) == 0:
+		return
+
+	var index: int = saved_preset_item_list.get_selected_items()[0]
+	var selected_item_text = saved_preset_item_list.get_item_text(index)
+
+	var load_file = FileAccess.open("user://presets/%s" % (selected_item_text), FileAccess.READ)
+	var json_string = load_file.get_line()
+	var saved_preset = JSON.parse_string(json_string)
+
+	for name in saved_preset:
+		var value = saved_preset[name]
+		amsynth.send_control_channel("%s.%s" % [instrument_name, name], value)
+
+		update_knobs()
+
+
+func _on_button_save_pressed() -> void:
+	if saved_preset_name.text == "":
+		return
+
+	var saved_preset = {}
+
+	for child_panel in get_children():
+		for node in child_panel.get_children():
+			if node is ASynthKnob:
+				var name = node.get_control_channel_name()
+				var value = node.get_control_channel_value()
+				saved_preset[name] = value
+
+	var json_string = JSON.stringify(saved_preset)
+
+	var save_file = FileAccess.open("user://presets/%s" % (saved_preset_name.text), FileAccess.WRITE)
+	save_file.store_line(json_string)
+	save_file.close()
+
+	if not saved_preset_name.text in presets:
+		presets.append(saved_preset_name.text)
+
+	saved_preset_name.text = ""
+
+	update_saved_presets(saved_preset_name.text)
+
+
+func _on_line_edit_text_changed(new_text:String) -> void:
+	update_saved_presets(new_text)
+	save_button.disabled = len(new_text) == 0
