@@ -694,12 +694,55 @@ offset_top = 8.0
 offset_right = 896.0
 offset_bottom = 216.0
 
-[node name="Presets" parent="." instance=ExtResource("4_ty56r")]
-layout_mode = 1
+[node name="TabContainer" type="TabContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
 offset_left = 904.0
+offset_right = 1153.0
+offset_bottom = 440.0
+current_tab = 0
+
+[node name="Presets" parent="TabContainer" instance=ExtResource("4_ty56r")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="SavedPresets" type="Panel" parent="TabContainer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/SavedPresets"]
+layout_mode = 0
+offset_left = 8.0
 offset_top = 8.0
-offset_right = 904.0
-offset_bottom = 8.0
+offset_right = 232.0
+offset_bottom = 39.0
+placeholder_text = "search/name"
+
+[node name="ItemList" type="ItemList" parent="TabContainer/SavedPresets"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 237.0
+offset_bottom = 359.0
+
+[node name="ButtonLoad" type="Button" parent="TabContainer/SavedPresets"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 366.0
+offset_right = 118.0
+offset_bottom = 402.0
+text = "load"
+
+[node name="ButtonSave" type="Button" parent="TabContainer/SavedPresets"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 366.0
+offset_right = 237.0
+offset_bottom = 401.0
+disabled = true
+text = "save"
 
 [connection signal="value_changed" from="Oscillator1/Oscillator1Waveform" to="." method="_on_oscillator_1_waveform_value_changed"]
 [connection signal="value_changed" from="Oscillator1/Oscillator1Shape" to="." method="_on_oscillator_1_shape_value_changed"]
@@ -741,4 +784,7 @@ offset_bottom = 8.0
 [connection signal="value_changed" from="Portamento/PortamentoTime" to="." method="_on_portamento_time_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoMode" to="." method="_on_portamento_mode_value_changed"]
 [connection signal="value_changed" from="Portamento/PortamentoKeyboardMode" to="." method="_on_portamento_keyboard_mode_value_changed"]
-[connection signal="load_preset" from="Presets" to="." method="_on_presets_load_preset"]
+[connection signal="load_preset" from="TabContainer/Presets" to="." method="_on_presets_load_preset"]
+[connection signal="text_changed" from="TabContainer/SavedPresets/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="TabContainer/SavedPresets/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="TabContainer/SavedPresets/ButtonSave" to="." method="_on_button_save_pressed"]

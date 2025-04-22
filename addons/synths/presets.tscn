@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhl1yxv8sn0gi"]
 
-[ext_resource type="Script" path="res://addons/synths/presets.gd" id="1_2gynq"]
+[ext_resource type="Script" uid="uid://bq231cork5ju4" path="res://addons/synths/presets.gd" id="1_2gynq"]
 
 [node name="Presets" type="Control"]
 layout_mode = 3
@@ -15,7 +15,7 @@ script = ExtResource("1_2gynq")
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_right = 240.0
-offset_bottom = 392.0
+offset_bottom = 363.0
 
 [node name="LineEdit" type="LineEdit" parent="Panel"]
 layout_mode = 0
@@ -30,13 +30,13 @@ layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 232.0
-offset_bottom = 384.0
+offset_bottom = 355.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_top = 400.0
+offset_top = 371.0
 offset_right = 240.0
-offset_bottom = 432.0
+offset_bottom = 403.0
 text = "load"
 
 [connection signal="text_changed" from="Panel/LineEdit" to="." method="_on_line_edit_text_changed"]
