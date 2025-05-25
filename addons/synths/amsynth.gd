@@ -10,7 +10,7 @@ var instrument_name: String
 @export
 var instrument_channel: int
 
-var amsynth: CsoundGodot
+var amsynth: CsoundInstance
 
 var oscillator_1: ASynthKnob
 var oscillator_2: ASynthKnob
@@ -156,12 +156,16 @@ massign {channel}, "{name}_midi"
 
 </CsInstruments>
 <CsScore>
-i "{name}_mixer" 0 -1
 </CsScore>
 </CsoundSynthesizer>
 
 """.format({"name": instrument_name, "channel": instrument_channel})
 	amsynth.compile_csd(instrument)
+
+	var orchestra = """
+schedule "{name}_mixer", 0, -1
+""".format({"name": instrument_name})
+	amsynth.compile_orchestra(orchestra)
 
 	update_knobs()
 	update_waveforms()

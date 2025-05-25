@@ -2,7 +2,7 @@
 extends BaseKnob
 class_name ASynthKnob
 
-var amsynth: CsoundGodot
+var amsynth: CsoundInstance
 
 @export
 var instrument_name: String
