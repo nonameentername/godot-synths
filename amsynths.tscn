@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://bpi5740ulra01"]
+
+[ext_resource type="Script" uid="uid://sowf7k1fm600" path="res://amsynths.gd" id="1_18msi"]
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_u385u"]
+csound_name = "amsynth1"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_rh733"]
+csound_name = "amsynth2"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_jd0f5"]
+csound_name = "amsynth3"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_56n3v"]
+csound_name = "amsynth4"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_s2jsl"]
+csound_name = "amsynth5"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_4jium"]
+csound_name = "amsynth6"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_38g4a"]
+csound_name = "amsynth7"
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_sp33i"]
+csound_name = "amsynth8"
+
+[node name="amsynths" type="Node2D"]
+script = ExtResource("1_18msi")
+
+[node name="CsoundPlayer1" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_u385u")
+autoplay = true
+
+[node name="CsoundPlayer2" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_rh733")
+autoplay = true
+
+[node name="CsoundPlayer3" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_jd0f5")
+autoplay = true
+
+[node name="CsoundPlayer4" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_56n3v")
+autoplay = true
+
+[node name="CsoundPlayer5" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_s2jsl")
+autoplay = true
+
+[node name="CsoundPlayer6" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_4jium")
+autoplay = true
+
+[node name="CsoundPlayer7" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_38g4a")
+autoplay = true
+
+[node name="CsoundPlayer8" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamCsound_sp33i")
+autoplay = true

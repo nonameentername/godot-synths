@@ -1,9 +1,5 @@
-<CoundSynthesizer>
-<CsOptions>
--+rtmidi=NULL -M0 --midi-key=5 --midi-velocity=6 -n
-;-+rtmidi=NULL -M0 --midi-key=5 --midi-velocity=6 -n
-</CsOptions>
-<CsInstruments>
+#ifndef AMSYNTH_COMMON
+#define AMSYNTH_COMMON #1#
 
 #define DEBUG #1#
 
@@ -29,15 +25,6 @@
 #define CHANNEL_TYPE_LINEAR #2#
 #define CHANNEL_TYPE_EXPONENTIAL #3#
 
-sr = 48000
-ksmps = 32
-nchnls = 2
-0dbfs = 1
-
-massign 0, 0
-
-;isf sfload  "assets/FluidR3_GM.sf2"
-;sfpassign   0, isf
 
 giSquarePulse[] init 128
 giTriangleSaw[] init 128
@@ -306,6 +293,24 @@ xout kEnv
 endop
 
 
+opcode ReadMidiCC, 0, SSiSiiiii
+SInstrName, SComponent, iNum, SName, ichannel, iindex, imin, imax, ivalue xin
+
+iValue = (ivalue - imin) / (imax - imin)
+iValue max iValue, 0.0
+iValue min iValue, 1.0
+
+initc7 ichannel, iindex, iValue
+chnseti ivalue, SInstrName, SComponent, iNum, SName 
+
+kMidiValue ctrl7 ichannel, iindex, imin, imax
+chnset kMidiValue, SInstrName, SComponent, iNum, SName 
+
+;printk2 kMidiValue
+
+endop
+
+
 opcode DefineChannel, 0, SSiSiiiii
 SInstrName, SComponent, iNum, SName, iMode, iType, iDefault, iMin, iMax xin
 
@@ -322,6 +327,7 @@ chn_k SInternalName, iMode, iType, iDefault, iMin, iMax, iX, iY, iWidth, iHeight
 
 chnseti(iDefault, SInstrName, SComponent, iNum, SName)
 endop
+
 
 opcode _ASynthInput, 0, Siii
 SInstrName, iChannel, iMidiKey, iMidiVelocity xin
@@ -493,6 +499,8 @@ SInstrName, iNum, iAmp, kFreq, aSyncIn xin
 
 kTypeMidi chnget SInstrName, "ASynthOsc", iNum, "osc_waveform"
 kType round kTypeMidi
+
+printk 1, kType
 
 kShapeMidi chnget SInstrName, "ASynthOsc", iNum, "osc_pulsewidth"
 kShape scale kShapeMidi, 126, 0
@@ -915,18 +923,18 @@ endop
 opcode ASynthLfoFreq, k, Sika
 SInstrName, iNum, kFreq, aLfo xin
 
-kLfoToOscMidi chnget SInstrName, "ASynthLfoFreq", iNum, "freq_mod_osc"
-kLfoToOsc round kLfoToOscMidi 
+;kLfoToOscMidi chnget SInstrName, "ASynthLfoFreq", iNum, "freq_mod_osc"
+;kLfoToOsc round kLfoToOscMidi 
 
 kLfoFreqAmountMidi chnget SInstrName, "ASynthLfoFreq", iNum, "freq_mod_amount"
 kLfoFreqAmount pow kLfoFreqAmountMidi, 3
 kLfoFreqAmount = kLfoFreqAmount - 1
 kLfoFreqAmount = kLfoFreqAmount / 2 + 0.5
 
-if kLfoToOsc == 0 || kLfoToOsc == iNum then
-    kOsc = kFreq * ( kLfoFreqAmount * ( aLfo + 1 ) + 1 - kLfoFreqAmount )
-    kFreq min kOsc, sr / 2
-endif
+;if kLfoToOsc == 0 || kLfoToOsc == iNum then
+kOsc = kFreq * ( kLfoFreqAmount * ( aLfo + 1 ) + 1 - kLfoFreqAmount )
+kFreq min kOsc, sr / 2
+;endif
 
 xout kFreq
 endop
@@ -1039,162 +1047,4 @@ aSendL, aSendR ASynthRender SInstrName, 1, aVco, aVco
 xout aSendL, aSendR
 endop
 
-
-instr 2
-
-kcps = 110
-ifn  = 1
-
-knh    line p4, p3, p5
-asig    buzz 1, kcps, knh, ifn
-    outs asig, asig
-endin
-
-instr sine
-    SInstrName = "sine"
-    iNum = 1
-    iMidiKey = p5
-    iMidiVelocity = p6
-
-    iFreq mtof iMidiKey
-    iAmp = iMidiVelocity / 127
-
-    aSync init 0
-    iPhase = 0
-    asig oscilikts iAmp, iFreq, 1, aSync, iPhase
-    asig oscils iAmp, iFreq, 0
-
-    chnset 1, SInstrName, "ASynthRender", iNum, "master_vol"
-    chnset 0, SInstrName, "ASynthInput", iNum, "keyboard_mode"
-
-    aSendL, aSendR ASynthRender SInstrName, 1, asig, asig
-    outs aSendL, aSendR
-endin
-
-instr forward
-    iMidiKey = p4
-    iMidiVelocity = p5
-
-    kStatus GetMidiStatus
-
-    iInstr nstrnum "hello_midi"
-    iChannel = 1
-    iInstrnum = iInstr + iChannel / 100.0 + iMidiKey / 100000.0
-
-    iInstr2 nstrnum "world_midi"
-    iInstrnum2 = iInstr2 + iChannel / 100.0 + iMidiKey / 100000.0
-
-    if kStatus == $MIDI_NOTE_ON then
-        event "i", iInstrnum, 0, -1, iChannel, iMidiKey, iMidiVelocity
-        event "i", iInstrnum2, 0, -1, iChannel, iMidiKey, iMidiVelocity
-    elseif kStatus == $MIDI_NOTE_OFF then
-        event "i", -iInstrnum, 0, 0, iChannel, iMidiKey, iMidiVelocity
-        event "i", -iInstrnum2, 0, 0, iChannel, iMidiKey, iMidiVelocity
-    endif
-endin
-
-
-instr hello
-	SInstrName = "hello"
-	SInstrMixer = "hello_mixer"
-    print p1, p2, p3, p4, p5, p6
-
-    iFreq mtof p5
-    iAmp = p6 / 127
-
-    ;aSendL oscilikt iAmp, iFreq, 1, 0
-    ;aSendR = aSendL
-
-	aSendL, aSendR ASynth SInstrName, p2, p3, p4, p5, p6
-	ASynthMixerSend SInstrName, SInstrMixer, aSendL, aSendR
-endin
-
-
-instr hello_mixer
-	SInstrName = "hello"
-	SInstrMixer = "hello_mixer"
-	ASynthEffects SInstrName, SInstrMixer
-endin
-
-
-instr hello_midi
-	SInstrName = "hello"
-	;iChannel = p4
-    iChannel midichn
-	iMidiKey = p5
-	iMidiVelocity = p6
-    print p1, p2, p3, p4, p5, p6
-	ASynthInput SInstrName, iChannel, iMidiKey, iMidiVelocity
-endin
-
-;maxalloc "hello", 16
-;massign 1, "hello_midi"
-
-DefineChannel "hello", "ASynthAmp", 1, "amp_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.0750000029802322, 0, 2.5
-DefineChannel "hello", "ASynthAmp", 1, "amp_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 1.55833005905151, 0, 2.5
-DefineChannel "hello", "ASynthAmp", 1, "amp_sustain", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0, 0, 1.0
-DefineChannel "hello", "ASynthAmp", 1, "amp_release", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.706920027732849, 0, 2.5
-DefineChannel "hello", "ASynthOsc", 1, "osc_waveform", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 4.0
-DefineChannel "hello", "ASynthFilter", 1, "filter_attack", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.133332997560501, 0, 2.5
-DefineChannel "hello", "ASynthFilter", 1, "filter_decay", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.166666999459267, 0, 2.5
-DefineChannel "hello", "ASynthFilter", 1, "filter_sustain", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.0966669991612434, 0, 1.0
-DefineChannel "hello", "ASynthFilter", 1, "filter_release", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.86666601896286, 0, 2.5
-DefineChannel "hello", "ASynthFilter", 1, "filter_resonance", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.036062997579575, 0, 0.97
-DefineChannel "hello", "ASynthFilter", 1, "filter_env_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 1.13385999202728, -16, 16
-DefineChannel "hello", "ASynthFilter", 1, "filter_cutoff", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, -0.106298997998238, -0.5, 1.5
-DefineChannel "hello", "ASynthDetune", 2, "osc_detune", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0.22834600508213, -1, 1
-DefineChannel "hello", "ASynthOsc", 2, "osc_waveform", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, 0, 4.0
-DefineChannel "hello", "ASynthRender", 1, "master_vol", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.692900002002716, 0, 1
-DefineChannel "hello", "ASynthLfo", 1, "lfo_freq", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_EXPONENTIAL, 0, 0, 7.5
-DefineChannel "hello", "ASynthLfo", 1, "lfo_waveform", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 6.0
-DefineChannel "hello", "ASynthDetune", 2, "osc_range", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 2, -3, 4
-DefineChannel "hello", "ASynthMix", 1, "osc_mix", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, -0.244093999266624, -1, 1
-DefineChannel "hello", "ASynthLfoFreq", 1, "freq_mod_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 1.25992105
-DefineChannel "hello", "ASynthLfoFreq", 2, "freq_mod_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 1.25992105
-DefineChannel "hello", "ASynthFilter", 1, "filter_mod_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, -1, -1, 1
-DefineChannel "hello", "ASynthAmp", 1, "amp_mod_amount", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, -1, -1, 1
-DefineChannel "hello", "ASynthMix", 1, "osc_mix_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0, 0, 1
-DefineChannel "hello", "ASynthOsc", 1, "osc_pulsewidth", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.629921019077301, 0, 1.0
-DefineChannel "hello", "ASynthOsc", 2, "osc_pulsewidth", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.173227995634079, 0, 1.0
-DefineChannel "hello", "ASynthReverb", 1, "reverb_roomsize", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.206667006015778, 0, 1
-DefineChannel "hello", "ASynthReverb", 1, "reverb_damp", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0, 0, 1
-DefineChannel "hello", "ASynthReverb", 1, "reverb_wet", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.0799999982118607, 0, 1
-DefineChannel "hello", "ASynthReverb", 1, "reverb_width", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 1, 0, 1
-DefineChannel "hello", "ASynthOverDrive", 1, "distortion_crunch", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0, 0, 0.9
-DefineChannel "hello", "ASynthOsc", 1, "osc_sync", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
-DefineChannel "hello", "ASynthOsc", 2, "osc_sync", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
-DefineChannel "hello", "ASynthInput", 1, "portamento_time", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.0133330002427101, 0, 1
-DefineChannel "hello", "ASynthInput", 1, "keyboard_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2
-DefineChannel "hello", "ASynthDetune", 2, "osc_pitch", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, -1, -12, 12
-DefineChannel "hello", "ASynthFilter", 1, "filter_type", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 4.0
-DefineChannel "hello", "ASynthLfoFreq", 1, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2.0
-DefineChannel "hello", "ASynthLfoFreq", 2, "freq_mod_osc", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 0, 0, 2.0
-DefineChannel "hello", "ASynthFilter", 1, "filter_kbd_track", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_LINEAR, 0.783333003520966, 0, 1
-DefineChannel "hello", "ASynthInput", 1, "portamento_mode", $CHANNEL_MODE_INPUT, $CHANNEL_TYPE_INTEGER, 1, 0, 1
-
-</CsInstruments>
-<CsScore>
-f 1 0 16384 10 1 ;sine
-f 0 3600
-i 10000 0 -1
-
-;i 2 0 1 20 20
-
-;i "hello_mixer" 0 -1
-
-;i 2 + 3 3 3
-;i 2 + 3 10 1
-
-;i "forward" 0 1 60 30
-;i "forward" + 1 62 <
-;i "forward" + 1 65 <
-;i "forward" + 1 69 10
-;
-;i "forward" 5 1 60 30
-;i "forward" + 1 62 <
-;i "forward" 7 1 65 <
-;i "forward" 7 1 69 10
-
-
-</CsScore>
-</CsoundSynthesizer>
+#endif

@@ -1,62 +1,69 @@
-[gd_resource type="CsoundLayout" load_steps=2 format=3 uid="uid://flhpr0lk37e4"]
+[gd_resource type="CsoundLayout" load_steps=9 format=3 uid="uid://flhpr0lk37e4"]
 
-[ext_resource type="CsoundFileReader" uid="uid://d4ilk623jy1v0" path="res://amsynth.csd" id="1_sacqj"]
+[ext_resource type="CsoundFileReader" uid="uid://ckxvxcvf1nlyr" path="res://amsynth1.csd" id="1_b6h2o"]
+[ext_resource type="CsoundFileReader" uid="uid://bjomgp1fo4263" path="res://amsynth2.csd" id="2_ywogs"]
+[ext_resource type="CsoundFileReader" uid="uid://djjxlbho30gj7" path="res://amsynth3.csd" id="3_toy4g"]
+[ext_resource type="CsoundFileReader" uid="uid://bcb25lyj4b3ha" path="res://amsynth4.csd" id="4_r44pq"]
+[ext_resource type="CsoundFileReader" uid="uid://c8njkum8y5pjw" path="res://amsynth5.csd" id="5_il8tf"]
+[ext_resource type="CsoundFileReader" uid="uid://dgbwbg01b7hak" path="res://amsynth6.csd" id="6_kxe0r"]
+[ext_resource type="CsoundFileReader" uid="uid://bgcrf410xf5oc" path="res://amsynth7.csd" id="7_a2l5k"]
+[ext_resource type="CsoundFileReader" uid="uid://dbx7faafcakvr" path="res://amsynth8.csd" id="8_a2l5k"]
 
 [resource]
-csound/0/script = ExtResource("1_sacqj")
+csound/0/mute = true
 csound/1/name = "amsynth1"
 csound/1/solo = false
 csound/1/mute = false
 csound/1/bypass = false
 csound/1/volume_db = 0.0
 csound/1/tab = 0
-csound/1/script = ExtResource("1_sacqj")
+csound/1/script = ExtResource("1_b6h2o")
 csound/2/name = "amsynth2"
 csound/2/solo = false
 csound/2/mute = false
 csound/2/bypass = false
 csound/2/volume_db = 0.0
 csound/2/tab = 0
-csound/2/script = ExtResource("1_sacqj")
+csound/2/script = ExtResource("2_ywogs")
 csound/3/name = "amsynth3"
 csound/3/solo = false
 csound/3/mute = false
 csound/3/bypass = false
 csound/3/volume_db = 0.0
 csound/3/tab = 0
-csound/3/script = ExtResource("1_sacqj")
+csound/3/script = ExtResource("3_toy4g")
 csound/4/name = "amsynth4"
 csound/4/solo = false
 csound/4/mute = false
 csound/4/bypass = false
 csound/4/volume_db = 0.0
 csound/4/tab = 0
-csound/4/script = ExtResource("1_sacqj")
+csound/4/script = ExtResource("4_r44pq")
 csound/5/name = "amsynth5"
 csound/5/solo = false
 csound/5/mute = false
 csound/5/bypass = false
 csound/5/volume_db = 0.0
 csound/5/tab = 0
-csound/5/script = ExtResource("1_sacqj")
+csound/5/script = ExtResource("5_il8tf")
 csound/6/name = "amsynth6"
 csound/6/solo = false
 csound/6/mute = false
 csound/6/bypass = false
 csound/6/volume_db = 0.0
 csound/6/tab = 0
-csound/6/script = ExtResource("1_sacqj")
+csound/6/script = ExtResource("6_kxe0r")
 csound/7/name = "amsynth7"
 csound/7/solo = false
 csound/7/mute = false
 csound/7/bypass = false
 csound/7/volume_db = 0.0
 csound/7/tab = 0
-csound/7/script = ExtResource("1_sacqj")
+csound/7/script = ExtResource("7_a2l5k")
 csound/8/name = "amsynth8"
 csound/8/solo = false
 csound/8/mute = false
 csound/8/bypass = false
 csound/8/volume_db = 0.0
 csound/8/tab = 0
-csound/8/script = ExtResource("1_sacqj")
+csound/8/script = ExtResource("8_a2l5k")
