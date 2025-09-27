@@ -1,0 +1,14 @@
+[remap]
+
+importer="csound"
+type="CsoundFileReader"
+uid="uid://bcb25lyj4b3ha"
+path="res://.godot/imported/amsynth4.csd-78af577d660219ec673f80e72ed56994.csoundstr"
+
+[deps]
+
+source_file="res://addons/synths/amsynth4.csd"
+dest_files=["res://.godot/imported/amsynth4.csd-78af577d660219ec673f80e72ed56994.csoundstr"]
+
+[params]
+

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bpi5740ulra01"]
 
-[ext_resource type="Script" uid="uid://sowf7k1fm600" path="res://amsynths.gd" id="1_18msi"]
+[ext_resource type="Script" uid="uid://sowf7k1fm600" path="res://addons/synths/amsynths.gd" id="1_18msi"]
 
 [sub_resource type="AudioStreamCsound" id="AudioStreamCsound_u385u"]
 csound_name = "amsynth1"

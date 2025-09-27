@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqblgckoq2x14"]
 
-[ext_resource type="PackedScene" uid="uid://bpi5740ulra01" path="res://amsynths.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cx2n272u7rwdy" path="res://amsynths_ui.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bpi5740ulra01" path="res://addons/synths/amsynths.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cx2n272u7rwdy" path="res://addons/synths/amsynths_ui.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
 
