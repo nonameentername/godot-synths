@@ -23,8 +23,8 @@ func _process(_delta: float) -> void:
 
 func load_presets():
 	for file_name in DirAccess.get_files_at(resource_dir):
-		if (file_name.get_extension() == "import"):
-			file_name = file_name.replace('.import', '')
+		if (file_name.get_extension() == "json"):
+			file_name = file_name.replace('.json', '')
 			presets.append(file_name.split(".")[0])
 	update_preset_list("")
 
@@ -45,6 +45,6 @@ func _on_button_pressed() -> void:
 		return
 
 	var index: int = preset_item_list.get_selected_items()[0]
-	var selected_preset = preset_dir + preset_item_list.get_item_text(index) + ".inc"
+	var selected_preset = preset_dir + preset_item_list.get_item_text(index) + ".json"
 
 	load_preset.emit(selected_preset)

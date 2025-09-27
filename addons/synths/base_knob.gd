@@ -55,6 +55,10 @@ var actual_value: float:
 		else:
 			label_value.text = "%.2f" % actual_value
 
+@export
+var control: int
+
+
 var captured: bool = false
 var local_mouse_position: Vector2
 var saved_current_value: float
@@ -78,7 +82,7 @@ var label_max: Label = $LabelMax
 @onready
 var label_value: Label = $LabelValue
 
-signal value_changed(value: float)
+signal value_changed(control: int, value: float, actual_value: float)
 
 
 func _ready() -> void:
@@ -108,7 +112,7 @@ func _gui_input(event: InputEvent) -> void:
 			current_value = clamp(saved_current_value + delta, 0, 1)
 
 		update_knob()
-		value_changed.emit(snapped(actual_value, step))
+		value_changed.emit(control, current_value, snapped(actual_value, step))
 
 
 func update_actual_value() -> void:
