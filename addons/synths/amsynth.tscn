@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2iwgtjje05p"]
+[gd_scene format=3 uid="uid://c2iwgtjje05p"]
 
 [ext_resource type="Script" uid="uid://cveq0llg5hkk4" path="res://addons/synths/amsynth.gd" id="1_8g6jc"]
 [ext_resource type="PackedScene" uid="uid://c3ulf3fijrt5" path="res://addons/synths/waveform.tscn" id="3_bfoec"]
@@ -8,13 +8,13 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ptmr5"]
 font_size = 10
 
-[node name="amsynth" type="Control"]
+[node name="amsynth" type="Control" unique_id=1979931238]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_8g6jc")
 csound_name = ""
 
-[node name="Oscillator1" type="Panel" parent="."]
+[node name="Oscillator1" type="Panel" parent="." unique_id=109506827]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 8.0
@@ -22,7 +22,7 @@ offset_top = 8.0
 offset_right = 448.0
 offset_bottom = 104.0
 
-[node name="Label" type="Label" parent="Oscillator1"]
+[node name="Label" type="Label" parent="Oscillator1" unique_id=33322217]
 layout_mode = 0
 offset_right = 440.0
 offset_bottom = 16.0
@@ -32,7 +32,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Oscillator1Waveform" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator1Waveform" parent="Oscillator1" unique_id=136733050 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -46,13 +47,15 @@ knob_name = "waveform"
 step = 1.0
 control = 1
 
-[node name="waveform" parent="Oscillator1" instance=ExtResource("3_bfoec")]
+[node name="waveform" parent="Oscillator1" unique_id=271629096 instance=ExtResource("3_bfoec")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="Oscillator1Shape" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator1Shape" parent="Oscillator1" unique_id=902278235 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -64,7 +67,8 @@ component_channel = "osc_pulsewidth"
 knob_name = "shape"
 control = 2
 
-[node name="Oscillator1Octave" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator1Octave" parent="Oscillator1" unique_id=481215781 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -79,7 +83,8 @@ knob_name = "octave"
 step = 1.0
 control = 4
 
-[node name="Oscillator1Semitone" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator1Semitone" parent="Oscillator1" unique_id=708956820 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
@@ -94,7 +99,8 @@ knob_name = "semitone"
 step = 1.0
 control = 5
 
-[node name="Oscillator1Detune" parent="Oscillator1" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator1Detune" parent="Oscillator1" unique_id=152725244 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
@@ -107,7 +113,7 @@ min_value = -1.0
 knob_name = "detune"
 control = 6
 
-[node name="OscillatorMix" type="Panel" parent="."]
+[node name="OscillatorMix" type="Panel" parent="." unique_id=956633542]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 456.0
@@ -115,7 +121,7 @@ offset_top = 120.0
 offset_right = 608.0
 offset_bottom = 216.0
 
-[node name="Label" type="Label" parent="OscillatorMix"]
+[node name="Label" type="Label" parent="OscillatorMix" unique_id=426068449]
 layout_mode = 0
 offset_right = 152.0
 offset_bottom = 16.0
@@ -125,7 +131,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="OscillatorMix" parent="OscillatorMix" instance=ExtResource("4_e5kgd")]
+[node name="OscillatorMix" parent="OscillatorMix" unique_id=1736374968 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -139,7 +146,8 @@ knob_name = "osc1 / osc2"
 current_value = 0.5
 control = 13
 
-[node name="OscillatorMixMode" parent="OscillatorMix" instance=ExtResource("4_e5kgd")]
+[node name="OscillatorMixMode" parent="OscillatorMix" unique_id=375305766 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -151,7 +159,7 @@ component_channel = "osc_mix_mode"
 knob_name = "ring mod"
 control = 14
 
-[node name="Oscillator2" type="Panel" parent="."]
+[node name="Oscillator2" type="Panel" parent="." unique_id=1922213584]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 8.0
@@ -159,7 +167,7 @@ offset_top = 120.0
 offset_right = 448.0
 offset_bottom = 216.0
 
-[node name="Label" type="Label" parent="Oscillator2"]
+[node name="Label" type="Label" parent="Oscillator2" unique_id=1013159891]
 layout_mode = 0
 offset_right = 440.0
 offset_bottom = 16.0
@@ -169,7 +177,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Oscillator2Waveform" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator2Waveform" parent="Oscillator2" unique_id=1938225213 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -183,13 +192,15 @@ knob_name = "waveform"
 step = 1.0
 control = 7
 
-[node name="waveform" parent="Oscillator2" instance=ExtResource("3_bfoec")]
+[node name="waveform" parent="Oscillator2" unique_id=222651170 instance=ExtResource("3_bfoec")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="Oscillator2Shape" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator2Shape" parent="Oscillator2" unique_id=756713591 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -201,7 +212,8 @@ component_channel = "osc_pulsewidth"
 knob_name = "shape"
 control = 8
 
-[node name="Oscillator2Octave" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator2Octave" parent="Oscillator2" unique_id=328602645 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -216,7 +228,8 @@ knob_name = "octave"
 step = 1.0
 control = 10
 
-[node name="Oscillator2Semitone" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator2Semitone" parent="Oscillator2" unique_id=1816285666 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
@@ -231,7 +244,8 @@ knob_name = "semitone"
 step = 1.0
 control = 11
 
-[node name="Oscillator2Detune" parent="Oscillator2" instance=ExtResource("4_e5kgd")]
+[node name="Oscillator2Detune" parent="Oscillator2" unique_id=354989466 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
@@ -244,7 +258,7 @@ min_value = -1.0
 knob_name = "detune"
 control = 12
 
-[node name="AmpEnvelope" type="Panel" parent="."]
+[node name="AmpEnvelope" type="Panel" parent="." unique_id=317694132]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 456.0
@@ -252,7 +266,7 @@ offset_top = 8.0
 offset_right = 752.0
 offset_bottom = 104.0
 
-[node name="Label" type="Label" parent="AmpEnvelope"]
+[node name="Label" type="Label" parent="AmpEnvelope" unique_id=1744072355]
 layout_mode = 0
 offset_right = 296.0
 offset_bottom = 16.0
@@ -262,7 +276,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AmpAttack" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
+[node name="AmpAttack" parent="AmpEnvelope" unique_id=322860793 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -275,7 +290,8 @@ max_value = 2.5
 knob_name = "attack"
 control = 15
 
-[node name="AmpDecay" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
+[node name="AmpDecay" parent="AmpEnvelope" unique_id=452217175 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -288,7 +304,8 @@ max_value = 2.5
 knob_name = "decay"
 control = 16
 
-[node name="AmpSustain" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
+[node name="AmpSustain" parent="AmpEnvelope" unique_id=1434703126 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -300,7 +317,8 @@ component_channel = "amp_sustain"
 knob_name = "sustain"
 control = 17
 
-[node name="AmpRelease" parent="AmpEnvelope" instance=ExtResource("4_e5kgd")]
+[node name="AmpRelease" parent="AmpEnvelope" unique_id=977779369 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -313,7 +331,7 @@ max_value = 2.5
 knob_name = "release"
 control = 18
 
-[node name="Lfo" type="Panel" parent="."]
+[node name="Lfo" type="Panel" parent="." unique_id=369753349]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 8.0
@@ -321,7 +339,7 @@ offset_top = 344.0
 offset_right = 520.0
 offset_bottom = 440.0
 
-[node name="Label" type="Label" parent="Lfo"]
+[node name="Label" type="Label" parent="Lfo" unique_id=152965365]
 layout_mode = 0
 offset_right = 512.0
 offset_bottom = 16.0
@@ -331,7 +349,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="LfoWaveform" parent="Lfo" instance=ExtResource("4_e5kgd")]
+[node name="LfoWaveform" parent="Lfo" unique_id=913968402 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -345,13 +364,15 @@ knob_name = "waveform"
 step = 1.0
 control = 33
 
-[node name="waveform" parent="Lfo" instance=ExtResource("3_bfoec")]
+[node name="waveform" parent="Lfo" unique_id=129458707 instance=ExtResource("3_bfoec")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
 
-[node name="LfoSpeed" parent="Lfo" instance=ExtResource("4_e5kgd")]
+[node name="LfoSpeed" parent="Lfo" unique_id=912523412 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -364,7 +385,8 @@ max_value = 7.5
 knob_name = "speed"
 control = 34
 
-[node name="LfoOscillator1" parent="Lfo" instance=ExtResource("4_e5kgd")]
+[node name="LfoOscillator1" parent="Lfo" unique_id=913902375 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -377,7 +399,8 @@ max_value = 1.25
 knob_name = "osc 1"
 control = 35
 
-[node name="LfoOscillator2" parent="Lfo" instance=ExtResource("4_e5kgd")]
+[node name="LfoOscillator2" parent="Lfo" unique_id=1515312010 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
@@ -390,7 +413,8 @@ max_value = 1.25
 knob_name = "osc 2"
 control = 36
 
-[node name="LfoFilter" parent="Lfo" instance=ExtResource("4_e5kgd")]
+[node name="LfoFilter" parent="Lfo" unique_id=220203001 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
@@ -403,7 +427,8 @@ min_value = -1.0
 knob_name = "filter"
 control = 37
 
-[node name="LfoAmp" parent="Lfo" instance=ExtResource("4_e5kgd")]
+[node name="LfoAmp" parent="Lfo" unique_id=1731291156 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 440.0
 offset_top = 24.0
 offset_right = 440.0
@@ -416,7 +441,7 @@ min_value = -1.0
 knob_name = "amp"
 control = 38
 
-[node name="Filter" type="Panel" parent="."]
+[node name="Filter" type="Panel" parent="." unique_id=1890235444]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 8.0
@@ -424,7 +449,7 @@ offset_top = 232.0
 offset_right = 664.0
 offset_bottom = 328.0
 
-[node name="Label" type="Label" parent="Filter"]
+[node name="Label" type="Label" parent="Filter" unique_id=1484725827]
 layout_mode = 0
 offset_right = 656.0
 offset_bottom = 16.0
@@ -434,7 +459,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Filter" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="Filter" parent="Filter" unique_id=783240972 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -448,7 +474,8 @@ knob_name = "filter"
 step = 1.0
 control = 21
 
-[node name="FilterResonance" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterResonance" parent="Filter" unique_id=1196109778 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -461,7 +488,8 @@ max_value = 0.97
 knob_name = "reson"
 control = 22
 
-[node name="FilterCutoff" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterCutoff" parent="Filter" unique_id=1086771648 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -475,7 +503,8 @@ max_value = 1.5
 knob_name = "cutoff"
 control = 23
 
-[node name="FilterKeyTrack" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterKeyTrack" parent="Filter" unique_id=1293577543 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -487,7 +516,8 @@ component_channel = "filter_kbd_track"
 knob_name = "key track"
 control = 24
 
-[node name="FilterEnvelopeAmount" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterEnvelopeAmount" parent="Filter" unique_id=656871197 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
@@ -501,7 +531,8 @@ max_value = 16.0
 knob_name = "env amt"
 control = 25
 
-[node name="FilterAttack" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterAttack" parent="Filter" unique_id=329677756 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
@@ -514,7 +545,8 @@ max_value = 2.5
 knob_name = "attack"
 control = 26
 
-[node name="FilterDecay" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterDecay" parent="Filter" unique_id=1962716401 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 440.0
 offset_top = 24.0
 offset_right = 440.0
@@ -527,7 +559,8 @@ max_value = 2.5
 knob_name = "decay"
 control = 27
 
-[node name="FilterSustain" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterSustain" parent="Filter" unique_id=1296170148 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 512.0
 offset_top = 24.0
 offset_right = 512.0
@@ -539,7 +572,8 @@ component_channel = "filter_sustain"
 knob_name = "sustain"
 control = 28
 
-[node name="FilterRelease" parent="Filter" instance=ExtResource("4_e5kgd")]
+[node name="FilterRelease" parent="Filter" unique_id=1038049940 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 584.0
 offset_top = 24.0
 offset_right = 584.0
@@ -552,7 +586,7 @@ max_value = 2.5
 knob_name = "release"
 control = 29
 
-[node name="Amp" type="Panel" parent="."]
+[node name="Amp" type="Panel" parent="." unique_id=1921669448]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 616.0
@@ -560,7 +594,7 @@ offset_top = 120.0
 offset_right = 768.0
 offset_bottom = 216.0
 
-[node name="Label" type="Label" parent="Amp"]
+[node name="Label" type="Label" parent="Amp" unique_id=617871722]
 layout_mode = 0
 offset_right = 152.0
 offset_bottom = 16.0
@@ -570,7 +604,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AmpVolume" parent="Amp" instance=ExtResource("4_e5kgd")]
+[node name="AmpVolume" parent="Amp" unique_id=1031979755 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -582,7 +617,8 @@ component_channel = "master_vol"
 knob_name = "volume"
 control = 19
 
-[node name="AmpDrive" parent="Amp" instance=ExtResource("4_e5kgd")]
+[node name="AmpDrive" parent="Amp" unique_id=1575373052 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -595,7 +631,7 @@ max_value = 0.9
 knob_name = "drive"
 control = 20
 
-[node name="Reverb" type="Panel" parent="."]
+[node name="Reverb" type="Panel" parent="." unique_id=1528598422]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 528.0
@@ -603,7 +639,7 @@ offset_top = 344.0
 offset_right = 824.0
 offset_bottom = 440.0
 
-[node name="Label" type="Label" parent="Reverb"]
+[node name="Label" type="Label" parent="Reverb" unique_id=1493003835]
 layout_mode = 0
 offset_right = 296.0
 offset_bottom = 16.0
@@ -613,7 +649,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ReverbAmount" parent="Reverb" instance=ExtResource("4_e5kgd")]
+[node name="ReverbAmount" parent="Reverb" unique_id=2049453426 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -625,7 +662,8 @@ component_channel = "reverb_wet"
 knob_name = "amount"
 control = 39
 
-[node name="ReverbSize" parent="Reverb" instance=ExtResource("4_e5kgd")]
+[node name="ReverbSize" parent="Reverb" unique_id=1067872837 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -637,7 +675,8 @@ component_channel = "reverb_roomsize"
 knob_name = "size"
 control = 40
 
-[node name="ReverbStereo" parent="Reverb" instance=ExtResource("4_e5kgd")]
+[node name="ReverbStereo" parent="Reverb" unique_id=1034434121 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -649,7 +688,8 @@ component_channel = "reverb_width"
 knob_name = "stereo"
 control = 41
 
-[node name="ReverbDamping" parent="Reverb" instance=ExtResource("4_e5kgd")]
+[node name="ReverbDamping" parent="Reverb" unique_id=1402595693 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
@@ -661,7 +701,7 @@ component_channel = "reverb_damp"
 knob_name = "damping"
 control = 42
 
-[node name="Portamento" type="Panel" parent="."]
+[node name="Portamento" type="Panel" parent="." unique_id=476716191]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 672.0
@@ -669,7 +709,7 @@ offset_top = 232.0
 offset_right = 896.0
 offset_bottom = 328.0
 
-[node name="Label" type="Label" parent="Portamento"]
+[node name="Label" type="Label" parent="Portamento" unique_id=1487984874]
 layout_mode = 0
 offset_right = 224.0
 offset_bottom = 16.0
@@ -679,7 +719,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="PortamentoTime" parent="Portamento" instance=ExtResource("4_e5kgd")]
+[node name="PortamentoTime" parent="Portamento" unique_id=166665510 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
@@ -691,7 +732,8 @@ component_channel = "portamento_time"
 knob_name = "time"
 control = 30
 
-[node name="PortamentoMode" parent="Portamento" instance=ExtResource("4_e5kgd")]
+[node name="PortamentoMode" parent="Portamento" unique_id=1262154101 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
@@ -704,7 +746,8 @@ knob_name = "mode"
 step = 1.0
 control = 31
 
-[node name="PortamentoKeyboardMode" parent="Portamento" instance=ExtResource("4_e5kgd")]
+[node name="PortamentoKeyboardMode" parent="Portamento" unique_id=1821943807 instance=ExtResource("4_e5kgd")]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
@@ -718,7 +761,7 @@ knob_name = "keyboard"
 step = 1.0
 control = 32
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1498912425]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 832.0
@@ -726,7 +769,7 @@ offset_top = 344.0
 offset_right = 896.0
 offset_bottom = 440.0
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="." unique_id=1299211301]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 776.0
@@ -734,7 +777,7 @@ offset_top = 8.0
 offset_right = 896.0
 offset_bottom = 216.0
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1562241033]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_left = 904.0
@@ -742,17 +785,17 @@ offset_right = 1153.0
 offset_bottom = 440.0
 current_tab = 0
 
-[node name="Presets" parent="TabContainer" instance=ExtResource("4_ty56r")]
+[node name="Presets" parent="TabContainer" unique_id=686440977 instance=ExtResource("4_ty56r")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="SavedPresets" type="Panel" parent="TabContainer"]
+[node name="SavedPresets" type="Panel" parent="TabContainer" unique_id=158283052]
 visible = false
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="LineEdit" type="LineEdit" parent="TabContainer/SavedPresets"]
+[node name="LineEdit" type="LineEdit" parent="TabContainer/SavedPresets" unique_id=622084375]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -760,14 +803,14 @@ offset_right = 232.0
 offset_bottom = 39.0
 placeholder_text = "search/name"
 
-[node name="ItemList" type="ItemList" parent="TabContainer/SavedPresets"]
+[node name="ItemList" type="ItemList" parent="TabContainer/SavedPresets" unique_id=136500078]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 237.0
 offset_bottom = 359.0
 
-[node name="ButtonLoad" type="Button" parent="TabContainer/SavedPresets"]
+[node name="ButtonLoad" type="Button" parent="TabContainer/SavedPresets" unique_id=334060098]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 366.0
@@ -775,7 +818,7 @@ offset_right = 118.0
 offset_bottom = 402.0
 text = "load"
 
-[node name="ButtonSave" type="Button" parent="TabContainer/SavedPresets"]
+[node name="ButtonSave" type="Button" parent="TabContainer/SavedPresets" unique_id=1337461937]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 366.0

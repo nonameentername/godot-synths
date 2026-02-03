@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhl1yxv8sn0gi"]
+[gd_scene format=3 uid="uid://bhl1yxv8sn0gi"]
 
 [ext_resource type="Script" uid="uid://bq231cork5ju4" path="res://addons/synths/presets.gd" id="1_2gynq"]
 
-[node name="Presets" type="Control"]
+[node name="Presets" type="Control" unique_id=1477578504]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,13 +11,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2gynq")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1657013375]
 self_modulate = Color(1, 1, 1, 0.666667)
 layout_mode = 0
 offset_right = 240.0
 offset_bottom = 363.0
 
-[node name="LineEdit" type="LineEdit" parent="Panel"]
+[node name="LineEdit" type="LineEdit" parent="Panel" unique_id=1204370051]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -25,14 +25,14 @@ offset_right = 232.0
 offset_bottom = 40.0
 placeholder_text = "search"
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="ItemList" type="ItemList" parent="." unique_id=943426561]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 232.0
 offset_bottom = 355.0
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1407268938]
 layout_mode = 0
 offset_top = 371.0
 offset_right = 240.0
