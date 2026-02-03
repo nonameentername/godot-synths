@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqblgckoq2x14"]
+[gd_scene format=3 uid="uid://cqblgckoq2x14"]
 
 [ext_resource type="PackedScene" uid="uid://bpi5740ulra01" path="res://addons/synths/amsynths.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cx2n272u7rwdy" path="res://addons/synths/amsynths_ui.tscn" id="4_1bvp3"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=268421952]
 
-[node name="amsynths" parent="." instance=ExtResource("2_h2yge")]
+[node name="amsynths" parent="." unique_id=1613931620 instance=ExtResource("2_h2yge")]
 
-[node name="amsynths_ui" parent="." instance=ExtResource("4_1bvp3")]
+[node name="amsynths_ui" parent="." unique_id=1062358059 instance=ExtResource("4_1bvp3")]

@@ -1,4 +1,4 @@
-[gd_resource type="CsoundLayout" load_steps=9 format=3 uid="uid://flhpr0lk37e4"]
+[gd_resource type="CsoundLayout" format=3 uid="uid://flhpr0lk37e4"]
 
 [ext_resource type="CsoundFileReader" uid="uid://ckxvxcvf1nlyr" path="res://addons/synths/amsynth1.csd" id="1_a2l5k"]
 [ext_resource type="CsoundFileReader" uid="uid://bjomgp1fo4263" path="res://addons/synths/amsynth2.csd" id="2_i6evf"]

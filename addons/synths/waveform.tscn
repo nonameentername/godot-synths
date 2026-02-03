@@ -1,19 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3ulf3fijrt5"]
+[gd_scene format=3 uid="uid://c3ulf3fijrt5"]
 
-[ext_resource type="Script" path="res://addons/synths/waveform.gd" id="1_fian8"]
+[ext_resource type="Script" uid="uid://c5n87c4d7swu0" path="res://addons/synths/waveform.gd" id="1_fian8"]
 [ext_resource type="Texture2D" uid="uid://bnbh1glww04m4" path="res://addons/synths/waves.png" id="1_s42qy"]
 
-[node name="waveform" type="Control"]
+[node name="waveform" type="Control" unique_id=592322714]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_fian8")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=839197611]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="waveform" type="Sprite2D" parent="Panel"]
+[node name="waveform" type="Sprite2D" parent="Panel" unique_id=18420039]
 modulate = Color(0, 1, 1, 1)
 position = Vector2(32, 32)
 texture = ExtResource("1_s42qy")
