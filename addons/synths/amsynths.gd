@@ -3,7 +3,8 @@ extends Node2D
 @export
 var use_jack: bool = false
 
-var amsynth: Dictionary = {}
+var amsynth: CsoundInstance
+var channel: int
 
 
 func _ready() -> void:
@@ -19,14 +20,8 @@ func _ready() -> void:
 
 
 func csound_ready(csound_name: String) -> void:
-	if csound_name == "Main":
-		return
-
-	var csound_instance: CsoundInstance = CsoundServer.get_csound(csound_name)
-	var channel: int = int(csound_instance.evaluate_code("return $INSTRUMENT_CHANNEL"))
-	#TODO: get channels as a list instead of this
-	amsynth[channel - 1] = csound_instance
-	amsynth[channel] = csound_instance
+	amsynth = CsoundServer.get_csound(csound_name)
+	channel = int(amsynth.evaluate_code("return $INSTRUMENT_CHANNEL"))
 
 
 func _input(input_event):
@@ -46,12 +41,9 @@ func _send_midi_info(midi_event):
 	#print("Controller value: ", midi_event.controller_value)
 	#print("")
 
-	var midi_index = midi_event.channel + 1
-
-	if midi_index in amsynth:
-		if midi_event.message == MIDI_MESSAGE_NOTE_ON:
-			amsynth[midi_index].note_on(midi_event.channel, midi_event.pitch, midi_event.velocity)
-		if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
-			amsynth[midi_index].note_off(midi_event.channel, midi_event.pitch)
-		if midi_event.message == MIDI_MESSAGE_CONTROL_CHANGE:
-			amsynth[midi_index].control_change(midi_event.channel, midi_event.controller_number, midi_event.controller_value)
+	if midi_event.message == MIDI_MESSAGE_NOTE_ON:
+		amsynth.note_on(midi_event.channel, midi_event.pitch, midi_event.velocity)
+	if midi_event.message == MIDI_MESSAGE_NOTE_OFF:
+		amsynth.note_off(midi_event.channel, midi_event.pitch)
+	if midi_event.message == MIDI_MESSAGE_CONTROL_CHANGE:
+		amsynth.control_change(midi_event.channel, midi_event.controller_number, midi_event.controller_value)

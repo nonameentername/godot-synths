@@ -3,12 +3,7 @@
 [sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_gswc0"]
 resource_name = "SpectrumAnalyzer"
 
-[sub_resource type="AudioEffectSetCsoundChannel" id="AudioEffectSetCsoundChannel_8hrf8"]
-resource_name = "SetCsoundChannel"
-
 [resource]
 bus/0/volume_db = -2.51248
 bus/0/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_gswc0")
 bus/0/effect/0/enabled = true
-bus/0/effect/1/effect = SubResource("AudioEffectSetCsoundChannel_8hrf8")
-bus/0/effect/1/enabled = true
