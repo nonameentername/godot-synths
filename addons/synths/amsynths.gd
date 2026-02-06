@@ -3,6 +3,9 @@ extends Node2D
 @export
 var use_jack: bool = false
 
+@export
+var use_distrho: bool = false
+
 var amsynth: CsoundInstance
 var channel: int
 
@@ -12,6 +15,8 @@ func _ready() -> void:
 		CsoundServer.open_web_midi_inputs()
 	elif "JackServer" in Engine.get_singleton_list() and use_jack:
 		Engine.get_singleton("JackServer").open_midi_inputs("godot-synths", 1, 0)
+	elif "DistrhoPluginServer" in Engine.get_singleton_list() and use_distrho:
+		pass
 	else:
 		OS.open_midi_inputs()
 		print(OS.get_connected_midi_inputs())
@@ -30,16 +35,16 @@ func _input(input_event):
 
 
 func _send_midi_info(midi_event):
-	#print(midi_event)
-	#print("Channel ", midi_event.channel)
-	#print("Message ", midi_event.message)
-	#print("Pitch ", midi_event.pitch)
-	#print("Velocity ", midi_event.velocity)
-	#print("Instrument ", midi_event.instrument)
-	#print("Pressure ", midi_event.pressure)
-	#print("Controller number: ", midi_event.controller_number)
-	#print("Controller value: ", midi_event.controller_value)
-	#print("")
+	print(midi_event)
+	print("Channel ", midi_event.channel)
+	print("Message ", midi_event.message)
+	print("Pitch ", midi_event.pitch)
+	print("Velocity ", midi_event.velocity)
+	print("Instrument ", midi_event.instrument)
+	print("Pressure ", midi_event.pressure)
+	print("Controller number: ", midi_event.controller_number)
+	print("Controller value: ", midi_event.controller_value)
+	print("")
 
 	if midi_event.message == MIDI_MESSAGE_NOTE_ON:
 		amsynth.note_on(midi_event.channel, midi_event.pitch, midi_event.velocity)

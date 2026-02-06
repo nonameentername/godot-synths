@@ -6,6 +6,7 @@
 
 [node name="amsynths" type="Node2D" unique_id=552377991]
 script = ExtResource("1_18msi")
+use_distrho = true
 
 [node name="CsoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1921376311]
 stream = SubResource("AudioStreamCsound_u385u")
