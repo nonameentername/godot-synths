@@ -7,3 +7,8 @@
 script = ExtResource("1_1f7va")
 
 [node name="amsynths_ui" parent="." unique_id=1501160365 instance=ExtResource("1_00x1o")]
+
+[connection signal="parameter_changed" from="amsynths_ui/amsynth" to="." method="_on_amsynth_parameter_changed"]
+
+[editable path="amsynths_ui"]
+[editable path="amsynths_ui/amsynth"]

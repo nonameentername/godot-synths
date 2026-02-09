@@ -154,9 +154,9 @@ func get_parameters() -> Array:
 		},
 		{
 			"hints": DistrhoParameter.HINT_PARAMETER_IS_AUTOMATABLE,
-			"name": "Osc Sync2",
-			"short_name": "oscSync2",
-			"symbol": "osc_sync2",
+			"name": "Osc2 Sync",
+			"short_name": "osc2Sync",
+			"symbol": "osc2_sync",
 			"unit": "",
 			"default_value": 0,
 			"min_value": 0,

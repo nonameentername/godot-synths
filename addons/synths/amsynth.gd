@@ -52,6 +52,9 @@ func _set(property, value):
 	return false
 
 
+signal parameter_changed(parameter: int, value: float)
+
+
 func _ready():
 	oscillator_1 = $Oscillator1/Oscillator1Waveform
 	oscillator_2 = $Oscillator2/Oscillator2Waveform
@@ -73,185 +76,181 @@ func update_knobs(content: Dictionary):
 	for child_panel in get_children():
 		for node in child_panel.get_children():
 			if node is ASynthKnob:
-				node.current_value = content[str(node.control)]
+				var parameter = str(node.parameter)
+				if parameter in content:
+					node.actual_value = content[parameter]
+					node.update_current_value()
 
 
 func _process(_delta: float) -> void:
 	pass
 
 
-func _send_midi_cc(control: int, value: float) -> void:
-	var input_event_midi: InputEventMIDI = InputEventMIDI.new()
-	input_event_midi.device = 0
-	input_event_midi.channel = instrument_channel - 1
-	input_event_midi.message = MIDI_MESSAGE_CONTROL_CHANGE
-	input_event_midi.controller_number = control
-	input_event_midi.controller_value = value * 127
-
-	Input.parse_input_event(input_event_midi)
+func _send_parameter_change(parameter: int, value: float) -> void:
+	parameter_changed.emit(parameter, value)
 
 
-func _on_oscillator_1_waveform_value_changed(control: int, value: float, actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_1_waveform_value_changed(parameter: int, value: float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 	oscillator_1_waveform.waveform = actual_value
 
 
-func _on_oscillator_1_shape_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_1_shape_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_1_octave_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_1_octave_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_1_semitone_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_1_semitone_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_1_detune_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_1_detune_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_2_waveform_value_changed(control: int, value:float, actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_2_waveform_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 	oscillator_2_waveform.waveform = actual_value
 
 
-func _on_oscillator_2_shape_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_2_shape_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_2_octave_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_2_octave_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_2_semitone_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_2_semitone_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_2_detune_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_2_detune_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_mix_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_mix_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_oscillator_mix_mode_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_oscillator_mix_mode_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_amp_attack_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_amp_attack_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_amp_decay_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_amp_decay_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_amp_sustain_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_amp_sustain_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 	
 
-func _on_amp_release_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_amp_release_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_amp_volume_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_amp_volume_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_amp_drive_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_amp_drive_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_resonance_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_resonance_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_cutoff_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_cutoff_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_key_track_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_key_track_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_envelope_amount_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_envelope_amount_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_attack_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_attack_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_decay_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_decay_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_sustain_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_sustain_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_filter_release_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_filter_release_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_portamento_time_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_portamento_time_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_portamento_mode_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_portamento_mode_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_portamento_keyboard_mode_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_portamento_keyboard_mode_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_lfo_waveform_value_changed(control: int, value:float, actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_lfo_waveform_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 	lfo_1_waveform.waveform = actual_value
 
 
-func _on_lfo_speed_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_lfo_speed_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_lfo_oscillator_1_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_lfo_oscillator_1_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_lfo_oscillator_2_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_lfo_oscillator_2_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_lfo_filter_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_lfo_filter_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_lfo_amp_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_lfo_amp_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_reverb_amount_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_reverb_amount_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_reverb_size_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_reverb_size_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_reverb_stereo_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_reverb_stereo_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
-func _on_reverb_damping_value_changed(control: int, value:float, _actual_value: float) -> void:
-	_send_midi_cc(control, value)
+func _on_reverb_damping_value_changed(parameter: int, value:float, actual_value: float) -> void:
+	_send_parameter_change(parameter, actual_value)
 
 
 func load_preset(preset:String) -> void:
@@ -261,9 +260,9 @@ func load_preset(preset:String) -> void:
 
 	var content = JSON.parse_string(json_content)
 
-	for control in content:
-		var value = content[control]
-		_send_midi_cc(int(control), value)
+	for parameter in content:
+		var value = float(content[parameter])
+		_send_parameter_change(int(parameter), value)
 
 	update_knobs(content)
 	update_waveforms()
@@ -308,9 +307,9 @@ func _on_button_load_pressed() -> void:
 	var json_string = load_file.get_line()
 	var saved_preset = JSON.parse_string(json_string)
 
-	for control in saved_preset:
-		var value = saved_preset[control]
-		_send_midi_cc(int(control), value)
+	for parameter in saved_preset:
+		var value = saved_preset[parameter]
+		_send_parameter_change(parameter, value)
 
 	update_knobs(saved_preset)
 	update_waveforms()
@@ -325,9 +324,9 @@ func _on_button_save_pressed() -> void:
 	for child_panel in get_children():
 		for node in child_panel.get_children():
 			if node is ASynthKnob:
-				var control = node.control
+				var parameter = node.parameter
 				var value = node.current_value
-				saved_preset[control] = value
+				saved_preset[parameter] = value
 
 	#TODO: add sync to ui
 	saved_preset["3"] = 0

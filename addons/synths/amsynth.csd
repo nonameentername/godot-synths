@@ -18,12 +18,6 @@ massign 0, 0
 
 #include "amsynth_instr.inc"
 
-#define INSTRUMENT_NAME #two#
-#define INSTRUMENT_CHANNEL #2#
-
-#include "amsynth_instr.inc"
-
-
 </CsInstruments>
 <CsScore>
 f 1 0 16384 10 1 ;sine

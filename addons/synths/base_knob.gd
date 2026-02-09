@@ -54,9 +54,12 @@ var actual_value: float:
 			label_value.text = "%d" % actual_value
 		else:
 			label_value.text = "%.2f" % actual_value
+		update_knob()
 
 @export
-var control: int
+var parameter: int:
+	set(value):
+		parameter = value
 
 
 var captured: bool = false
@@ -82,7 +85,7 @@ var label_max: Label = $LabelMax
 @onready
 var label_value: Label = $LabelValue
 
-signal value_changed(control: int, value: float, actual_value: float)
+signal value_changed(parameter: int, value: float, actual_value: float)
 
 
 func _ready() -> void:
@@ -111,18 +114,22 @@ func _gui_input(event: InputEvent) -> void:
 			delta = -clamp(distance, 0, 1)
 			current_value = clamp(saved_current_value + delta, 0, 1)
 
+		update_actual_value()
 		update_knob()
-		value_changed.emit(control, current_value, snapped(actual_value, step))
+		value_changed.emit(parameter, current_value, snapped(actual_value, step))
 
 
 func update_actual_value() -> void:
 	actual_value = ((current_value * (max_value - min_value))) + min_value
 
 
+func update_current_value() -> void:
+	current_value = (actual_value - min_value) / (max_value - min_value)
+
+
 func update_knob() -> void:
 	if not is_node_ready():
 		await ready
-	update_actual_value()
 	knob.rotation_degrees = 20 + (current_value) * 320
 	progress.value = current_value
 

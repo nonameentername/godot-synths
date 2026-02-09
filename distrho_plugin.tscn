@@ -7,3 +7,5 @@
 script = ExtResource("1_qb22x")
 
 [node name="amsynths" parent="." unique_id=552377991 instance=ExtResource("1_ljmhy")]
+
+[editable path="amsynths"]

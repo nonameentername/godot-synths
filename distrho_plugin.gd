@@ -1,6 +1,10 @@
 extends Node2D
 
 
+@onready
+var amsynth = $amsynths
+
+
 func _ready() -> void:
 	print(
 		"godot-distrho version: ",
@@ -12,6 +16,7 @@ func _ready() -> void:
 	#DistrhoPluginServer.midi_event.connect(_on_midi_event)
 	DistrhoPluginServer.midi_note_on.connect(_on_midi_note_on)
 	DistrhoPluginServer.midi_note_off.connect(_on_midi_note_off)
+	DistrhoPluginServer.parameter_changed.connect(amsynth._on_amsynth_parameter_changed)
 
 
 func _on_midi_event(midi_event: DistrhoMidiEvent) -> void:

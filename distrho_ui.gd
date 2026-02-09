@@ -27,3 +27,8 @@ func _input(input_event: InputEvent) -> void:
 
 func _on_parameter_changed(index: int, value: float) -> void:
 	print("UI: Parameter Changed: index: ", index, " value: ", value)
+
+
+func _on_amsynth_parameter_changed(parameter: int, value: float) -> void:
+	print ("parameter ", parameter, " value = ", value)
+	DistrhoUIServer.set_parameter_value(parameter, value)

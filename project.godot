@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://b65lb28n0vop3"
 driver/mix_rate=48000
-csound/hide_csound_logs=true
+csound/hide_csound_logs=false
 
 [autoload]
 
