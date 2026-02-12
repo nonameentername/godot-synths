@@ -1,6 +1,10 @@
 extends Node2D
 
 
+@onready
+var piano = $amsynths_ui/Panel/Piano
+
+
 func _ready() -> void:
 	print(
 		"godot-distrho version: ",
@@ -9,6 +13,7 @@ func _ready() -> void:
 		DistrhoPluginServer.get_build()
 	)
 	DistrhoUIServer.parameter_changed.connect(_on_parameter_changed)
+	DistrhoUIServer.state_changed.connect(_on_state_changed)
 
 
 func _input(input_event: InputEvent) -> void:
@@ -22,11 +27,15 @@ func _input(input_event: InputEvent) -> void:
 			print ("channel = ", midi_event.channel, 
 				   " controller = ", midi_event.controller_number,
 				   " value = ",  midi_event.controller_value)
-			#amsynth.control_change(midi_event.channel, midi_event.controller_number, midi_event.controller_value)
 
 
 func _on_parameter_changed(index: int, value: float) -> void:
 	print("UI: Parameter Changed: index: ", index, " value: ", value)
+
+
+func _on_state_changed(key: String, value: String) -> void:
+	print("UI: State Changed: index: ", key, " value: ", value)
+	piano.update_key(int(key), value == "true")
 
 
 func _on_amsynth_parameter_changed(parameter: int, value: float) -> void:

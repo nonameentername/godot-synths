@@ -47,6 +47,7 @@ func _on_midi_note_on(channel: int, note: int, velocity: int, frame: int) -> voi
 	input_event_midi.velocity = velocity
 
 	Input.parse_input_event(input_event_midi)
+	DistrhoPluginServer.update_state_value.call_deferred(str(note), "true")
 
 
 func _on_midi_note_off(channel: int, note: int, velocity: int, frame: int) -> void:
@@ -62,3 +63,4 @@ func _on_midi_note_off(channel: int, note: int, velocity: int, frame: int) -> vo
 	input_event_midi.velocity = velocity
 
 	Input.parse_input_event(input_event_midi)
+	DistrhoPluginServer.update_state_value.call_deferred(str(note), "false")
