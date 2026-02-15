@@ -1,3 +1,4 @@
+@tool
 extends DistrhoPluginInstance
 
 
@@ -614,6 +615,23 @@ func get_parameters() -> Array:
 			"group_id": DistrhoParameter.PORT_GROUP_NONE
 		}
 	]
+
+	for i in range(0, 16):
+		parameters.append(
+		{
+			"hints": DistrhoParameter.HINT_PARAMETER_IS_AUTOMATABLE | DistrhoParameter.HINT_PARAMETER_IS_OUTPUT,
+			"name": "Spectrum" + str(i),
+			"short_name": "spectrum" + str(i),
+			"symbol": "spectrum" + str(i),
+			"unit": "",
+			"default_value": 0,
+			"min_value": 0,
+			"max_value": 11050,
+			"enumeration_values": {},
+			"designation": DistrhoParameter.PARAMETER_DESIGNATION_NONE,
+			"group_id": DistrhoParameter.PORT_GROUP_NONE
+		})
+
 	return parameters.map(DistrhoPluginServer.create_parameter)
 
 

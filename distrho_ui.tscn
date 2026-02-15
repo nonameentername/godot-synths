@@ -8,6 +8,10 @@ script = ExtResource("1_1f7va")
 
 [node name="amsynths_ui" parent="." unique_id=1501160365 instance=ExtResource("1_00x1o")]
 
+[node name="ShowSpectrum" parent="amsynths_ui" index="2" unique_id=1468165663]
+external_values = true
+energy_values = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+
 [connection signal="parameter_changed" from="amsynths_ui/amsynth" to="." method="_on_amsynth_parameter_changed"]
 
 [editable path="amsynths_ui"]

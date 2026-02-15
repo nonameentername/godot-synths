@@ -4,6 +4,9 @@ extends Node2D
 @onready
 var piano = $amsynths_ui/Panel/Piano
 
+@onready
+var spectrum = $amsynths_ui/ShowSpectrum
+
 
 func _ready() -> void:
 	print(
@@ -30,7 +33,12 @@ func _input(input_event: InputEvent) -> void:
 
 
 func _on_parameter_changed(index: int, value: float) -> void:
-	print("UI: Parameter Changed: index: ", index, " value: ", value)
+	var first_parameter = 42
+
+	if index < first_parameter:
+		print("UI: Parameter Changed: index: ", index, " value: ", value)
+	else:
+		spectrum.energy_values[index - first_parameter] = value
 
 
 func _on_state_changed(key: String, value: String) -> void:
