@@ -1,7 +1,7 @@
 godot-synths
 ============
 
-Godot project that uses [godot-csound](https://github.com/nonameentername/godot-csound/) to build a synthesizer.
+Godot project that uses [godot-csound](https://github.com/nonameentername/godot-csound/) and [godot-distrho](https://github.com/nonameentername/godot-distrho/) to build a synthesizer.
 
 Also has support for connecting jack using [godot-jack](https://github.com/nonameentername/godot-jack)
 
