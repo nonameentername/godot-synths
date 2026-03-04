@@ -38,8 +38,13 @@ func _input(input_event: InputEvent) -> void:
 		return
 
 	#_print_midi_info(midi_event)
-	var key: PianoKey = piano_key_dict[midi_event.pitch]
-	if midi_event.message == MIDI_MESSAGE_NOTE_ON and midi_event.velocity > 0:
+	var active = midi_event.message == MIDI_MESSAGE_NOTE_ON and midi_event.velocity > 0
+	update_key(midi_event.pitch, active)
+
+
+func update_key(pitch: int, active: bool):
+	var key: PianoKey = piano_key_dict[pitch]
+	if active:
 		key.activate()
 	else:
 		key.deactivate()

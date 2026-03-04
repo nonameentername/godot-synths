@@ -74,60 +74,60 @@ endin
 
 instr $INSTRUMENT_NAME._mixer
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 1, "osc_waveform", $INSTRUMENT_CHANNEL, 1, 0, 4.0, 2
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 1, "osc_pulsewidth", $INSTRUMENT_CHANNEL, 2, 0, 1.0, 0.629921019077301
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 1, "osc_waveform", $INSTRUMENT_CHANNEL, 1, 0, 4.0, 2
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 1, "osc_pulsewidth", $INSTRUMENT_CHANNEL, 2, 0, 1.0, 0.629921019077301
     ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 1, "osc_sync", $INSTRUMENT_CHANNEL, 3, 0, 1, 1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 1, "osc_range", $INSTRUMENT_CHANNEL, 4, -3, 4, 2
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 1, "osc_pitch", $INSTRUMENT_CHANNEL, 5, -12, 12, -1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 1, "osc_detune", $INSTRUMENT_CHANNEL, 6, -1, 1, 0.22834600508213
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 1, "osc_range", $INSTRUMENT_CHANNEL, 4, -3, 4, 2
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 1, "osc_pitch", $INSTRUMENT_CHANNEL, 5, -12, 12, -1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 1, "osc_detune", $INSTRUMENT_CHANNEL, 6, -1, 1, 0.22834600508213
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 2, "osc_waveform", $INSTRUMENT_CHANNEL, 7, 0, 4.0, 2
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 2, "osc_pulsewidth", $INSTRUMENT_CHANNEL, 8, 0, 1.0, 0.173227995634079
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 2, "osc_waveform", $INSTRUMENT_CHANNEL, 7, 0, 4.0, 2
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 2, "osc_pulsewidth", $INSTRUMENT_CHANNEL, 8, 0, 1.0, 0.173227995634079
     ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOsc", 2, "osc_sync", $INSTRUMENT_CHANNEL, 9, 0, 1, 1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 2, "osc_range", $INSTRUMENT_CHANNEL, 10, -3, 4, 2
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 2, "osc_pitch", $INSTRUMENT_CHANNEL, 11, -12, 12, -1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 2, "osc_detune", $INSTRUMENT_CHANNEL, 12, -1, 1, 0.22834600508213
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 2, "osc_range", $INSTRUMENT_CHANNEL, 10, -3, 4, 2
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 2, "osc_pitch", $INSTRUMENT_CHANNEL, 11, -12, 12, -1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthDetune", 2, "osc_detune", $INSTRUMENT_CHANNEL, 12, -1, 1, 0.22834600508213
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthMix", 1, "osc_mix", $INSTRUMENT_CHANNEL, 13, -1, 1, -0.244093999266624
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthMix", 1, "osc_mix_mode", $INSTRUMENT_CHANNEL, 14, 0, 1, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthMix", 1, "osc_mix", $INSTRUMENT_CHANNEL, 13, -1, 1, -0.244093999266624
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthMix", 1, "osc_mix_mode", $INSTRUMENT_CHANNEL, 14, 0, 1, 0
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_attack", $INSTRUMENT_CHANNEL, 15, 0, 2.5, 0.0750000029802322
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_decay", $INSTRUMENT_CHANNEL, 16, 0, 2.5, 1.55833005905151
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_sustain", $INSTRUMENT_CHANNEL, 17, 0, 1.0, 0
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_release", $INSTRUMENT_CHANNEL, 18, 0, 2.5, 0.706920027732849
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_attack", $INSTRUMENT_CHANNEL, 15, 0, 2.5, 0.0750000029802322
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_decay", $INSTRUMENT_CHANNEL, 16, 0, 2.5, 1.55833005905151
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_sustain", $INSTRUMENT_CHANNEL, 17, 0, 1.0, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_release", $INSTRUMENT_CHANNEL, 18, 0, 2.5, 0.706920027732849
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthRender", 1, "master_vol", $INSTRUMENT_CHANNEL, 19, 0, 1, 0.692900002002716
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthOverDrive", 1, "distortion_crunch", $INSTRUMENT_CHANNEL, 20, 0, 0.9, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthRender", 1, "master_vol", $INSTRUMENT_CHANNEL, 19, 0, 1, 0.692900002002716
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthOverDrive", 1, "distortion_crunch", $INSTRUMENT_CHANNEL, 20, 0, 0.9, 0
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_type", $INSTRUMENT_CHANNEL, 21, 0, 4.0, 1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_resonance", $INSTRUMENT_CHANNEL, 22, 0, 0.97, 0.036062997579575
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_cutoff", $INSTRUMENT_CHANNEL, 23, -0.5, 1.5, -0.106298997998238
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_kbd_track", $INSTRUMENT_CHANNEL, 24, 0, 1, 0.783333003520966
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_env_amount", $INSTRUMENT_CHANNEL, 25, -16, 16, 1.13385999202728
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_attack", $INSTRUMENT_CHANNEL, 26, 0, 2.5, 0.133332997560501
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_decay", $INSTRUMENT_CHANNEL, 27, 0, 2.5, 0.166666999459267
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_sustain", $INSTRUMENT_CHANNEL, 28, 0, 1.0, 0.0966669991612434
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_release", $INSTRUMENT_CHANNEL, 29, 0, 2.5, 0.86666601896286
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_type", $INSTRUMENT_CHANNEL, 21, 0, 4.0, 1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_resonance", $INSTRUMENT_CHANNEL, 22, 0, 0.97, 0.036062997579575
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_cutoff", $INSTRUMENT_CHANNEL, 23, -0.5, 1.5, -0.106298997998238
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_kbd_track", $INSTRUMENT_CHANNEL, 24, 0, 1, 0.783333003520966
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_env_amount", $INSTRUMENT_CHANNEL, 25, -16, 16, 1.13385999202728
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_attack", $INSTRUMENT_CHANNEL, 26, 0, 2.5, 0.133332997560501
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_decay", $INSTRUMENT_CHANNEL, 27, 0, 2.5, 0.166666999459267
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_sustain", $INSTRUMENT_CHANNEL, 28, 0, 1.0, 0.0966669991612434
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_release", $INSTRUMENT_CHANNEL, 29, 0, 2.5, 0.86666601896286
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthInput", 1, "portamento_time", $INSTRUMENT_CHANNEL, 30, 0, 1, 0.0133330002427101
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthInput", 1, "portamento_mode", $INSTRUMENT_CHANNEL, 31, 0, 1, 1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthInput", 1, "keyboard_mode", $INSTRUMENT_CHANNEL, 32, 0, 2, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthInput", 1, "portamento_time", $INSTRUMENT_CHANNEL, 30, 0, 1, 0.0133330002427101
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthInput", 1, "portamento_mode", $INSTRUMENT_CHANNEL, 31, 0, 1, 1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthInput", 1, "keyboard_mode", $INSTRUMENT_CHANNEL, 32, 0, 2, 0
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfo", 1, "lfo_waveform", $INSTRUMENT_CHANNEL, 33, 0, 6.0, 0
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfo", 1, "lfo_freq", $INSTRUMENT_CHANNEL, 34, 0, 7.5, 0
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfoFreq", 1, "freq_mod_amount", $INSTRUMENT_CHANNEL, 35, 0, 1.25992105, 0
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfoFreq", 2, "freq_mod_amount", $INSTRUMENT_CHANNEL, 36, 0, 1.25992105, 0
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_mod_amount", $INSTRUMENT_CHANNEL, 37, -1, 1, -1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_mod_amount", $INSTRUMENT_CHANNEL, 38, -1, 1, -1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfo", 1, "lfo_waveform", $INSTRUMENT_CHANNEL, 33, 0, 6.0, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfo", 1, "lfo_freq", $INSTRUMENT_CHANNEL, 34, 0, 7.5, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfoFreq", 1, "freq_mod_amount", $INSTRUMENT_CHANNEL, 35, 0, 1.25992105, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfoFreq", 2, "freq_mod_amount", $INSTRUMENT_CHANNEL, 36, 0, 1.25992105, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthFilter", 1, "filter_mod_amount", $INSTRUMENT_CHANNEL, 37, -1, 1, -1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthAmp", 1, "amp_mod_amount", $INSTRUMENT_CHANNEL, 38, -1, 1, -1
 
     ;these should be removed
     ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfoFreq", 1, "freq_mod_osc", $INSTRUMENT_CHANNEL, x, 0, 2.0, 0
     ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthLfoFreq", 2, "freq_mod_osc", $INSTRUMENT_CHANNEL, x, 0, 2.0, 0
 
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_wet", $INSTRUMENT_CHANNEL, 39, 0, 1, 0.0799999982118607
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_roomsize", $INSTRUMENT_CHANNEL, 40, 0, 1, 0.206667006015778
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_width", $INSTRUMENT_CHANNEL, 41, 0, 1, 1
-    ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_damp", $INSTRUMENT_CHANNEL, 42, 0, 1, 0
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_wet", $INSTRUMENT_CHANNEL, 39, 0, 1, 0.0799999982118607
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_roomsize", $INSTRUMENT_CHANNEL, 40, 0, 1, 0.206667006015778
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_width", $INSTRUMENT_CHANNEL, 41, 0, 1, 1
+    ;ReadMidiCC "$INSTRUMENT_NAME", "ASynthReverb", 1, "reverb_damp", $INSTRUMENT_CHANNEL, 42, 0, 1, 0
 
 	SInstrName = "$INSTRUMENT_NAME"
 	SInstrMixer = "$INSTRUMENT_NAME._mixer"

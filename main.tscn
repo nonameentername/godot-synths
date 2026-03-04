@@ -6,5 +6,14 @@
 [node name="Main" type="Node2D" unique_id=268421952]
 
 [node name="amsynths" parent="." unique_id=1613931620 instance=ExtResource("2_h2yge")]
+use_distrho = false
 
 [node name="amsynths_ui" parent="." unique_id=1062358059 instance=ExtResource("4_1bvp3")]
+
+[node name="ShowSpectrum" parent="amsynths_ui" index="2" unique_id=1468165663]
+external_values = null
+energy_values = null
+
+[connection signal="parameter_changed" from="amsynths_ui/amsynth" to="amsynths" method="_on_amsynth_parameter_changed"]
+
+[editable path="amsynths_ui"]

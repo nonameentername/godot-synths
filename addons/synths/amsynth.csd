@@ -11,18 +11,12 @@ nchnls = 2
 
 massign 0, 0
 
-#include "amsynth_common.inc"
+#include "addons/synths/amsynth_common.inc"
 
 #define INSTRUMENT_NAME #one#
 #define INSTRUMENT_CHANNEL #1#
 
-#include "amsynth_instr.inc"
-
-#define INSTRUMENT_NAME #two#
-#define INSTRUMENT_CHANNEL #2#
-
-#include "amsynth_instr.inc"
-
+#include "addons/synths/amsynth_instr.inc"
 
 </CsInstruments>
 <CsScore>

@@ -24,9 +24,11 @@ addons/csound/bin/android-x64
 addons/csound/bin/android-x86
 addons/csound
 addons/jack
+addons/distrho
 /android
 
 build
 build-log.txt
 compile_commands.json
 presets
+distrho_plugin_info.json

@@ -38,14 +38,13 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthOsc"
 component_num = 1
 component_channel = "osc_waveform"
 max_value = 4.0
 knob_name = "waveform"
 step = 1.0
-control = 1
+parameter = 0
 
 [node name="waveform" parent="Oscillator1" unique_id=271629096 instance=ExtResource("3_bfoec")]
 layout_mode = 0
@@ -60,12 +59,11 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthOsc"
 component_num = 1
 component_channel = "osc_pulsewidth"
 knob_name = "shape"
-control = 2
+parameter = 1
 
 [node name="Oscillator1Octave" parent="Oscillator1" unique_id=481215781 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -73,7 +71,6 @@ offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthDetune"
 component_num = 1
 component_channel = "osc_range"
@@ -81,7 +78,7 @@ min_value = -3.0
 max_value = 4.0
 knob_name = "octave"
 step = 1.0
-control = 4
+parameter = 3
 
 [node name="Oscillator1Semitone" parent="Oscillator1" unique_id=708956820 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -89,7 +86,6 @@ offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthDetune"
 component_num = 1
 component_channel = "osc_pitch"
@@ -97,7 +93,7 @@ min_value = -12.0
 max_value = 12.0
 knob_name = "semitone"
 step = 1.0
-control = 5
+parameter = 4
 
 [node name="Oscillator1Detune" parent="Oscillator1" unique_id=152725244 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -105,13 +101,12 @@ offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthDetune"
 component_num = 1
 component_channel = "osc_detune"
 min_value = -1.0
 knob_name = "detune"
-control = 6
+parameter = 5
 
 [node name="OscillatorMix" type="Panel" parent="." unique_id=956633542]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -137,14 +132,13 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthMix"
 component_num = 1
 component_channel = "osc_mix"
 min_value = -1.0
 knob_name = "osc1 / osc2"
 current_value = 0.5
-control = 13
+parameter = 16
 
 [node name="OscillatorMixMode" parent="OscillatorMix" unique_id=375305766 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -152,12 +146,11 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthMix"
 component_num = 1
 component_channel = "osc_mix_mode"
 knob_name = "ring mod"
-control = 14
+parameter = 17
 
 [node name="Oscillator2" type="Panel" parent="." unique_id=1922213584]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -183,14 +176,13 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthOsc"
 component_num = 2
 component_channel = "osc_waveform"
 max_value = 4.0
 knob_name = "waveform"
 step = 1.0
-control = 7
+parameter = 6
 
 [node name="waveform" parent="Oscillator2" unique_id=222651170 instance=ExtResource("3_bfoec")]
 layout_mode = 0
@@ -205,12 +197,11 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthOsc"
 component_num = 2
 component_channel = "osc_pulsewidth"
 knob_name = "shape"
-control = 8
+parameter = 7
 
 [node name="Oscillator2Octave" parent="Oscillator2" unique_id=328602645 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -218,7 +209,6 @@ offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthDetune"
 component_num = 2
 component_channel = "osc_range"
@@ -226,7 +216,7 @@ min_value = -3.0
 max_value = 4.0
 knob_name = "octave"
 step = 1.0
-control = 10
+parameter = 9
 
 [node name="Oscillator2Semitone" parent="Oscillator2" unique_id=1816285666 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -234,7 +224,6 @@ offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthDetune"
 component_num = 2
 component_channel = "osc_pitch"
@@ -242,7 +231,7 @@ min_value = -12.0
 max_value = 12.0
 knob_name = "semitone"
 step = 1.0
-control = 11
+parameter = 10
 
 [node name="Oscillator2Detune" parent="Oscillator2" unique_id=354989466 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -250,13 +239,12 @@ offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthDetune"
 component_num = 2
 component_channel = "osc_detune"
 min_value = -1.0
 knob_name = "detune"
-control = 12
+parameter = 11
 
 [node name="AmpEnvelope" type="Panel" parent="." unique_id=317694132]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -282,13 +270,12 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthAmp"
 component_num = 1
 component_channel = "amp_attack"
 max_value = 2.5
 knob_name = "attack"
-control = 15
+parameter = 12
 
 [node name="AmpDecay" parent="AmpEnvelope" unique_id=452217175 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -296,13 +283,12 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthAmp"
 component_num = 1
 component_channel = "amp_decay"
 max_value = 2.5
 knob_name = "decay"
-control = 16
+parameter = 13
 
 [node name="AmpSustain" parent="AmpEnvelope" unique_id=1434703126 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -310,12 +296,11 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthAmp"
 component_num = 1
 component_channel = "amp_sustain"
 knob_name = "sustain"
-control = 17
+parameter = 14
 
 [node name="AmpRelease" parent="AmpEnvelope" unique_id=977779369 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -323,13 +308,12 @@ offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthAmp"
 component_num = 1
 component_channel = "amp_release"
 max_value = 2.5
 knob_name = "release"
-control = 18
+parameter = 15
 
 [node name="Lfo" type="Panel" parent="." unique_id=369753349]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -355,14 +339,13 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthLfo"
 component_num = 1
 component_channel = "lfo_waveform"
 max_value = 6.0
 knob_name = "waveform"
 step = 1.0
-control = 33
+parameter = 29
 
 [node name="waveform" parent="Lfo" unique_id=129458707 instance=ExtResource("3_bfoec")]
 layout_mode = 0
@@ -377,13 +360,12 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthLfo"
 component_num = 1
 component_channel = "lfo_freq"
 max_value = 7.5
 knob_name = "speed"
-control = 34
+parameter = 30
 
 [node name="LfoOscillator1" parent="Lfo" unique_id=913902375 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -391,13 +373,12 @@ offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthLfoFreq"
 component_num = 1
 component_channel = "freq_mod_amount"
 max_value = 1.25
 knob_name = "osc 1"
-control = 35
+parameter = 31
 
 [node name="LfoOscillator2" parent="Lfo" unique_id=1515312010 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -405,13 +386,12 @@ offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthLfoFreq"
 component_num = 2
 component_channel = "freq_mod_amount"
 max_value = 1.25
 knob_name = "osc 2"
-control = 36
+parameter = 32
 
 [node name="LfoFilter" parent="Lfo" unique_id=220203001 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -419,13 +399,12 @@ offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_mod_amount"
 min_value = -1.0
 knob_name = "filter"
-control = 37
+parameter = 33
 
 [node name="LfoAmp" parent="Lfo" unique_id=1731291156 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -433,13 +412,12 @@ offset_left = 440.0
 offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthAmp"
 component_num = 1
 component_channel = "amp_mod_amount"
 min_value = -1.0
 knob_name = "amp"
-control = 38
+parameter = 34
 
 [node name="Filter" type="Panel" parent="." unique_id=1890235444]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -465,14 +443,13 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_type"
 max_value = 4.0
 knob_name = "filter"
 step = 1.0
-control = 21
+parameter = 20
 
 [node name="FilterResonance" parent="Filter" unique_id=1196109778 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -480,13 +457,12 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_resonance"
 max_value = 0.97
 knob_name = "reson"
-control = 22
+parameter = 21
 
 [node name="FilterCutoff" parent="Filter" unique_id=1086771648 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -494,14 +470,13 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_cutoff"
 min_value = -5.0
 max_value = 1.5
 knob_name = "cutoff"
-control = 23
+parameter = 22
 
 [node name="FilterKeyTrack" parent="Filter" unique_id=1293577543 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -509,12 +484,11 @@ offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_kbd_track"
 knob_name = "key track"
-control = 24
+parameter = 23
 
 [node name="FilterEnvelopeAmount" parent="Filter" unique_id=656871197 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -522,14 +496,13 @@ offset_left = 296.0
 offset_top = 24.0
 offset_right = 296.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_env_amount"
 min_value = -16.0
 max_value = 16.0
 knob_name = "env amt"
-control = 25
+parameter = 24
 
 [node name="FilterAttack" parent="Filter" unique_id=329677756 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -537,13 +510,12 @@ offset_left = 368.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_attack"
 max_value = 2.5
 knob_name = "attack"
-control = 26
+parameter = 25
 
 [node name="FilterDecay" parent="Filter" unique_id=1962716401 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -551,13 +523,12 @@ offset_left = 440.0
 offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_decay"
 max_value = 2.5
 knob_name = "decay"
-control = 27
+parameter = 26
 
 [node name="FilterSustain" parent="Filter" unique_id=1296170148 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -565,12 +536,11 @@ offset_left = 512.0
 offset_top = 24.0
 offset_right = 512.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_sustain"
 knob_name = "sustain"
-control = 28
+parameter = 27
 
 [node name="FilterRelease" parent="Filter" unique_id=1038049940 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -578,13 +548,12 @@ offset_left = 584.0
 offset_top = 24.0
 offset_right = 584.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthFilter"
 component_num = 1
 component_channel = "filter_release"
 max_value = 2.5
 knob_name = "release"
-control = 29
+parameter = 28
 
 [node name="Amp" type="Panel" parent="." unique_id=1921669448]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -610,12 +579,11 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthRender"
 component_num = 1
 component_channel = "master_vol"
 knob_name = "volume"
-control = 19
+parameter = 18
 
 [node name="AmpDrive" parent="Amp" unique_id=1575373052 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -623,13 +591,12 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthOverDrive"
 component_num = 1
 component_channel = "distortion_crunch"
 max_value = 0.9
 knob_name = "drive"
-control = 20
+parameter = 19
 
 [node name="Reverb" type="Panel" parent="." unique_id=1528598422]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -655,12 +622,11 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthReverb"
 component_num = 1
 component_channel = "reverb_wet"
 knob_name = "amount"
-control = 39
+parameter = 35
 
 [node name="ReverbSize" parent="Reverb" unique_id=1067872837 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -668,12 +634,11 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthReverb"
 component_num = 1
 component_channel = "reverb_roomsize"
 knob_name = "size"
-control = 40
+parameter = 36
 
 [node name="ReverbStereo" parent="Reverb" unique_id=1034434121 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -681,12 +646,11 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthReverb"
 component_num = 1
 component_channel = "reverb_width"
 knob_name = "stereo"
-control = 41
+parameter = 37
 
 [node name="ReverbDamping" parent="Reverb" unique_id=1402595693 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -694,12 +658,11 @@ offset_left = 224.0
 offset_top = 24.0
 offset_right = 224.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthReverb"
 component_num = 1
 component_channel = "reverb_damp"
 knob_name = "damping"
-control = 42
+parameter = 38
 
 [node name="Portamento" type="Panel" parent="." unique_id=476716191]
 self_modulate = Color(1, 1, 1, 0.666667)
@@ -725,12 +688,11 @@ offset_left = 8.0
 offset_top = 24.0
 offset_right = 8.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthInput"
 component_num = 1
 component_channel = "portamento_time"
 knob_name = "time"
-control = 30
+parameter = 39
 
 [node name="PortamentoMode" parent="Portamento" unique_id=1262154101 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -738,13 +700,12 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 80.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthInput"
 component_num = 1
-component_channel = "keyboard_mode"
+component_channel = "portamento_mode"
 knob_name = "mode"
 step = 1.0
-control = 31
+parameter = 40
 
 [node name="PortamentoKeyboardMode" parent="Portamento" unique_id=1821943807 instance=ExtResource("4_e5kgd")]
 layout_mode = 0
@@ -752,14 +713,13 @@ offset_left = 152.0
 offset_top = 24.0
 offset_right = 152.0
 offset_bottom = 24.0
-instrument_name = ""
 component_name = "ASynthInput"
 component_num = 1
 component_channel = "keyboard_mode"
 max_value = 2.0
 knob_name = "keyboard"
 step = 1.0
-control = 32
+parameter = 41
 
 [node name="Panel" type="Panel" parent="." unique_id=1498912425]
 self_modulate = Color(1, 1, 1, 0.666667)

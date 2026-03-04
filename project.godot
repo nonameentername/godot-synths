@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GodotSynths"
-run/main_scene="res://main.tscn"
+run/main_scene="uid://cqblgckoq2x14"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,12 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://b65lb28n0vop3"
 driver/mix_rate=48000
-csound/hide_csound_logs=true
+csound/hide_csound_logs=false
+
+[autoload]
+
+GlobalDistrhoPluginInstance="*uid://cy7qqodkix0h0"
+GlobalDistrhoUiInstance="*uid://bmrs6l1c2qr5n"
 
 [display]
 

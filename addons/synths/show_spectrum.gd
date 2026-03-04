@@ -1,5 +1,12 @@
 @tool
 extends Node2D
+class_name Spectrum
+
+@export
+var external_values: bool = false
+
+@export
+var energy_values : Array[float]
 
 const VU_COUNT = 16
 const FREQ_MAX = 11050.0
@@ -13,6 +20,12 @@ const ANIMATION_SPEED = 0.1
 var spectrum: AudioEffectSpectrumAnalyzerInstance
 var min_values: Array[float] = []
 var max_values: Array[float] = []
+
+
+func _init() -> void:
+	energy_values.resize(VU_COUNT)
+	energy_values.fill(0.0)
+
 
 func _draw() -> void:
 	@warning_ignore("integer_division")
@@ -52,13 +65,18 @@ func _process(_delta: float) -> void:
 	var data: Array[float] = []
 	var prev_hz := 0.0
 
-	for i in range(1, VU_COUNT + 1):
-		var hz := i * FREQ_MAX / VU_COUNT
-		var magnitude := spectrum.get_magnitude_for_frequency_range(prev_hz, hz).length()
-		var energy := clampf((MIN_DB + linear_to_db(magnitude)) / MIN_DB, 0, 1)
-		var height := energy * HEIGHT * HEIGHT_SCALE
-		data.append(height)
-		prev_hz = hz
+	if external_values:
+		for i in range(0, VU_COUNT):
+			var height := energy_values[i] * HEIGHT * HEIGHT_SCALE
+			data.append(height)
+	else:
+		for i in range(1, VU_COUNT + 1):
+			var hz := i * FREQ_MAX / VU_COUNT
+			var magnitude := spectrum.get_magnitude_for_frequency_range(prev_hz, hz).length()
+			var energy := clampf((MIN_DB + linear_to_db(magnitude)) / MIN_DB, 0, 1)
+			var height := energy * HEIGHT * HEIGHT_SCALE
+			data.append(height)
+			prev_hz = hz
 
 	for i in VU_COUNT:
 		if data[i] > max_values[i]:

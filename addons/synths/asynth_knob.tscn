@@ -10,11 +10,11 @@ component_name = ""
 component_num = 0
 component_channel = ""
 
-[node name="LabelName" parent="." index="2"]
+[node name="LabelName" parent="." index="2" unique_id=2065304967]
 text = ""
 
-[node name="LabelMin" parent="." index="3"]
+[node name="LabelMin" parent="." index="3" unique_id=2096541447]
 text = "0.0"
 
-[node name="LabelMax" parent="." index="4"]
+[node name="LabelMax" parent="." index="4" unique_id=277597825]
 text = "1.0"
