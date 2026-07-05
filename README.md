@@ -3,6 +3,8 @@ godot-synths
 
 Godot project that uses [godot-csound](https://github.com/nonameentername/godot-csound/) and [godot-distrho](https://github.com/nonameentername/godot-distrho/) to build a synthesizer.
 
+Currently works with Godot v4.7 stable release.
+
 Also has support for connecting jack using [godot-jack](https://github.com/nonameentername/godot-jack)
 
 GodotSyth running in the browser [godot-synths](https://nonameentername.github.io/godot-synths/godot-synths.html)

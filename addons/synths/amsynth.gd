@@ -25,7 +25,7 @@ var save_button: Button
 var presets: Array[String] = []
 
 func _get_property_list():
-	var properties = []
+	var properties: Array[Dictionary] = []
 
 	var csound_names: String
 
@@ -44,6 +44,7 @@ func _get_property_list():
 func _get(property):
 	if property == "csound_name":
 		return csound_name
+	return ""
 
 func _set(property, value):
 	if property == "csound_name":
