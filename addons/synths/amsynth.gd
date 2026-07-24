@@ -309,8 +309,8 @@ func _on_button_load_pressed() -> void:
 	var saved_preset = JSON.parse_string(json_string)
 
 	for parameter in saved_preset:
-		var value = saved_preset[parameter]
-		_send_parameter_change(parameter, value)
+		var value = float(saved_preset[parameter])
+		_send_parameter_change(int(parameter), value)
 
 	update_knobs(saved_preset)
 	update_waveforms()
@@ -326,7 +326,7 @@ func _on_button_save_pressed() -> void:
 		for node in child_panel.get_children():
 			if node is ASynthKnob:
 				var parameter = node.parameter
-				var value = node.current_value
+				var value = node.actual_value
 				saved_preset[parameter] = value
 
 	#TODO: add sync to ui
