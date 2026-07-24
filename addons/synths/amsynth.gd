@@ -329,10 +329,6 @@ func _on_button_save_pressed() -> void:
 				var value = node.actual_value
 				saved_preset[parameter] = value
 
-	#TODO: add sync to ui
-	saved_preset["3"] = 0
-	saved_preset["9"] = 0
-
 	var json_string = JSON.stringify(saved_preset)
 
 	var save_file = FileAccess.open("user://presets/%s" % (saved_preset_name.text), FileAccess.WRITE)
