@@ -41,17 +41,6 @@ func _get_property_list():
 
 	return properties
 
-func _get(property):
-	if property == "csound_name":
-		return csound_name
-	return ""
-
-func _set(property, value):
-	if property == "csound_name":
-		csound_name = value
-		return true
-	return false
-
 
 signal parameter_changed(parameter: int, value: float)
 
