@@ -24,19 +24,25 @@ func _ready():
 
 
 func dependency(repo, args={}):
-	print ("installing dependency for ", repo)
-
 	var plugin = {}
 	plugin.repo = repo
-	plugin.name = repo.split('/')[1]
+	plugin.repository_name = repo.split('/')[1]
 	plugin.owner = repo.split('/')[0]
 	plugin.tag = args['tag']
+	plugin.name = args['name'] if 'name' in args else null
+
+	if plugin.name:
+		print ("installing dependency for %s#%s" % [repo, plugin.name])
+		plugin.id = "%s:%s" % [repo, plugin.name]
+	else:
+		print ("installing dependency for %s" % [repo])
+		plugin.id = "%s" % [repo]
 
 	get_release(plugin)
 
 
 func get_release(plugin):
-	var url = "https://api.github.com/repos/%s/%s/releases" % [plugin.owner, plugin.name]
+	var url = "https://api.github.com/repos/%s/%s/releases" % [plugin.owner, plugin.repository_name]
 	var http = make_request(url, [], HTTPClient.METHOD_GET)
 
 	var cb = func(result: int, code: int, headers: PackedStringArray, body: PackedByteArray):
@@ -49,24 +55,29 @@ func get_release(plugin):
 
 		if not release_id:
 			print ('Could not find release for %s:%s' %[plugin.repo, plugin.tag])
-			plugins[plugin.repo] = false
+			plugins[plugin.id] = false
 		else:
 			plugin.release_id = release_id
 			get_download_url(plugin)
 
 		http.queue_free()
 
-	plugins[plugin.repo] = true
+	plugins[plugin.id] = true
 	http.request_completed.connect(cb)
 
 
 func get_download_url(plugin):
-	var url = "https://api.github.com/repos/%s/%s/releases/%s" % [plugin.owner, plugin.name, plugin.release_id]
+	var url = "https://api.github.com/repos/%s/%s/releases/%s" % [plugin.owner, plugin.repository_name, plugin.release_id]
 	var http = make_request(url, [], HTTPClient.METHOD_GET)
 
 	var cb = func(result: int, code: int, headers: PackedStringArray, body: PackedByteArray):
 		var json = JSON.parse_string(body.get_string_from_utf8())
 		var download_url = json['assets'][0]['browser_download_url']
+		if plugin.name:
+			for asset in json['assets']:
+				if asset['name'] == plugin.name:
+					download_url = asset['browser_download_url']
+
 		print ('downloading from %s' % [download_url])
 		http.queue_free()
 		download_plugin(plugin, download_url)
@@ -79,12 +90,12 @@ func download_plugin(plugin, download_url):
 	var http = make_request(url, [], HTTPClient.METHOD_GET)
 
 	var cb = func(result: int, code: int, headers: PackedStringArray, body: PackedByteArray):
-		var file = FileAccess.open("user://%s.zip" % [plugin.name], FileAccess.WRITE)
+		var file = FileAccess.open("user://%s.zip" % [plugin.repository_name], FileAccess.WRITE)
 		file.store_buffer(body)
 		file.close()
 
 		var reader = ZIPReader.new()
-		var err = reader.open("user://%s.zip" % [plugin.name])
+		var err = reader.open("user://%s.zip" % [plugin.repository_name])
 
 		var dir_access = DirAccess.open('.')
 
@@ -98,7 +109,7 @@ func download_plugin(plugin, download_url):
 
 		http.queue_free()
 
-		plugins[plugin.repo] = false
+		plugins[plugin.id] = false
 
 	http.request_completed.connect(cb)
 
