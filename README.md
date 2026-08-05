@@ -1,27 +1,50 @@
-godot-synths
-============
+# godot-synths
 
 Godot project that uses [godot-csound](https://github.com/nonameentername/godot-csound/) and [godot-distrho](https://github.com/nonameentername/godot-distrho/) to build a synthesizer.
 
 Currently works with Godot v4.7 stable release.
 
-Also has support for connecting jack using [godot-jack](https://github.com/nonameentername/godot-jack)
-
 GodotSyth running in the browser [godot-synths](https://nonameentername.github.io/godot-synths/godot-synths.html)
 
 ![godot-synths](https://github.com/nonameentername/godot-synths/blob/main/godot-synths.png)
 
-Build
------
+Currently works with **Godot 4.7 stable**.
 
-This project requires godot-csound and optionally godot-jack.
+## Build
 
-1. Download depedencies
-```
+### 1. Install the dependencies
+
+Run the following command from the project directory:
+
+```bash
 godot --headless -s package.gd install
 ```
 
-2. Import godot resources
-```
+### 2. Import the Godot resources
+
+```bash
 godot --headless --import
+```
+
+### 3. Open the project
+
+```bash
+godot --editor project.godot
+```
+
+## Export the Plugin
+
+Export the Linux LV2 audio plugin:
+
+```bash
+godot --headless --export-debug "LinuxLV2"
+```
+
+## Install the Plugin
+
+Copy the Linux LV2 plugin to your local LV2 directory:
+
+```bash
+mkdir -p ~/.lv2
+cp -r build/linux/godot-synths.lv2 ~/.lv2/
 ```

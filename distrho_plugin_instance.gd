@@ -6,6 +6,14 @@ func _init() -> void:
 	DistrhoPluginServer.set_distrho_plugin(self)
 
 
+func get_plugin_name() -> String:
+	return "GodotSynths"
+
+
+func get_uri() -> String:
+	return "https://github.com/nonameentername/godot-synths"
+
+
 func get_label() -> String:
 	return "godot-amsynth"
 

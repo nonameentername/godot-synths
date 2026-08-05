@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GodotSynths"
-run/main_scene="uid://cqblgckoq2x14"
+run/main_scene="uid://b6dypp4qpoog8"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -33,7 +33,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/csound/plugin.cfg")
+enabled=PackedStringArray("res://addons/csound/plugin.cfg", "res://addons/distrho/plugin.cfg")
 
 [rendering]
 
