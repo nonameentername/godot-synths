@@ -40,6 +40,12 @@ Export the Linux LV2 audio plugin:
 godot --headless --export-debug "LinuxLV2"
 ```
 
+Export the Linux VST3 audio plugin:
+
+```bash
+godot --headless --export-debug "LinuxVST3"
+```
+
 ## Install the Plugin
 
 Copy the Linux LV2 plugin to your local LV2 directory:
@@ -47,4 +53,11 @@ Copy the Linux LV2 plugin to your local LV2 directory:
 ```bash
 mkdir -p ~/.lv2
 cp -r build/linux/godot-synths.lv2 ~/.lv2/
+```
+
+Copy the Linux VST3 plugin to your local VST3 directory:
+
+```bash
+mkdir -p ~/.vst3
+cp -r build/linux/godot-synths.vst3 ~/.vst3/
 ```
